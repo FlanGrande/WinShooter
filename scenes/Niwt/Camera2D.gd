@@ -3,6 +3,7 @@ extends Camera2D
 export var shaking_duration_in_seconds = 0.12
 export var max_shake_x = 16
 export var max_shake_y = 8
+export var shake_enabled = true
 
 var shaking = false
 var shake_timer = Timer.new()
@@ -24,8 +25,9 @@ func _process(delta):
 		offset = Vector2(0, 0)
 
 func shake():
-	shaking = true
-	shake_timer.start()
+	if(shake_enabled):
+		shaking = true
+		shake_timer.start()
 
 func _on_shake_timer_timeout():
 	shaking = false

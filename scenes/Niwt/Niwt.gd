@@ -13,7 +13,7 @@ var alive = false
 # Movement
 const MAX_SPEED = Vector2(460, 460)
 const DEADZONE_SPEED = 80
-const ACCELERATION = 20
+const ACCELERATION = 40
 const DECELERATION = 30
 var speed_factor = 1.0
 var current_speed = Vector2(0, 0)
@@ -30,10 +30,10 @@ func _ready():
 	current_state = State.WALKING
 	
 	# Limit camera based on surrounding walls, for now.
-	$Camera2D.limit_left = get_parent().get_node("nd_Walls/spr_WestWall").position.x
-	$Camera2D.limit_right = get_parent().get_node("nd_Walls/spr_EastWall").position.x
-	$Camera2D.limit_top = get_parent().get_node("nd_Walls/spr_NorthWall").position.y
-	$Camera2D.limit_bottom = get_parent().get_node("nd_Walls/spr_SouthWall").position.y
+	$Camera2D.limit_left = get_parent().get_node("nd_outterWalls/spr_WestWall").position.x
+	$Camera2D.limit_right = get_parent().get_node("nd_outterWalls/spr_EastWall").position.x
+	$Camera2D.limit_top = get_parent().get_node("nd_outterWalls/spr_NorthWall").position.y
+	$Camera2D.limit_bottom = get_parent().get_node("nd_outterWalls/spr_SouthWall").position.y
 	
 	pass
 

@@ -1,89 +1,91 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Niwt/Niwt.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Enemy/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Environment/WallBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/BaseScene.gd" type="Script" id=5]
+[ext_resource path="res://textures/lights/light.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 32 )
+[sub_resource type="Environment" id=1]
 
 [node name="World" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="WorldEnvironment"]
+visible = false
+position = Vector2( 736, 544 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 6 )
+energy = 1.1
+mode = 1
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.320313, 0.219237, 0.0262756, 1 )
-position = Vector2( 740, 564 )
-scale = Vector2( 29.625, 23.125 )
+position = Vector2( 1568, 544 )
+scale = Vector2( 145.397, 88.9561 )
 texture = ExtResource( 1 )
+
+[node name="nd_outterWalls" type="Node2D" parent="."]
+
+[node name="spr_WestWall" parent="nd_outterWalls" instance=ExtResource( 4 )]
+position = Vector2( -864, 608 )
+rotation = 1.57079
+scale = Vector2( 49.2, 1 )
+
+[node name="spr_EastWall" parent="nd_outterWalls" instance=ExtResource( 4 )]
+position = Vector2( 4128, 608 )
+rotation = 1.57079
+scale = Vector2( 49.2, 1 )
+
+[node name="spr_SouthWall" parent="nd_outterWalls" instance=ExtResource( 4 )]
+position = Vector2( 1632, 2080 )
+rotation = 3.14159
+scale = Vector2( 81.64, 1 )
+
+[node name="spr_NorthWall" parent="nd_outterWalls" instance=ExtResource( 4 )]
+position = Vector2( 1632, -864 )
+rotation = 3.14159
+scale = Vector2( 81.64, 1 )
 
 [node name="nd_Walls" type="Node2D" parent="."]
 
-[node name="spr_SouthWall" type="Sprite" parent="nd_Walls" groups=[
-"walls",
-]]
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 640, 1184 )
-scale = Vector2( 24, 1 )
-texture = ExtResource( 1 )
+[node name="WallBlock" parent="nd_Walls" instance=ExtResource( 4 )]
+position = Vector2( -416, -608 )
+scale = Vector2( -17, 1 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="nd_Walls/spr_SouthWall"]
-collision_layer = 3
-collision_mask = 3
+[node name="WallBlock2" parent="nd_Walls" instance=ExtResource( 4 )]
+position = Vector2( 1232.65, 584.56 )
+rotation = 0.785397
+scale = Vector2( 16.04, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="nd_Walls/spr_SouthWall/StaticBody2D"]
-shape = SubResource( 1 )
+[node name="WallBlock3" parent="nd_Walls" instance=ExtResource( 4 )]
+position = Vector2( 1355.52, 1240.47 )
+rotation = 0.785397
+scale = Vector2( 16.04, 1 )
 
-[node name="spr_NorthWall" type="Sprite" parent="nd_Walls" groups=[
-"walls",
-]]
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 640, 32 )
-scale = Vector2( 24, 1 )
-texture = ExtResource( 1 )
+[node name="WallBlock5" parent="nd_Walls" instance=ExtResource( 4 )]
+position = Vector2( 32.0001, 1632 )
+rotation = 1.57079
+scale = Vector2( 14.56, 1.08 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="nd_Walls/spr_NorthWall"]
-collision_layer = 3
-collision_mask = 3
+[node name="WallBlock6" parent="nd_Walls" instance=ExtResource( 4 )]
+position = Vector2( -736, 1184 )
+rotation = 3.14159
+scale = Vector2( 16.04, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="nd_Walls/spr_NorthWall/StaticBody2D"]
-shape = SubResource( 1 )
+[node name="WallBlock7" parent="nd_Walls" instance=ExtResource( 4 )]
+position = Vector2( -32, 1184 )
+rotation = 3.14159
+scale = Vector2( 3.08, 1 )
 
-[node name="spr_WestWall" type="Sprite" parent="nd_Walls" groups=[
-"walls",
-]]
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -9.09495e-13, 608 )
-rotation = 1.5708
-scale = Vector2( 20, 1 )
-texture = ExtResource( 1 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="nd_Walls/spr_WestWall"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="nd_Walls/spr_WestWall/StaticBody2D"]
-shape = SubResource( 2 )
-
-[node name="spr_EastWall" type="Sprite" parent="nd_Walls" groups=[
-"walls",
-]]
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 1376, 608 )
-rotation = 1.5708
-scale = Vector2( 20, 1 )
-texture = ExtResource( 1 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="nd_Walls/spr_EastWall"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="nd_Walls/spr_EastWall/StaticBody2D"]
-shape = SubResource( 2 )
-
-[node name="Niwt" parent="." instance=ExtResource( 2 )]
-position = Vector2( 528, 344 )
+[node name="WallBlock4" parent="nd_Walls" instance=ExtResource( 4 )]
+position = Vector2( 96, -864 )
+rotation = 1.57079
+scale = Vector2( 5, 1 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 216, 224 )
@@ -96,3 +98,6 @@ position = Vector2( 168, 688 )
 
 [node name="Enemy4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1160, 912 )
+
+[node name="Niwt" parent="." instance=ExtResource( 2 )]
+position = Vector2( 528, 344 )

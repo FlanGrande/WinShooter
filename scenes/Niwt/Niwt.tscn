@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Niwt/Niwt.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Niwt/Camera2D.gd" type="Script" id=3]
+[ext_resource path="res://textures/lights/light.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 24.0
-height = 32.0
+radius = 16.0
+height = 16.0
 
 [node name="Niwt" type="KinematicBody2D" groups=[
 "niwt",
@@ -15,6 +16,7 @@ script = ExtResource( 2 )
 
 [node name="spr_Niwt" type="Sprite" parent="."]
 modulate = Color( 100, 0, 0, 1 )
+light_mask = 2
 scale = Vector2( 0.75, 1.25 )
 texture = ExtResource( 1 )
 
@@ -25,4 +27,9 @@ smoothing_speed = 60.0
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 16 )
 shape = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 4 )
+shadow_enabled = true
