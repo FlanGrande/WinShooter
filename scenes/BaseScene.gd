@@ -28,6 +28,7 @@ func _ready():
 		i += 1
 	
 	$WorldEnvironment/Light2D.visible = true
+	$Niwt.visible = true
 	
 	pass
 

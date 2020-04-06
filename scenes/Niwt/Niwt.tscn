@@ -30,6 +30,12 @@ script = ExtResource( 3 )
 position = Vector2( 0, 16 )
 shape = SubResource( 1 )
 
-[node name="Light2D" type="Light2D" parent="."]
+[node name="LightInteriors" type="Light2D" parent="."]
+position = Vector2( 0, 16 )
+scale = Vector2( 30, 30 )
 texture = ExtResource( 4 )
+texture_scale = 0.1
 shadow_enabled = true
+shadow_buffer_size = 4096
+shadow_filter = 3
+shadow_filter_smooth = 1.0
