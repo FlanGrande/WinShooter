@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://textures/environment/house1.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Environment/PolygonWall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Environment/House.gd" type="Script" id=3]
+
+[sub_resource type="LineShape2D" id=1]
+normal = Vector2( 0.04279, -0.999084 )
+
+[node name="House" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="PolygonWall" parent="." instance=ExtResource( 2 )]
+position = Vector2( 147.109, -105.785 )
+
+[node name="Polygon2D" parent="PolygonWall" index="0"]
+color = Color( 0.301961, 0.129412, 0.0901961, 1 )
+polygon = PoolVector2Array( 126.411, -100.074, 472.372, 105.892, 474.477, 170.103, -17.1049, 436.421, -249.738, 284.841, -251.843, 235.367, -125.527, 314.315, 165.002, 140.629, 180.791, 153.261, 74.4747, 217.472, 126.054, 256.42, 112.37, 265.893, 58.6852, 226.946, -111.842, 323.789, -14.9996, 385.894, 446.056, 142.735, 322.897, 69.0499, 229.213, 124.84, 215.528, 115.366, 307.108, 60.6288, 250.265, 22.7338, 215.528, 41.6813, 200.791, 30.1023, 234.476, 13.2601, 126.054, -50.9509, 3.94791, 17.4706, 110.264, 78.5237, 157.633, 53.2603, 172.37, 64.8394, -10.789, 170.103, -82.1189, 122.009, -66.6432, 110.606, -11.8417, 145.893, 82.8958, 92.208, -22.3681, 30.1023, -376.055, 220.63, -374.963, 171.3 )
+
+[node name="spr_House" type="Sprite" parent="."]
+light_mask = 2
+position = Vector2( 147.109, -105.785 )
+z_index = 1
+texture = ExtResource( 1 )
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( -116.975, 122.281 )
+rotation = 3.66519
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -2.81401, -22.1231 )
+shape = SubResource( 1 )
+one_way_collision = true
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+
+[editable path="PolygonWall"]

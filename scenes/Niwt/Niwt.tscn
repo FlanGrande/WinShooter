@@ -12,6 +12,7 @@ height = 16.0
 [node name="Niwt" type="KinematicBody2D" groups=[
 "niwt",
 ]]
+z_index = 2
 script = ExtResource( 2 )
 
 [node name="spr_Niwt" type="Sprite" parent="."]

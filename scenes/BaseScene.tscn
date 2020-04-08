@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Niwt/Niwt.tscn" type="PackedScene" id=2]
@@ -6,7 +6,12 @@
 [ext_resource path="res://scenes/Environment/WallBlock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/BaseScene.gd" type="Script" id=5]
 [ext_resource path="res://textures/lights/light.png" type="Texture" id=6]
+[ext_resource path="res://scenes/Environment/Tree.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Environment/PolygonWall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Environment/House.tscn" type="PackedScene" id=9]
+[ext_resource path="res://textures/environment/tree2.png" type="Texture" id=10]
+[ext_resource path="res://textures/environment/tree3.png" type="Texture" id=11]
+[ext_resource path="res://textures/environment/tree4.png" type="Texture" id=12]
 
 [sub_resource type="Environment" id=1]
 
@@ -29,6 +34,7 @@ mode = 1
 modulate = Color( 0.320313, 0.219237, 0.0262756, 1 )
 position = Vector2( 1568, 544 )
 scale = Vector2( 145.397, 88.9561 )
+z_index = -2
 texture = ExtResource( 1 )
 
 [node name="nd_outerWalls" type="Node2D" parent="."]
@@ -131,6 +137,115 @@ position = Vector2( -479.999, 416.001 )
 [node name="Polygon2D" parent="nd_Buildings/House4/Room3/PolygonWall" index="0"]
 polygon = PoolVector2Array( -352.001, -383.999, -48.0009, -384, -48.0007, -304, -272.001, -303.999, -352, -207.999, -352, -111.999, -272, -15.9994, -64.0001, -15.9999, 31.9998, -112, 31.9996, -160, 95.9996, -160, 96, 31.9998, 32, 32, -416, 32.0009, -416.001, -383.999 )
 
+[node name="House" parent="nd_Buildings" instance=ExtResource( 9 )]
+position = Vector2( 3488, -240 )
+
+[node name="nd_Trees" type="Node2D" parent="."]
+
+[node name="Tree" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 3248, -272 )
+z_index = 0
+
+[node name="Tree7" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2864, -96 )
+
+[node name="Tree8" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2592, -64 )
+
+[node name="Tree19" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2288, 272 )
+
+[node name="Tree20" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2384, 352 )
+
+[node name="Tree9" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2304, -96 )
+
+[node name="Tree10" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2144, 64 )
+
+[node name="Tree2" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 3248, -176 )
+texture = ExtResource( 10 )
+
+[node name="Tree11" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2768, -96 )
+texture = ExtResource( 10 )
+
+[node name="Tree12" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2720, -16 )
+texture = ExtResource( 10 )
+
+[node name="Tree13" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2544, -128 )
+z_index = 0
+texture = ExtResource( 10 )
+
+[node name="Tree6" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 3808, -48 )
+z_index = 2
+texture = ExtResource( 10 )
+
+[node name="Tree3" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 3632, 48 )
+z_index = 2
+texture = ExtResource( 11 )
+
+[node name="Tree14" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2896, 128 )
+z_index = 2
+texture = ExtResource( 11 )
+
+[node name="Tree15" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2656, 192 )
+z_index = 2
+texture = ExtResource( 11 )
+
+[node name="Tree16" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2384, -112 )
+z_index = 2
+texture = ExtResource( 11 )
+
+[node name="Tree17" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2224, -48 )
+z_index = 2
+texture = ExtResource( 11 )
+
+[node name="Tree18" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2208, 304 )
+z_index = 2
+texture = ExtResource( 11 )
+
+[node name="Tree5" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 3760, -32 )
+z_index = 2
+texture = ExtResource( 11 )
+
+[node name="Tree4" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 3712, 32 )
+z_index = 2
+texture = ExtResource( 12 )
+
+[node name="Tree21" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2848, 176 )
+z_index = 2
+texture = ExtResource( 12 )
+
+[node name="Tree22" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2736, 224 )
+z_index = 2
+texture = ExtResource( 12 )
+
+[node name="Tree23" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2576, 240 )
+z_index = 2
+texture = ExtResource( 12 )
+
+[node name="Tree24" parent="nd_Trees" instance=ExtResource( 7 )]
+position = Vector2( 2464, 320 )
+z_index = 2
+texture = ExtResource( 12 )
+
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 216, 224 )
 
@@ -145,13 +260,7 @@ position = Vector2( 1160, 912 )
 
 [node name="Niwt" parent="." instance=ExtResource( 2 )]
 visible = false
-position = Vector2( 928, 832 )
-
-[node name="WallBlock" parent="." instance=ExtResource( 4 )]
-position = Vector2( 544, -160 )
-
-[node name="WallBlock2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 608, -160 )
+position = Vector2( 1376, 656 )
 
 [editable path="nd_Buildings/House1/PolygonWall"]
 
