@@ -4,7 +4,7 @@
 
 [sub_resource type="OccluderPolygon2D" id=1]
 cull_mode = 1
-polygon = PoolVector2Array( -11.876, 94.2868, -14.9678, 88.3411, -8.30859, 44.3429, 2.15585, 43.3916, 10.7177, 89.0546, 3.82065, 95.476 )
+polygon = PoolVector2Array( -2.0696, 85.5644, -4.64528, 82.1302, 0.0767975, 70.7542, 1.79393, 70.7542, 5.87209, 83.2034, 3.2964, 85.5644 )
 
 [node name="Tree" type="Sprite"]
 light_mask = 2
