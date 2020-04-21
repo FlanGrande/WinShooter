@@ -273,6 +273,7 @@ position = Vector2( 1160, 912 )
 [node name="Niwt" parent="." instance=ExtResource( 2 )]
 visible = false
 position = Vector2( 1376, 656 )
+z_index = 1
 
 [editable path="nd_Buildings/House1/PolygonWall"]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tree4.png-fc854235e862751fb76208e21febe92a.stex"
+path="res://.import/house2.png-3ee1f07a107f6b44a9d55cc3a2ace2de.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/environment/tree4.png"
-dest_files=[ "res://.import/tree4.png-fc854235e862751fb76208e21febe92a.stex" ]
+source_file="res://textures/environment/house2.png"
+dest_files=[ "res://.import/house2.png-3ee1f07a107f6b44a9d55cc3a2ace2de.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
