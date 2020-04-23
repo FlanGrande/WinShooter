@@ -30,10 +30,10 @@ func _ready():
 	current_state = State.WALKING
 	
 	# Limit camera based on surrounding walls, for now.
-	$Camera2D.limit_left = get_parent().get_node("nd_outerWalls/spr_WestWall").position.x
-	$Camera2D.limit_right = get_parent().get_node("nd_outerWalls/spr_EastWall").position.x
-	$Camera2D.limit_top = get_parent().get_node("nd_outerWalls/spr_NorthWall").position.y
-	$Camera2D.limit_bottom = get_parent().get_node("nd_outerWalls/spr_SouthWall").position.y
+	#$Camera2D.limit_left = get_parent().get_node("nd_outerWalls/spr_WestWall").position.x
+	#$Camera2D.limit_right = get_parent().get_node("nd_outerWalls/spr_EastWall").position.x
+	#$Camera2D.limit_top = get_parent().get_node("nd_outerWalls/spr_NorthWall").position.y
+	#$Camera2D.limit_bottom = get_parent().get_node("nd_outerWalls/spr_SouthWall").position.y
 	
 	pass
 

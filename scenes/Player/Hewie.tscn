@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Player/Hewie.gd" type="Script" id=1]
+[ext_resource path="res://textures/tmp/corgi.png" type="Texture" id=2]
+[ext_resource path="res://textures/lights/light.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Niwt/Camera2D.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 16 )
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.0
+height = 16.0
+
+[node name="Hewie" type="KinematicBody2D" groups=[
+"player",
+]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.096, 0.0960961 )
+texture = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+smoothing_enabled = true
+smoothing_speed = 60.0
+script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=[
+"hewie",
+"player",
+]]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="LightForShadows" type="Light2D" parent="."]
+scale = Vector2( 30, 30 )
+texture = ExtResource( 3 )
+texture_scale = 0.04
+mode = 2
+range_item_cull_mask = 9
+shadow_enabled = true
+shadow_buffer_size = 4096
+shadow_filter = 3
+shadow_filter_smooth = 1.0
+
+[node name="LightForEntities" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+mode = 2
+range_item_cull_mask = 6
+shadow_item_cull_mask = 2
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

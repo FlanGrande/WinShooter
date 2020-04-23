@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://textures/lights/light.png" type="Texture" id=1]
+[ext_resource path="res://default_env.tres" type="Environment" id=2]
+[ext_resource path="res://textures/environment/map.jpg" type="Texture" id=3]
+[ext_resource path="res://scenes/Player/Bernard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Singleton/Singleton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ProtLevel.gd" type="Script" id=6]
+[ext_resource path="res://scenes/Environment/PolygonWall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Player/Hewie.tscn" type="PackedScene" id=8]
+[ext_resource path="res://textures/environment/tree4.png" type="Texture" id=9]
+[ext_resource path="res://textures/environment/tree2.png" type="Texture" id=10]
+[ext_resource path="res://textures/environment/tree3.png" type="Texture" id=11]
+[ext_resource path="res://scenes/Environment/Tree.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/InteractiveEnv/Door.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/InteractiveEnv/Key.tscn" type="PackedScene" id=14]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Singleton" parent="." instance=ExtResource( 5 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="WorldEnvironment"]
+visible = false
+texture = ExtResource( 1 )
+texture_scale = 50.0
+energy = 1.1
+mode = 1
+range_item_cull_mask = 13
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 8
+position = Vector2( 1952, 1008 )
+scale = Vector2( 19.4951, 23.085 )
+texture = ExtResource( 3 )
+
+[node name="B_House" type="Node2D" parent="."]
+position = Vector2( -432, -528 )
+
+[node name="PolygonWall" parent="B_House" instance=ExtResource( 7 )]
+
+[node name="Polygon2D" parent="B_House/PolygonWall" index="0"]
+polygon = PoolVector2Array( -656, -592, -624, -592, -576, 32, -160, 32, -160, -240, 96, -240, 96, -64, 640, -64, 640, 704, -16, 704, -160, 848, -560, 848, -608, 160, 16, 160, 16, 576, -16, 576, -16, 192, -432, 192, -560, 352, -528, 816, -160, 816, -16, 672, -16, 640, 16, 640, 16, 672, 96, 672, 96, 416, 128, 416, 128, 640, 608, 640, 608, 304, 128, 304, 128, 352, 96, 352, 96, 272, 608, 272, 608, -32, 256, -32, 256, 0, 224, 0, 224, -32, 128, -32, 128, 112, 224, 112, 224, 64, 256, 64, 256, 144, 128, 144, 128, 208, 96, 208, 96, 64, 0, 64, 0, 32, 64, -16, 64, -208, -128, -208, -128, 32, -48, 32, -48, 64, -544, 64, -544, 96, -608, 96 )
+
+[node name="WorldBorder" type="Node2D" parent="."]
+position = Vector2( -1520, -336 )
+
+[node name="PolygonWall" parent="WorldBorder" instance=ExtResource( 7 )]
+
+[node name="Polygon2D" parent="WorldBorder/PolygonWall" index="0"]
+polygon = PoolVector2Array( -64, -816, 464, -816, 464, -784, -32, -784, 112, 1584, 576, 1584, 528, 656, 560, 656, 608, 1616, 80, 1616 )
+
+[node name="Bernard" parent="." instance=ExtResource( 4 )]
+position = Vector2( -192, 16 )
+
+[node name="Hewie" parent="." instance=ExtResource( 8 )]
+position = Vector2( 32, 16 )
+
+[node name="DecoTrees" type="Node2D" parent="."]
+
+[node name="Tree" parent="DecoTrees" instance=ExtResource( 12 )]
+light_mask = 4
+position = Vector2( -1504, -688 )
+
+[node name="Tree2" parent="DecoTrees" instance=ExtResource( 12 )]
+light_mask = 4
+position = Vector2( -1072, -864 )
+texture = ExtResource( 10 )
+
+[node name="Tree3" parent="DecoTrees" instance=ExtResource( 12 )]
+light_mask = 4
+position = Vector2( -1520, -1024 )
+texture = ExtResource( 11 )
+
+[node name="Tree4" parent="DecoTrees" instance=ExtResource( 12 )]
+light_mask = 4
+position = Vector2( -1088, -1120 )
+texture = ExtResource( 9 )
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( -320, -144 )
+rotation = -1.57079
+
+[node name="Door2" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( -1024, -400 )
+rotation = -1.57079
+
+[node name="Keys" type="Node2D" parent="."]
+
+[node name="Key" parent="Keys" instance=ExtResource( 14 )]
+position = Vector2( 144, -192 )
+
+[node name="Key2" parent="Keys" instance=ExtResource( 14 )]
+position = Vector2( -288, -448 )
+[connection signal="give_key" from="Hewie" to="Bernard" method="_on_Hewie_give_key"]
+
+[editable path="B_House/PolygonWall"]
+
+[editable path="WorldBorder/PolygonWall"]
