@@ -5,6 +5,7 @@
 [node name="PolygonWall" type="StaticBody2D" groups=[
 "walls",
 ]]
+light_mask = 1025
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 1 )

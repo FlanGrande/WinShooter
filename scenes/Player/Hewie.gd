@@ -5,7 +5,8 @@ signal give_key
 
 enum State {
 	WALKING,
-	GRABBING
+	GRABBING,
+	HARNESS_MODE
 }
 
 var current_state = State.WALKING
@@ -13,13 +14,16 @@ var current_state = State.WALKING
 var alive = false
 
 # Movement
-const MAX_SPEED = Vector2(460, 460)
-const MAX_SPEED_WHILE_GRABBING = Vector2(260, 260)
+const MAX_SPEED_WALKING = Vector2(460, 460)
+const MAX_SPEED_GRABBING = Vector2(260, 260)
+const MAX_SPEED_HARNESS_MODE = Vector2(200, 200)
 const DEADZONE_SPEED = 80
 const ACCELERATION = 24
 const DECELERATION = 16
-var speed_factor = 0.8
+const BASE_SPEED_FACTOR = 0.8
+var speed_factor = BASE_SPEED_FACTOR
 var current_speed = Vector2(0, 0)
+var current_max_speed = MAX_SPEED_WALKING
 var move_input_is_pressed = [false, false] # Input on X, input on Y
 
 # Camera
@@ -29,6 +33,7 @@ var aiming_vector = Vector2(0, 0) # Vector representing the direction the player
 var x_axis = Vector2(1, 0) # Vector for the axis used to calculate aiming angle (X axis, namely)
 
 # Interactions
+onready var Bernard = get_parent().get_node("Bernard")
 var keys_at_reach = []
 var is_one_key_being_grabbed = false
 var grabbed_item_offset = Vector2(0, -8)
@@ -54,6 +59,8 @@ func _process(delta):
 		
 		var motion = Vector2(speed_factor * current_speed)
 		move_and_slide(motion)
+		
+		print("HEWIE STATE: ", current_state)
 	
 	pass
 
@@ -61,6 +68,7 @@ func handle_input():
 	match current_state:
 		# TO DO: Move towards controller input, as in analog movement.
 		State.WALKING:
+			current_max_speed = MAX_SPEED_WALKING
 			handle_movement()
 			
 			if(keys_at_reach.size() > 0):
@@ -68,6 +76,7 @@ func handle_input():
 					change_state(State.GRABBING)
 		
 		State.GRABBING:
+			current_max_speed = MAX_SPEED_GRABBING
 			handle_movement()
 			
 			if(keys_at_reach.size() > 0):
@@ -88,30 +97,31 @@ func handle_input():
 					
 					is_one_key_being_grabbed = false
 					change_state(State.WALKING)
+		
+		State.HARNESS_MODE:
+			current_max_speed = MAX_SPEED_HARNESS_MODE  # This isn't really used.
 
 func update():
 	match current_state:
 		State.WALKING:
-			if current_speed.y > MAX_SPEED.y:
-				current_speed.y = MAX_SPEED.y
-			elif current_speed.y < -MAX_SPEED.y:
-				current_speed.y = -MAX_SPEED.y
-			
-			if current_speed.x > MAX_SPEED.x:
-				current_speed.x = MAX_SPEED.x
-			elif current_speed.x < -MAX_SPEED.x:
-				current_speed.x = -MAX_SPEED.x
+			pass
 		
 		State.GRABBING:
-			if current_speed.y > MAX_SPEED_WHILE_GRABBING.y:
-				current_speed.y = MAX_SPEED_WHILE_GRABBING.y
-			elif current_speed.y < -MAX_SPEED_WHILE_GRABBING.y:
-				current_speed.y = -MAX_SPEED_WHILE_GRABBING.y
+			pass
 			
-			if current_speed.x > MAX_SPEED_WHILE_GRABBING.x:
-				current_speed.x = MAX_SPEED_WHILE_GRABBING.x
-			elif current_speed.x < -MAX_SPEED_WHILE_GRABBING.x:
-				current_speed.x = -MAX_SPEED_WHILE_GRABBING.x
+		State.HARNESS_MODE:
+			global_position = Bernard.global_position + Bernard.current_speed * 0.1
+			#current_speed = Bernard.current_speed  # This isn't really used.
+	
+	if current_speed.y > current_max_speed.y:
+		current_speed.y = current_max_speed.y
+	elif current_speed.y < -current_max_speed.y:
+		current_speed.y = -current_max_speed.y
+	
+	if current_speed.x > current_max_speed.x:
+		current_speed.x = current_max_speed.x
+	elif current_speed.x < -current_max_speed.x:
+		current_speed.x = -current_max_speed.x
 
 func handle_movement():
 	move_input_is_pressed = [false, false]
@@ -170,6 +180,15 @@ func shoot():
 #	get_parent().add_child(one_bullet)
 	$Camera2D.shake()
 
+
+func _on_Bernard_toggle_harness():
+	if(current_state == State.HARNESS_MODE):
+		speed_factor = BASE_SPEED_FACTOR
+		change_state(State.WALKING)
+	else:
+		speed_factor = Bernard.speed_factor
+		change_state(State.HARNESS_MODE)
+	
 
 func _on_Area2D_area_entered(area):
 	if(area.get_parent().is_in_group("keys")):

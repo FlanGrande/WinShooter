@@ -5,10 +5,10 @@
 [ext_resource path="res://textures/lights/light.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Niwt/Camera2D.gd" type="Script" id=4]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 16 )
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 8.0
 height = 16.0
 
@@ -31,14 +31,14 @@ script = ExtResource( 4 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=[
 "hewie",
 "player",
 ]]
 rotation = 1.5708
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="LightForShadows" type="Light2D" parent="."]
 scale = Vector2( 30, 30 )

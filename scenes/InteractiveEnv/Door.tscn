@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scenes/InteractiveEnv/Door.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 8 )
@@ -12,6 +13,7 @@ polygon = PoolVector2Array( -32, -8, 32, -8, 32, 8, -32, 8 )
 "doors",
 ]]
 collision_layer = 3
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 0.6, 0, 1 )

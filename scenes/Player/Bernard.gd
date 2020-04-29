@@ -1,12 +1,14 @@
 extends KinematicBody2D
 
 # BERNARD
+signal toggle_harness
 
 var bullet_scene = preload("res://scenes/Bullets/Bullet.tscn")
 
 enum State {
 	WALKING,
-	GRABBING
+	GRABBING,
+	HARNESS_MODE
 }
 
 var current_state = State.WALKING
@@ -14,12 +16,15 @@ var current_state = State.WALKING
 var alive = false
 
 # Movement
-const MAX_SPEED = Vector2(460, 460)
+const MAX_SPEED_WALKING = Vector2(460, 460)
+const MAX_SPEED_GRABBING = Vector2(460, 460)
+const MAX_SPEED_HARNESS_MODE = Vector2(200, 200)
 const DEADZONE_SPEED = 80
 const ACCELERATION = 40
 const DECELERATION = 30
 var speed_factor = 0.3
 var current_speed = Vector2(0, 0)
+var current_max_speed = MAX_SPEED_WALKING
 var move_input_is_pressed = [false, false] # Input on X, input on Y
 
 # Camera
@@ -29,6 +34,8 @@ var aiming_vector = Vector2(0, 0) # Vector representing the direction the player
 var x_axis = Vector2(1, 0) # Vector for the axis used to calculate aiming angle (X axis, namely)
 
 # Interactions
+const IS_HEWIE_NEARBY_RANGE = 60
+onready var Hewie = get_parent().get_node("Hewie")
 var grabbed_key = null
 var grabbed_item_offset = Vector2(0, 0)
 
@@ -52,6 +59,8 @@ func _process(delta):
 		
 		var motion = Vector2(speed_factor * current_speed)
 		move_and_slide(motion)
+		
+		print("BERNARD STATE: ", current_state)
 	
 	pass
 
@@ -59,39 +68,53 @@ func handle_input():
 	match current_state:
 		# TO DO: Move towards controller input, as in analog movement.
 		State.WALKING:
+			current_max_speed = MAX_SPEED_WALKING
 			handle_movement()
+			
+			if(is_Hewie_nearby() and Input.is_action_just_released("toggle_harness")):
+				emit_signal("toggle_harness")
+				change_state(State.HARNESS_MODE)
 		
 		State.GRABBING:
+			current_max_speed = MAX_SPEED_GRABBING
 			handle_movement()
 			
 			grabbed_key.position = global_position + grabbed_item_offset
 			
 			if(Input.is_action_just_released("bernard_drop")):
 				change_state(State.WALKING)
+			
+			if(Input.is_action_just_released("toggle_harness")):
+				change_state(State.HARNESS_MODE)
+		
+		State.HARNESS_MODE:
+			current_max_speed = MAX_SPEED_HARNESS_MODE
+			handle_movement()
+			
+			if(Input.is_action_just_released("toggle_harness")):
+				emit_signal("toggle_harness")
+				change_state(State.WALKING)
 
 func update():
 	match current_state:
 		State.WALKING:
-			if current_speed.y > MAX_SPEED.y:
-				current_speed.y = MAX_SPEED.y
-			elif current_speed.y < -MAX_SPEED.y:
-				current_speed.y = -MAX_SPEED.y
-			
-			if current_speed.x > MAX_SPEED.x:
-				current_speed.x = MAX_SPEED.x
-			elif current_speed.x < -MAX_SPEED.x:
-				current_speed.x = -MAX_SPEED.x
+			pass
 		
 		State.GRABBING:
-			if current_speed.y > MAX_SPEED.y:
-				current_speed.y = MAX_SPEED.y
-			elif current_speed.y < -MAX_SPEED.y:
-				current_speed.y = -MAX_SPEED.y
-			
-			if current_speed.x > MAX_SPEED.x:
-				current_speed.x = MAX_SPEED.x
-			elif current_speed.x < -MAX_SPEED.x:
-				current_speed.x = -MAX_SPEED.x
+			pass
+		
+		State.HARNESS_MODE:
+			pass
+	
+	if current_speed.y > current_max_speed.y:
+		current_speed.y = current_max_speed.y
+	elif current_speed.y < -current_max_speed.y:
+		current_speed.y = -current_max_speed.y
+	
+	if current_speed.x > current_max_speed.x:
+		current_speed.x = current_max_speed.x
+	elif current_speed.x < -current_max_speed.x:
+		current_speed.x = -current_max_speed.x
 
 func handle_movement():
 	move_input_is_pressed = [false, false]
@@ -149,6 +172,9 @@ func shoot():
 #	one_bullet.direction_angle = aiming_vector.angle()
 #	get_parent().add_child(one_bullet)
 	$Camera2D.shake()
+
+func is_Hewie_nearby():
+	return Hewie.global_position.distance_to(global_position) < IS_HEWIE_NEARBY_RANGE
 
 
 func _on_Hewie_give_key(given_key):
