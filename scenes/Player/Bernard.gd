@@ -22,6 +22,7 @@ const MAX_SPEED_HARNESS_MODE = Vector2(200, 200)
 const DEADZONE_SPEED = 80
 const ACCELERATION = 40
 const DECELERATION = 30
+const DEAD_ZONE = 0.2
 var speed_factor = 0.3
 var current_speed = Vector2(0, 0)
 var current_max_speed = MAX_SPEED_WALKING
@@ -71,7 +72,8 @@ func handle_input():
 			current_max_speed = MAX_SPEED_WALKING
 			handle_movement()
 			
-			if(is_Hewie_nearby() and Input.is_action_just_released("toggle_harness")):
+			#if(is_Hewie_nearby() and Input.is_action_just_released("toggle_harness")):
+			if(is_Hewie_nearby() and Input.is_action_just_released("bernard_interact")):
 				emit_signal("toggle_harness")
 				change_state(State.HARNESS_MODE)
 		
@@ -81,17 +83,16 @@ func handle_input():
 			
 			grabbed_key.position = global_position + grabbed_item_offset
 			
-			if(Input.is_action_just_released("bernard_drop")):
+			#if(Input.is_action_just_released("bernard_drop")):
+			if(Input.is_action_just_released("bernard_interact")):
 				change_state(State.WALKING)
-			
-			if(Input.is_action_just_released("toggle_harness")):
-				change_state(State.HARNESS_MODE)
 		
 		State.HARNESS_MODE:
 			current_max_speed = MAX_SPEED_HARNESS_MODE
 			handle_movement()
 			
-			if(Input.is_action_just_released("toggle_harness")):
+			#if(Input.is_action_just_released("toggle_harness")):
+			if(Input.is_action_just_released("bernard_interact")):
 				emit_signal("toggle_harness")
 				change_state(State.WALKING)
 
@@ -122,18 +123,34 @@ func handle_movement():
 	if(Input.is_action_pressed("bernard_move_left")):
 		current_speed.x += -ACCELERATION
 		move_input_is_pressed[0] = true
+		
+		var tmp_axis_input = abs(Input.get_joy_axis(0, 0))
+		if(tmp_axis_input > DEAD_ZONE):
+			current_max_speed.x = current_max_speed.x * abs(Input.get_joy_axis(0, 0))
 	
 	if(Input.is_action_pressed("bernard_move_right")):
 		current_speed.x += ACCELERATION
 		move_input_is_pressed[0] = true
+		
+		var tmp_axis_input = abs(Input.get_joy_axis(0, 0))
+		if(tmp_axis_input > DEAD_ZONE):
+			current_max_speed.x = current_max_speed.x * abs(Input.get_joy_axis(0, 0))
 	
 	if(Input.is_action_pressed("bernard_move_up")):
 		current_speed.y += -ACCELERATION
 		move_input_is_pressed[1] = true
+		
+		var tmp_axis_input = abs(Input.get_joy_axis(0, 1))
+		if(tmp_axis_input > DEAD_ZONE):
+			current_max_speed.y = current_max_speed.y * abs(Input.get_joy_axis(0, 1))
 	
 	if(Input.is_action_pressed("bernard_move_down")):
 		current_speed.y += ACCELERATION
 		move_input_is_pressed[1] = true
+		
+		var tmp_axis_input = abs(Input.get_joy_axis(0, 1))
+		if(tmp_axis_input > DEAD_ZONE):
+			current_max_speed.y = current_max_speed.y * abs(Input.get_joy_axis(0, 1))
 	
 	# No input on X
 	if(not move_input_is_pressed[0]):

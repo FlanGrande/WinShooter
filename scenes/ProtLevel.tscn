@@ -74,7 +74,7 @@ scale = Vector2( 5, 2 )
 position = Vector2( -832, -400 )
 
 [node name="Hewie" parent="." instance=ExtResource( 8 )]
-position = Vector2( -608, -400 )
+position = Vector2( -608, -416 )
 
 [node name="DecoTrees" type="Node2D" parent="."]
 

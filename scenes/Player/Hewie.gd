@@ -32,6 +32,9 @@ var camera_position = Vector2(0, 0) # Current camera position
 var aiming_vector = Vector2(0, 0) # Vector representing the direction the player is aiming to
 var x_axis = Vector2(1, 0) # Vector for the axis used to calculate aiming angle (X axis, namely)
 
+# Animation
+var current_animation = "walk_down"
+
 # Interactions
 onready var Bernard = get_parent().get_node("Bernard")
 var keys_at_reach = []
@@ -127,20 +130,40 @@ func handle_movement():
 	move_input_is_pressed = [false, false]
 			
 	if(Input.is_action_pressed("hewie_move_left")):
+		change_animation("walk_left")
 		current_speed.x += -ACCELERATION
 		move_input_is_pressed[0] = true
+		
+		var tmp_axis_input = abs(Input.get_joy_axis(0, 2))
+		if(tmp_axis_input > Bernard.DEAD_ZONE):
+			current_max_speed.x = current_max_speed.x * abs(Input.get_joy_axis(0, 2))
 	
 	if(Input.is_action_pressed("hewie_move_right")):
+		change_animation("walk_right")
 		current_speed.x += ACCELERATION
 		move_input_is_pressed[0] = true
+		
+		var tmp_axis_input = abs(Input.get_joy_axis(0, 2))
+		if(tmp_axis_input > Bernard.DEAD_ZONE):
+			current_max_speed.x = current_max_speed.x * abs(Input.get_joy_axis(0, 2))
 	
 	if(Input.is_action_pressed("hewie_move_up")):
+		change_animation("walk_up")
 		current_speed.y += -ACCELERATION
 		move_input_is_pressed[1] = true
+		
+		var tmp_axis_input = abs(Input.get_joy_axis(0, 3))
+		if(tmp_axis_input > Bernard.DEAD_ZONE):
+			current_max_speed.y = current_max_speed.y * abs(Input.get_joy_axis(0, 3))
 	
 	if(Input.is_action_pressed("hewie_move_down")):
+		change_animation("walk_down")
 		current_speed.y += ACCELERATION
 		move_input_is_pressed[1] = true
+		
+		var tmp_axis_input = abs(Input.get_joy_axis(0, 3))
+		if(tmp_axis_input > Bernard.DEAD_ZONE):
+			current_max_speed.y = current_max_speed.y * abs(Input.get_joy_axis(0, 3))
 	
 	# No input on X
 	if(not move_input_is_pressed[0]):
@@ -161,6 +184,11 @@ func handle_movement():
 func change_state(new_state):
 	current_state = new_state
 	pass
+
+func change_animation(new_animation):
+	if(current_animation != new_animation):
+		$AnimationPlayer.play(new_animation)
+		current_animation = new_animation
 
 # Change to follow Hewie
 func camera_update():
