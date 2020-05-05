@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://debug/Debug_Label.gd" type="Script" id=1]
+[ext_resource path="res://debug/DebugEntry.tscn" type="PackedScene" id=2]
+
+[node name="Container2" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dbgState" parent="." instance=ExtResource( 2 )]
+label = "State"
+
+[node name="dbgSpeed" parent="." instance=ExtResource( 2 )]
+margin_top = 16.0
+margin_bottom = 56.0
+label = "Speed"
+
+[node name="dbgOnFloor" parent="." instance=ExtResource( 2 )]
+margin_top = 32.0
+margin_bottom = 72.0
+label = "Anim Index"
+
+[node name="dbgLocalMousePos" parent="." instance=ExtResource( 2 )]
+margin_top = 48.0
+margin_bottom = 88.0
+label = "LMousePos"
+
+[node name="dbgGlobalMousePos" parent="." instance=ExtResource( 2 )]
+margin_top = 64.0
+margin_bottom = 104.0
+label = "GMousePos"
+
+[node name="dbgCastPos" parent="." instance=ExtResource( 2 )]
+margin_top = 80.0
+margin_bottom = 120.0
+label = "CastPos"
+
+[node name="dbgAnimation" parent="." instance=ExtResource( 2 )]
+margin_top = 96.0
+margin_bottom = 136.0
+label = "Animation"
+
+[node name="dbgAimingAngle" parent="." instance=ExtResource( 2 )]
+margin_top = 112.0
+margin_bottom = 152.0
+label = "AimingAngle"

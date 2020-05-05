@@ -61,7 +61,7 @@ func _process(delta):
 		var motion = Vector2(speed_factor * current_speed)
 		move_and_slide(motion)
 		
-		print("BERNARD STATE: ", current_state)
+		#print("BERNARD STATE: ", current_state)
 	
 	pass
 
@@ -81,10 +81,11 @@ func handle_input():
 			current_max_speed = MAX_SPEED_GRABBING
 			handle_movement()
 			
-			grabbed_key.position = global_position + grabbed_item_offset
+			grabbed_key.global_position = global_position + grabbed_item_offset
 			
 			#if(Input.is_action_just_released("bernard_drop")):
 			if(Input.is_action_just_released("bernard_interact")):
+				grabbed_key = null
 				change_state(State.WALKING)
 		
 		State.HARNESS_MODE:
@@ -199,8 +200,8 @@ func _on_Hewie_give_key(given_key):
 	change_state(State.GRABBING)
 
 func _on_Area2D_body_entered(body):
-	if(body.is_in_group("doors")):
-		if(current_state == State.GRABBING and grabbed_key != null):
+	if(body.is_in_group("doors") and body.door_type == "keydoor"):
+		if(current_state == State.GRABBING and grabbed_key != null and body.key_that_opens == grabbed_key):
 			body.queue_free()
 			grabbed_key.queue_free()
 			change_state(State.WALKING)
