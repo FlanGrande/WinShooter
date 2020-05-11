@@ -200,8 +200,8 @@ func _on_Hewie_give_key(given_key):
 	change_state(State.GRABBING)
 
 func _on_Area2D_body_entered(body):
-	if(body.is_in_group("doors") and body.door_type == "keydoor"):
-		if(current_state == State.GRABBING and grabbed_key != null and body.key_that_opens == grabbed_key):
-			body.queue_free()
+	if(body.is_in_group("doors")):
+		if(current_state == State.GRABBING and grabbed_key != null and body.mechanism_that_opens == grabbed_key):
+			body.get_parent().activate()
 			grabbed_key.queue_free()
 			change_state(State.WALKING)
