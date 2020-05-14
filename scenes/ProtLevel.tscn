@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://textures/lights/light.png" type="Texture" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://scenes/InteractiveEnv/InteractiveOutput.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/InteractiveEnv/TrafficLight.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Environment/Tree.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/InteractiveEnv/Key.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/Environment/RoadSegment.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/Environment/Crosswalk.tscn" type="PackedScene" id=16]
 
@@ -52,41 +51,14 @@ texture = ExtResource( 1 )
 texture_scale = 50.0
 energy = 1.1
 mode = 1
-range_item_cull_mask = 524289
+range_item_cull_mask = 7
 
 [node name="Sprite" type="Sprite" parent="."]
-light_mask = 524288
+light_mask = 2
 material = SubResource( 2 )
 position = Vector2( 1696, 1024 )
 scale = Vector2( 19.4951, 23.085 )
 texture = ExtResource( 3 )
-
-[node name="B_House" type="Node2D" parent="."]
-position = Vector2( -432, -528 )
-
-[node name="PolygonWall" parent="B_House" instance=ExtResource( 7 )]
-
-[node name="Polygon2D" parent="B_House/PolygonWall" index="0"]
-color = Color( 0.12549, 0.156863, 0.278431, 1 )
-polygon = PoolVector2Array( -656, -592, -624, -592, -576, 32, -160, 32, -160, -240, 96, -240, 96, -64, 640, -64, 640, 704, -16, 704, -160, 848, -560, 848, -608, 160, 16, 160, 16, 576, -16, 576, -16, 192, -432, 192, -560, 352, -528, 816, -160, 816, -16, 672, -16, 640, 16, 640, 16, 672, 96, 672, 96, 416, 128, 416, 128, 640, 608, 640, 608, 304, 128, 304, 128, 352, 96, 352, 96, 272, 608, 272, 608, -32, 256, -32, 256, 0, 224, 0, 224, -32, 128, -32, 128, 112, 224, 112, 224, 64, 256, 64, 256, 144, 128, 144, 128, 208, 96, 208, 96, 64, 0, 64, 0, 32, 64, -16, 64, -208, -128, -208, -128, 32, -48, 32, -48, 64, -544, 64, -544, 96, -608, 96 )
-
-[node name="WorldBorder" type="Node2D" parent="."]
-position = Vector2( -1520, -336 )
-
-[node name="PolygonWall" parent="WorldBorder" instance=ExtResource( 7 )]
-
-[node name="Polygon2D" parent="WorldBorder/PolygonWall" index="0"]
-color = Color( 0.12549, 0.156863, 0.278431, 1 )
-polygon = PoolVector2Array( -2664, -816, -1520, -816, -1608, 24, -984, -48, -992, -816, -785.749, -816, -776, 72, -48, -40, -96, -816, 464, -816, 464, -784, -48, -784, -16, -16, -808, 104, -816, -784, -944, -784, -944, -24, -1656, 56, -1568, -784, -2624, -784, -2824, 1584, -1712, 1584, -1664, 1136, -1208, 1136, -1248, 1584, -1064, 1584, -984, 632, -376, 632, -416, 336, 16, 272, 104, 1584, 576, 1584, 528, 656, 560, 656, 608, 1616, 48, 1616, -16, 312, -368, 368, -328, 664, -952, 680, -1008, 1616, -1288, 1616, -1256, 1184, -1624, 1176, -1672, 1616, -2872, 1616 )
-
-[node name="Environment" type="Node2D" parent="."]
-
-[node name="PolygonWall" parent="Environment" instance=ExtResource( 7 )]
-position = Vector2( -2896, 208 )
-
-[node name="Polygon2D" parent="Environment/PolygonWall" index="0"]
-color = Color( 0.12549, 0.156863, 0.278431, 1 )
-polygon = PoolVector2Array( -224, -376, 360, -432, 272, 488, 48, 488, 48, 456, 248, 456, 328, -400, -192, -352, -232, 456, 48, 456, 48, 488, -272, 488 )
 
 [node name="Road" type="Node2D" parent="."]
 position = Vector2( -1280, -256 )
@@ -127,103 +99,129 @@ position = Vector2( -48, -992 )
 rotation = -0.0635716
 scale = Vector2( 13, 30 )
 
-[node name="Bernard" parent="." instance=ExtResource( 4 )]
-position = Vector2( -200, -8 )
+[node name="B_House" type="Node2D" parent="."]
+position = Vector2( -432, -528 )
 
-[node name="Hewie" parent="." instance=ExtResource( 8 )]
-position = Vector2( 7.99988, 32.0001 )
+[node name="PolygonWall" parent="B_House" instance=ExtResource( 7 )]
 
-[node name="Doors" type="Node2D" parent="."]
+[node name="Polygon2D" parent="B_House/PolygonWall" index="0"]
+color = Color( 0.12549, 0.156863, 0.278431, 1 )
+polygon = PoolVector2Array( -656, -592, -624, -592, -576, 32, -160, 32, -160, -240, 96, -240, 96, -64, 640, -64, 640, 704, -16, 704, -160, 848, -560, 848, -608, 160, 16, 160, 16, 576, -16, 576, -16, 192, -432, 192, -560, 352, -528, 816, -160, 816, -16, 672, -16, 640, 16, 640, 16, 672, 96, 672, 96, 416, 128, 416, 128, 640, 608, 640, 608, 304, 128, 304, 128, 352, 96, 352, 96, 272, 608, 272, 608, -32, 256, -32, 256, 0, 224, 0, 224, -32, 128, -32, 128, 112, 224, 112, 224, 64, 256, 64, 256, 144, 128, 144, 128, 208, 96, 208, 96, 64, 0, 64, 0, 32, 64, -16, 64, -208, -128, -208, -128, 32, -48, 32, -48, 64, -544, 64, -544, 96, -608, 96 )
 
-[node name="IO_BedroomDoor" parent="Doors" instance=ExtResource( 10 )]
-position = Vector2( -320, -144 )
-rotation = 1.5708
-active = true
-connected_inputs_nodepaths = [ NodePath("../../Keys/II_BedroomKey") ]
-type = "Door"
+[node name="LivingRoomDoor" type="Node2D" parent="B_House"]
+position = Vector2( 432, 528 )
 
-[node name="IO_HomeEntryDoor" parent="Doors" instance=ExtResource( 10 )]
-position = Vector2( -1032, -400 )
-rotation = 1.5708
-active = true
-connected_inputs_nodepaths = [ NodePath("../../Keys/II_HomeEntryKey") ]
-type = "Door"
-
-[node name="IO_LivingRoomDoor" parent="Doors" instance=ExtResource( 10 )]
+[node name="IO_LivingRoomDoor" parent="B_House/LivingRoomDoor" instance=ExtResource( 10 )]
 position = Vector2( -432, 80 )
 rotation = 1.5708
 active = true
-connected_inputs_nodepaths = [ NodePath("../../Buttons/II_LivingRoomButton"), NodePath("../../Buttons/II_LivingRoomButton2") ]
+connected_inputs_nodepaths = [ NodePath("../II_LivingRoomButton1"), NodePath("../II_LivingRoomButton2") ]
 type = "Door"
 
-[node name="Keys" type="Node2D" parent="."]
-
-[node name="Key" parent="Keys" instance=ExtResource( 14 )]
-position = Vector2( 112, -312 )
-
-[node name="Key2" parent="Keys" instance=ExtResource( 14 )]
-position = Vector2( -288, -448 )
-
-[node name="II_BedroomKey" parent="Keys" instance=ExtResource( 9 )]
-position = Vector2( -144, -184 )
+[node name="II_LivingRoomButton1" parent="B_House/LivingRoomDoor" instance=ExtResource( 9 )]
+position = Vector2( -400, 24 )
 active = true
-connected_output_nodepath = NodePath("../../Doors/IO_BedroomDoor")
-type = "Key"
-
-[node name="II_HomeEntryKey" parent="Keys" instance=ExtResource( 9 )]
-position = Vector2( -280, -528 )
-active = true
-connected_output_nodepath = NodePath("../../Doors/IO_HomeEntryDoor")
-type = "Key"
-
-[node name="Buttons" type="Node2D" parent="."]
-
-[node name="II_LivingRoomButton" parent="Buttons" instance=ExtResource( 9 )]
-position = Vector2( -400, 8 )
-active = true
-connected_output_nodepath = NodePath("../../Doors/IO_LivingRoomDoor")
+connected_output_nodepath = NodePath("../IO_LivingRoomDoor")
 type = "DogButton"
 
-[node name="II_LivingRoomButton2" parent="Buttons" instance=ExtResource( 9 )]
-position = Vector2( -464, 8 )
+[node name="II_LivingRoomButton2" parent="B_House/LivingRoomDoor" instance=ExtResource( 9 )]
+position = Vector2( -464, 24 )
 active = true
-connected_output_nodepath = NodePath("../../Doors/IO_LivingRoomDoor")
+connected_output_nodepath = NodePath("../IO_LivingRoomDoor")
 type = "DogButton"
 
-[node name="DecoTrees" type="Node2D" parent="."]
+[node name="BedroomDoor" type="Node2D" parent="B_House"]
+position = Vector2( 432, 528 )
 
-[node name="Tree" parent="DecoTrees" instance=ExtResource( 12 )]
-light_mask = 4
+[node name="IO_BedroomDoor" parent="B_House/BedroomDoor" instance=ExtResource( 10 )]
+position = Vector2( -320, -144 )
+rotation = 1.5708
+active = true
+connected_inputs_nodepaths = [ NodePath("../II_BedroomButton1"), NodePath("../II_BedroomButton2") ]
+type = "Door"
+
+[node name="II_BedroomButton1" parent="B_House/BedroomDoor" instance=ExtResource( 9 )]
+position = Vector2( -352, -200 )
+active = true
+connected_output_nodepath = NodePath("../IO_BedroomDoor")
+type = "DogButton"
+
+[node name="II_BedroomButton2" parent="B_House/BedroomDoor" instance=ExtResource( 9 )]
+position = Vector2( -288, -200 )
+active = true
+connected_output_nodepath = NodePath("../IO_BedroomDoor")
+type = "DogButton"
+
+[node name="EntryDoor" type="Node2D" parent="B_House"]
+
+[node name="IO_HomeEntryDoor" parent="B_House/EntryDoor" instance=ExtResource( 10 )]
+position = Vector2( -600, 128 )
+rotation = 1.5708
+active = true
+connected_inputs_nodepaths = [ NodePath("../II_HomeEntryKey") ]
+type = "Door"
+
+[node name="II_HomeEntryKey" parent="B_House/EntryDoor" instance=ExtResource( 9 )]
+position = Vector2( 152, 0 )
+active = true
+connected_output_nodepath = NodePath("../IO_HomeEntryDoor")
+type = "Key"
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Bernard" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( -1040, 208 )
+
+[node name="Hewie" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( -1192, -312 )
+
+[node name="YSortTrafficLights" type="YSort" parent="YSort"]
+
+[node name="TrafficLight" parent="YSort/YSortTrafficLights" instance=ExtResource( 11 )]
+position = Vector2( -1112, -328 )
+
+[node name="YSortDecoTrees" type="YSort" parent="YSort"]
+
+[node name="Tree" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
 position = Vector2( -1496, -856 )
 z_index = 1
 
-[node name="Tree2" parent="DecoTrees" instance=ExtResource( 12 )]
-light_mask = 4
+[node name="Tree2" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
 position = Vector2( -1072, -864 )
 
-[node name="Tree3" parent="DecoTrees" instance=ExtResource( 12 )]
-light_mask = 4
+[node name="Tree3" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
 position = Vector2( -1520, -1024 )
 
-[node name="Tree4" parent="DecoTrees" instance=ExtResource( 12 )]
-light_mask = 4
+[node name="Tree4" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
 position = Vector2( -1088, -1120 )
 
-[node name="Tree5" parent="DecoTrees" instance=ExtResource( 12 )]
+[node name="Tree5" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
 position = Vector2( -984, 328 )
 z_index = 1
 
-[node name="Tree6" parent="DecoTrees" instance=ExtResource( 12 )]
-light_mask = 4
+[node name="Tree6" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
 position = Vector2( -2848, 680 )
 scale = Vector2( 0.605464, 0.605464 )
 
-[node name="TrafficLights" type="Node2D" parent="."]
+[node name="WorldBorder" type="Node2D" parent="."]
+position = Vector2( -1520, -336 )
 
-[node name="TrafficLight" parent="TrafficLights" instance=ExtResource( 11 )]
-position = Vector2( -1112, -328 )
-[connection signal="toggle_harness" from="Bernard" to="Hewie" method="_on_Bernard_toggle_harness"]
-[connection signal="give_key" from="Hewie" to="Bernard" method="_on_Hewie_give_key"]
+[node name="PolygonWall" parent="WorldBorder" instance=ExtResource( 7 )]
+
+[node name="Polygon2D" parent="WorldBorder/PolygonWall" index="0"]
+color = Color( 0.12549, 0.156863, 0.278431, 1 )
+polygon = PoolVector2Array( -2664, -816, -1520, -816, -1608, 24, -984, -48, -992, -816, -785.749, -816, -776, 72, -48, -40, -96, -816, 464, -816, 464, -784, -48, -784, -16, -16, -808, 104, -816, -784, -944, -784, -944, -24, -1656, 56, -1568, -784, -2624, -784, -2824, 1584, -1712, 1584, -1664, 1136, -1208, 1136, -1248, 1584, -1064, 1584, -984, 632, -376, 632, -416, 336, 16, 272, 104, 1584, 576, 1584, 528, 656, 560, 656, 608, 1616, 48, 1616, -16, 312, -368, 368, -328, 664, -952, 680, -1008, 1616, -1288, 1616, -1256, 1184, -1624, 1176, -1672, 1616, -2872, 1616 )
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="PolygonWall" parent="Environment" instance=ExtResource( 7 )]
+position = Vector2( -2896, 208 )
+
+[node name="Polygon2D" parent="Environment/PolygonWall" index="0"]
+color = Color( 0.12549, 0.156863, 0.278431, 1 )
+polygon = PoolVector2Array( -224, -376, 360, -432, 272, 488, 48, 488, 48, 456, 248, 456, 328, -400, -192, -352, -232, 456, 48, 456, 48, 488, -272, 488 )
+[connection signal="toggle_harness" from="YSort/Bernard" to="YSort/Hewie" method="_on_Bernard_toggle_harness"]
+[connection signal="give_key" from="YSort/Hewie" to="YSort/Bernard" method="_on_Hewie_give_key"]
 
 [editable path="B_House/PolygonWall"]
 

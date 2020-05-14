@@ -8,6 +8,7 @@ extents = Vector2( 8, 16 )
 [node name="Key" type="Node2D" groups=[
 "keys",
 ]]
+z_index = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -2.38419e-07, 4.76837e-07 )

@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Blind Guardian"
-run/main_scene="res://scenes/TestingGrounds.tscn"
+run/main_scene="res://scenes/ProtLevel.tscn"
 config/icon="res://icon.png"
 
 [display]

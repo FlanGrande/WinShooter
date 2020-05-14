@@ -24,8 +24,9 @@ func _ready():
 			output_instance = door_node.instance()
 			
 			for input in connected_inputs:
-				input.initialize()
-				output_instance.mechanisms_that_open.append(input.input_instance)
+				if(input):
+					input.initialize()
+					output_instance.mechanisms_that_open.append(input.input_instance)
 			
 			add_child(output_instance)
 		

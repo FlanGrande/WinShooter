@@ -6,14 +6,14 @@
 [ext_resource path="res://scenes/Niwt/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://textures/characters/hewie/strip.png" type="Texture" id=8]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 24, 16 )
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=14]
 radius = 8.0
 height = 16.0
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=15]
 resource_name = "00_idle"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -283,6 +283,7 @@ hframes = 8
 frame = 34
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 smoothing_enabled = true
 smoothing_speed = 60.0
 script = ExtResource( 4 )
@@ -290,14 +291,14 @@ script = ExtResource( 4 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=[
 "hewie",
 "player",
 ]]
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 14 )
 
 [node name="LightForShadows" type="Light2D" parent="."]
 visible = false
@@ -315,13 +316,13 @@ shadow_item_cull_mask = 524289
 [node name="LightForEntities" type="Light2D" parent="."]
 texture = ExtResource( 3 )
 mode = 2
-range_item_cull_mask = 524289
+range_item_cull_mask = 7
 shadow_enabled = true
-shadow_item_cull_mask = 524289
+shadow_item_cull_mask = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
-anims/00_idle = SubResource( 3 )
+anims/00_idle = SubResource( 15 )
 anims/01_walk_up = SubResource( 4 )
 anims/02_walk_up_right = SubResource( 5 )
 anims/03_walk_right = SubResource( 6 )

@@ -10,13 +10,11 @@ height = 7.68166
 polygon = PoolVector2Array( -1.88502, 32.7711, -2.68334, 37.3615, -2.08459, 39.956, -0.887115, 40.5547, 0.909098, 39.5568, 0.709523, 37.3615, -0.288381, 32.5715 )
 
 [node name="StaticBody2D" type="StaticBody2D"]
-position = Vector2( -0.39916, 33.729 )
-scale = Vector2( 1, 1 )
+position = Vector2( -0.399, 75 )
 collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
@@ -25,5 +23,7 @@ scale = Vector2( 3, 3 )
 occluder = SubResource( 2 )
 
 [node name="spr_Tree" type="Sprite" parent="."]
+light_mask = 4
+position = Vector2( 0, -75 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )

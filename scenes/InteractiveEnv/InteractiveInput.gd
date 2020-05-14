@@ -30,7 +30,12 @@ func initialize():
 			add_child(input_instance)
 
 func turn_on():
-	connected_output.activate()
+	if(connected_output): 
+		connected_output.activate()
+	else:
+		print("connected_output is null")
 
 func turn_off():
-	connected_output.deactivate()
+	if(connected_output): 
+		connected_output.deactivate()
+		print("connected_output is null")
