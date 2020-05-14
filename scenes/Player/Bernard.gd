@@ -201,7 +201,8 @@ func _on_Hewie_give_key(given_key):
 
 func _on_Area2D_body_entered(body):
 	if(body.is_in_group("doors")):
-		if(current_state == State.GRABBING and grabbed_key != null and body.mechanism_that_opens == grabbed_key):
-			body.get_parent().activate()
+		if(current_state == State.GRABBING and grabbed_key != null and body.mechanisms_that_open.has(grabbed_key)):
+			#body.get_parent().activate() # Open door from the door
+			grabbed_key.get_parent().turn_on() # Open door from the key
 			grabbed_key.queue_free()
 			change_state(State.WALKING)

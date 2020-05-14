@@ -15,6 +15,7 @@ func _ready():
 	lo2D.occluder.closed = true
 	lo2D.occluder.cull_mode = 1 # 1 means ClockWise.
 	lo2D.occluder.polygon = $Polygon2D.polygon
+	#lo2D.set_occluder_light_mask($".".light_mask)
 	
 	var cp2D = CollisionPolygon2D.new()
 	cp2D.polygon = $Polygon2D.polygon

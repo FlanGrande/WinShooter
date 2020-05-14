@@ -1,54 +1,68 @@
 extends Node2D
 
 export var active = false # Is it active? Can it be used? E.g.: it's broken?
-export var connected_input_nodepath : NodePath # NodePath to mechanism affected by this input.
-export(String, "KeyDoor", "Traffic light") var type # Is it a door, a traffic light...?
+export(Array, NodePath) var connected_inputs_nodepaths # NodePath to mechanism affected by this input.
+export(String, "Door", "TrafficLight") var type # Is it a door, a traffic light...?
 
 var door_node = preload("res://scenes/InteractiveEnv/Door.tscn")
+var trafficlight_node = preload("res://scenes/InteractiveEnv/TrafficLight.tscn")
 
-var connected_input : Node2D # Input connected to this object. E.g. A key is connected to this door. Needs to be initialize()'d.
-var output_instance # Instance that contains aninteractive output instance. E.g. a Door instance.
+var connected_inputs : Array # Input connected to this object. E.g. A key is connected to this door. Needs to be initialize()'d.
+var output_instance # Instance that contains an interactive output instance. E.g. a Door instance.
 
 # Right now Outputs need to be Ready after Inputs. I want to find a solution for that, ideally, without doing stuff like waiting 0.1s or something.
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	connected_input = get_node(connected_input_nodepath)
 	$Sprite.queue_free()
 	
+	for path in connected_inputs_nodepaths:
+		connected_inputs.append(get_node(path))
+	
 	match type:
-		"KeyDoor":
+		"Door":
 			output_instance = door_node.instance()
-			connected_input.initialize()
-			output_instance.mechanism_that_opens = connected_input.input_instance
+			
+			for input in connected_inputs:
+				input.initialize()
+				output_instance.mechanisms_that_open.append(input.input_instance)
+			
 			add_child(output_instance)
 		
-		"DogButtonDoor":
-			pass
+		"TrafficLight":
+			output_instance = trafficlight_node.instance()
+			
+			for input in connected_inputs:
+				input.initialize()
+				output_instance.mechanisms_that_open.append(input.input_instance)
+			
+			add_child(output_instance)
 
-func _process(delta):
-	pass
+func _process(delta):match type:
+		"Door":
+			pass
+		
+		"TrafficLight":
+			if(connected_inputs.size() == 0):
+				if(output_instance.current_light == "red"):
+					pass
 
 func activate():
 	# Open door, etc.
 	
 	match type:
-		"KeyDoor":
+		"Door":
 			output_instance.open()
 		
-		"DogButtonDoor":
-			pass
-	
-	pass
+		"TrafficLight":
+			output_instance.open()
 
 func deactivate():
 	# Close door, etc.
 	
 	match type:
-		"KeyDoor":
+		"Door":
 			output_instance.close()
 		
-		"DogButtonDoor ":
-			pass
-	
-	pass
+		"TrafficLight":
+			output_instance.close()

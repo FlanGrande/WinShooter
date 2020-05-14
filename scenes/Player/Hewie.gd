@@ -271,7 +271,7 @@ func _on_Area2D_area_entered(area):
 		can_give_key = true
 	
 	if(area.get_parent().is_in_group("dog_buttons")):
-		area.get_parent().get_parent().open()
+		area.get_parent().get_parent().turn_on()
 
 
 func _on_Area2D_area_exited(area):
@@ -282,4 +282,4 @@ func _on_Area2D_area_exited(area):
 		can_give_key = false
 	
 	if(area.get_parent().is_in_group("dog_buttons")):
-		area.get_parent().get_parent().close()
+		area.get_parent().get_parent().turn_off()

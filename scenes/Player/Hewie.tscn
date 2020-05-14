@@ -270,6 +270,7 @@ tracks/1/keys = {
 [node name="Hewie" type="KinematicBody2D" groups=[
 "player",
 ]]
+scale = Vector2( 0.8, 0.8 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 1 )
@@ -299,21 +300,24 @@ rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="LightForShadows" type="Light2D" parent="."]
+visible = false
 scale = Vector2( 30, 30 )
 texture = ExtResource( 3 )
 texture_scale = 0.04
 mode = 2
-range_item_cull_mask = 9
+range_item_cull_mask = 524289
 shadow_enabled = true
 shadow_buffer_size = 4096
 shadow_filter = 3
 shadow_filter_smooth = 1.0
+shadow_item_cull_mask = 524289
 
 [node name="LightForEntities" type="Light2D" parent="."]
 texture = ExtResource( 3 )
 mode = 2
-range_item_cull_mask = 6
-shadow_item_cull_mask = 2
+range_item_cull_mask = 524289
+shadow_enabled = true
+shadow_item_cull_mask = 524289
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.0

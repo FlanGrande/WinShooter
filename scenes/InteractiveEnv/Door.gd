@@ -1,6 +1,6 @@
-extends StaticBody2D
+extends Node2D
 
-var mechanism_that_opens : Node2D
+var mechanisms_that_open : Array
 
 var is_open = false
 

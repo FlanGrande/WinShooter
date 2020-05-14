@@ -32,7 +32,7 @@ smoothing_speed = 60.0
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
-light_mask = 1025
+light_mask = 524289
 material = SubResource( 1 )
 position = Vector2( 0, -16 )
 scale = Vector2( 0.0420684, 0.08 )
@@ -48,11 +48,11 @@ shape = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="LightForShadows" type="Light2D" parent="."]
+visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 texture_scale = 0.2
 mode = 2
-range_item_cull_mask = 8
 shadow_enabled = true
 shadow_buffer_size = 4096
 shadow_filter = 3
@@ -61,8 +61,8 @@ shadow_filter_smooth = 1.0
 [node name="LightForEntities" type="Light2D" parent="."]
 texture = ExtResource( 3 )
 texture_scale = 0.3
-energy = 0.8
 mode = 2
-range_item_cull_mask = 1024
-shadow_item_cull_mask = 0
+range_item_cull_mask = 524288
+shadow_enabled = true
+shadow_item_cull_mask = 524289
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

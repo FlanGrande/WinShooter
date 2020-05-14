@@ -12,8 +12,8 @@ var input_instance # Instance that interacts with the output (e.g. a Key instanc
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	connected_output = get_node(connected_output_nodepath)
 	$Sprite.queue_free()
+	connected_output = get_node(connected_output_nodepath)
 
 func _process(delta):
 	pass
@@ -26,10 +26,11 @@ func initialize():
 			add_child(input_instance)
 		
 		"DogButton":
-			pass
+			input_instance = dogbutton_node.instance()
+			add_child(input_instance)
 
 func turn_on():
-	connected_output.turn_on()
+	connected_output.activate()
 
 func turn_off():
-	connected_output.turn_off()
+	connected_output.deactivate()
