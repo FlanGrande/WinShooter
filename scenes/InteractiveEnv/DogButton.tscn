@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scenes/InteractiveEnv/DogButton.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 12 )
@@ -8,6 +9,7 @@ extents = Vector2( 16, 12 )
 [node name="DogButton" type="Node2D" groups=[
 "dog_buttons",
 ]]
+script = ExtResource( 2 )
 
 [node name="sprButton" type="Sprite" parent="."]
 modulate = Color( 100, 100, 0, 1 )

@@ -1,6 +1,7 @@
 extends Node2D
 
-var mechanisms_that_open : Array
+onready var mechanism = get_parent().get_parent()
+onready var mechanism_id = mechanism.ID
 
 var is_open = false
 
@@ -20,6 +21,11 @@ func _process(delta):
 		$sprDoor.visible = true
 		$CollisionShape2D.disabled = false
 		$LightOccluder2D.visible = true
+
+func is_opened_by(node):
+	if(mechanism_id == node.mechanism_id):
+		return true
+	return false
 
 func open():
 	is_open = true

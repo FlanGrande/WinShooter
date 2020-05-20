@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/Niwt/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://shaders/single_colour.shader" type="Shader" id=5]
 
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
 shader_param/red = 193.0
 shader_param/green = 26.0
@@ -33,7 +33,7 @@ script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 light_mask = 524289
-material = SubResource( 12 )
+material = SubResource( 1 )
 position = Vector2( 0, -16 )
 scale = Vector2( 0.0420684, 0.08 )
 texture = ExtResource( 2 )

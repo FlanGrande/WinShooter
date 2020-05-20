@@ -10,8 +10,8 @@
 [ext_resource path="res://scenes/Player/Hewie.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/InteractiveEnv/InteractiveInput.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/InteractiveEnv/InteractiveOutput.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/InteractiveEnv/TrafficLight.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Environment/Tree.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/InteractiveEnv/Mechanism.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/Environment/RoadSegment.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/Environment/Crosswalk.tscn" type="PackedScene" id=16]
 
@@ -47,11 +47,15 @@ environment = ExtResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="WorldEnvironment"]
 visible = false
+enabled = false
 texture = ExtResource( 1 )
 texture_scale = 50.0
 energy = 1.1
 mode = 1
 range_item_cull_mask = 7
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0, 0, 0, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 light_mask = 2
@@ -111,97 +115,47 @@ polygon = PoolVector2Array( -656, -592, -624, -592, -576, 32, -160, 32, -160, -2
 [node name="LivingRoomDoor" type="Node2D" parent="B_House"]
 position = Vector2( 432, 528 )
 
-[node name="IO_LivingRoomDoor" parent="B_House/LivingRoomDoor" instance=ExtResource( 10 )]
+[node name="Mechanism" parent="B_House/LivingRoomDoor" instance=ExtResource( 13 )]
 position = Vector2( -432, 80 )
+
+[node name="InteractiveOutput" parent="B_House/LivingRoomDoor/Mechanism" instance=ExtResource( 10 )]
 rotation = 1.5708
-active = true
-connected_inputs_nodepaths = [ NodePath("../II_LivingRoomButton1"), NodePath("../II_LivingRoomButton2") ]
 type = "Door"
 
-[node name="II_LivingRoomButton1" parent="B_House/LivingRoomDoor" instance=ExtResource( 9 )]
-position = Vector2( -400, 24 )
-active = true
-connected_output_nodepath = NodePath("../IO_LivingRoomDoor")
+[node name="InteractiveInput" parent="B_House/LivingRoomDoor/Mechanism" instance=ExtResource( 9 )]
+position = Vector2( 32, -80 )
 type = "DogButton"
 
-[node name="II_LivingRoomButton2" parent="B_House/LivingRoomDoor" instance=ExtResource( 9 )]
-position = Vector2( -464, 24 )
-active = true
-connected_output_nodepath = NodePath("../IO_LivingRoomDoor")
+[node name="InteractiveInput2" parent="B_House/LivingRoomDoor/Mechanism" instance=ExtResource( 9 )]
+position = Vector2( -32, -80 )
 type = "DogButton"
 
 [node name="BedroomDoor" type="Node2D" parent="B_House"]
-position = Vector2( 432, 528 )
+position = Vector2( 112, 384 )
 
-[node name="IO_BedroomDoor" parent="B_House/BedroomDoor" instance=ExtResource( 10 )]
-position = Vector2( -320, -144 )
+[node name="Mechanism" parent="B_House/BedroomDoor" instance=ExtResource( 13 )]
+
+[node name="InteractiveOutput" parent="B_House/BedroomDoor/Mechanism" instance=ExtResource( 10 )]
 rotation = 1.5708
-active = true
-connected_inputs_nodepaths = [ NodePath("../II_BedroomButton1"), NodePath("../II_BedroomButton2") ]
 type = "Door"
 
-[node name="II_BedroomButton1" parent="B_House/BedroomDoor" instance=ExtResource( 9 )]
-position = Vector2( -352, -200 )
-active = true
-connected_output_nodepath = NodePath("../IO_BedroomDoor")
-type = "DogButton"
-
-[node name="II_BedroomButton2" parent="B_House/BedroomDoor" instance=ExtResource( 9 )]
-position = Vector2( -288, -200 )
-active = true
-connected_output_nodepath = NodePath("../IO_BedroomDoor")
+[node name="InteractiveInput" parent="B_House/BedroomDoor/Mechanism" instance=ExtResource( 9 )]
+position = Vector2( -32, -64 )
 type = "DogButton"
 
 [node name="EntryDoor" type="Node2D" parent="B_House"]
 
-[node name="IO_HomeEntryDoor" parent="B_House/EntryDoor" instance=ExtResource( 10 )]
-position = Vector2( -600, 128 )
+[node name="Mechanism" parent="B_House/EntryDoor" instance=ExtResource( 13 )]
+position = Vector2( -592, 128 )
+
+[node name="InteractiveOutput" parent="B_House/EntryDoor/Mechanism" instance=ExtResource( 10 )]
+position = Vector2( 16, 0 )
 rotation = 1.5708
-active = true
-connected_inputs_nodepaths = [ NodePath("../II_HomeEntryKey") ]
 type = "Door"
 
-[node name="II_HomeEntryKey" parent="B_House/EntryDoor" instance=ExtResource( 9 )]
-position = Vector2( 152, 0 )
-active = true
-connected_output_nodepath = NodePath("../IO_HomeEntryDoor")
+[node name="InteractiveInput" parent="B_House/EntryDoor/Mechanism" instance=ExtResource( 9 )]
+position = Vector2( 504, -168 )
 type = "Key"
-
-[node name="YSort" type="YSort" parent="."]
-
-[node name="Bernard" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( -1040, 208 )
-
-[node name="Hewie" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( -1192, -312 )
-
-[node name="YSortTrafficLights" type="YSort" parent="YSort"]
-
-[node name="TrafficLight" parent="YSort/YSortTrafficLights" instance=ExtResource( 11 )]
-position = Vector2( -1112, -328 )
-
-[node name="YSortDecoTrees" type="YSort" parent="YSort"]
-
-[node name="Tree" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
-position = Vector2( -1496, -856 )
-z_index = 1
-
-[node name="Tree2" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
-position = Vector2( -1072, -864 )
-
-[node name="Tree3" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
-position = Vector2( -1520, -1024 )
-
-[node name="Tree4" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
-position = Vector2( -1088, -1120 )
-
-[node name="Tree5" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
-position = Vector2( -984, 328 )
-z_index = 1
-
-[node name="Tree6" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
-position = Vector2( -2848, 680 )
-scale = Vector2( 0.605464, 0.605464 )
 
 [node name="WorldBorder" type="Node2D" parent="."]
 position = Vector2( -1520, -336 )
@@ -220,6 +174,57 @@ position = Vector2( -2896, 208 )
 [node name="Polygon2D" parent="Environment/PolygonWall" index="0"]
 color = Color( 0.12549, 0.156863, 0.278431, 1 )
 polygon = PoolVector2Array( -224, -376, 360, -432, 272, 488, 48, 488, 48, 456, 248, 456, 328, -400, -192, -352, -232, 456, 48, 456, 48, 488, -272, 488 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Bernard" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( -110, -88 )
+
+[node name="Hewie" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( -248, -480 )
+
+[node name="YSortTrafficLights" type="YSort" parent="YSort"]
+
+[node name="Mechanism" parent="YSort/YSortTrafficLights" instance=ExtResource( 13 )]
+position = Vector2( -3280, 304 )
+ID = "HOLA"
+
+[node name="InteractiveOutput2" parent="YSort/YSortTrafficLights/Mechanism" instance=ExtResource( 10 )]
+position = Vector2( -40, -168 )
+type = "TrafficLight"
+
+[node name="InteractiveOutput" parent="YSort/YSortTrafficLights/Mechanism" instance=ExtResource( 10 )]
+position = Vector2( -856, -232 )
+type = "TrafficLight"
+
+[node name="Mechanism2" parent="YSort/YSortTrafficLights" instance=ExtResource( 13 )]
+position = Vector2( -1248, -232 )
+
+[node name="InteractiveOutput" parent="YSort/YSortTrafficLights/Mechanism2" instance=ExtResource( 10 )]
+position = Vector2( 152, 80 )
+type = "TrafficLight"
+
+[node name="InteractiveOutput2" parent="YSort/YSortTrafficLights/Mechanism2" instance=ExtResource( 10 )]
+position = Vector2( -184, 112 )
+type = "TrafficLight"
+
+[node name="YSortDecoTrees" type="YSort" parent="YSort"]
+
+[node name="Tree2" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -1072, -864 )
+
+[node name="Tree3" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -1512, -984 )
+
+[node name="Tree4" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -1088, -1016 )
+
+[node name="Tree6" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -2848, 720 )
+scale = Vector2( 0.605464, 0.605464 )
+
+[node name="StaticBody2D" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -1000, 400 )
 [connection signal="toggle_harness" from="YSort/Bernard" to="YSort/Hewie" method="_on_Bernard_toggle_harness"]
 [connection signal="give_key" from="YSort/Hewie" to="YSort/Bernard" method="_on_Hewie_give_key"]
 
