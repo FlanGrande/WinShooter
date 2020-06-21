@@ -301,7 +301,6 @@ rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="LightForEntities" type="Light2D" parent="."]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 texture_scale = 1.5
 mode = 2

@@ -23,7 +23,9 @@ shader_param/red = 0.0
 shader_param/green = 255.0
 shader_param/blue = 0.0
 
-[node name="TrafficLight" type="Node2D"]
+[node name="TrafficLight" type="Node2D" groups=[
+"traffic_lights",
+]]
 script = ExtResource( 4 )
 
 [node name="sprPole" type="Sprite" parent="."]

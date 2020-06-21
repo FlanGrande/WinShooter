@@ -58,7 +58,7 @@ func _process(delta):
 	if alive:
 		handle_input()
 		update()
-		camera_update()
+		#camera_update()
 		
 		var motion = Vector2(speed_factor * current_speed)
 		move_and_slide(motion)

@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://textures/lights/light.png" type="Texture" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
 [ext_resource path="res://textures/environment/map.jpg" type="Texture" id=3]
 [ext_resource path="res://scenes/Player/Bernard.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Singleton/Singleton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Hazards/VehicleSpawner.gd" type="Script" id=5]
 [ext_resource path="res://scenes/ProtLevel.gd" type="Script" id=6]
 [ext_resource path="res://scenes/Environment/PolygonWall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Player/Hewie.tscn" type="PackedScene" id=8]
@@ -37,10 +37,18 @@ shader_param/red = 103.0
 shader_param/green = 106.0
 shader_param/blue = 99.0
 
+[sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( -1296, 1744, -1504, -2232, -1192, -2256, -968, 1728 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -1296, 1744, -1504, -2232, -1192, -2256, -968, 1728 ) ]
+
+[sub_resource type="NavigationPolygon" id=4]
+vertices = PoolVector2Array( -3176, -1736, -3512, 2184, -4288, 2112, -3944, -1808 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -3944, -1808, -4288, 2112, -3512, 2184, -3176, -1736 ) ]
+
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
-
-[node name="Singleton" parent="." instance=ExtResource( 5 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 2 )
@@ -175,13 +183,23 @@ position = Vector2( -2896, 208 )
 color = Color( 0.12549, 0.156863, 0.278431, 1 )
 polygon = PoolVector2Array( -224, -376, 360, -432, 272, 488, 48, 488, 48, 456, 248, 456, 328, -400, -192, -352, -232, 456, 48, 456, 48, 488, -272, 488 )
 
+[node name="Navigation" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="Navigation"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation/Navigation2D"]
+navpoly = SubResource( 3 )
+
+[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="Navigation/Navigation2D"]
+navpoly = SubResource( 4 )
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Bernard" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( -110, -88 )
+position = Vector2( -3262, 416 )
 
 [node name="Hewie" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( -248, -480 )
+position = Vector2( -3424, 24 )
 
 [node name="YSortTrafficLights" type="YSort" parent="YSort"]
 
@@ -196,6 +214,14 @@ type = "TrafficLight"
 [node name="InteractiveOutput" parent="YSort/YSortTrafficLights/Mechanism" instance=ExtResource( 10 )]
 position = Vector2( -856, -232 )
 type = "TrafficLight"
+
+[node name="InteractiveInput" parent="YSort/YSortTrafficLights/Mechanism" instance=ExtResource( 9 )]
+position = Vector2( -880, -80 )
+type = "DogButton"
+
+[node name="InteractiveInput2" parent="YSort/YSortTrafficLights/Mechanism" instance=ExtResource( 9 )]
+position = Vector2( -40, 0 )
+type = "DogButton"
 
 [node name="Mechanism2" parent="YSort/YSortTrafficLights" instance=ExtResource( 13 )]
 position = Vector2( -1248, -232 )
@@ -225,8 +251,103 @@ scale = Vector2( 0.605464, 0.605464 )
 
 [node name="StaticBody2D" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
 position = Vector2( -1000, 400 )
+
+[node name="VehicleSpawner" type="Node2D" parent="YSort"]
+position = Vector2( -1192, -240 )
+script = ExtResource( 5 )
+spawn_base = 6
+randomness_range = 3.0
+
+[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner"]
+position = Vector2( 120, 1832 )
+rotation = -0.0669232
+
+[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner"]
+position = Vector2( -136, -1864 )
+
+[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner"]
+
+[node name="VehicleSpawner2" type="Node2D" parent="YSort"]
+position = Vector2( -1344, -352 )
+script = ExtResource( 5 )
+spawn_base = 4
+randomness_range = 2.0
+
+[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner2"]
+position = Vector2( 120, 1832 )
+rotation = -0.059138
+
+[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner2"]
+position = Vector2( -112, -1632 )
+
+[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner2"]
+
+[node name="VehicleSpawner3" type="Node2D" parent="YSort"]
+position = Vector2( -3696, 224 )
+script = ExtResource( 5 )
+spawn_base = 3
+randomness_range = 1.0
+
+[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner3"]
+position = Vector2( 88, 1816 )
+rotation = 0.088647
+
+[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner3"]
+position = Vector2( 448, -1848 )
+
+[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner3"]
+
+[node name="VehicleSpawner4" type="Node2D" parent="YSort"]
+position = Vector2( -3848, -56 )
+script = ExtResource( 5 )
+spawn_base = 5
+randomness_range = 1.0
+
+[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner4"]
+position = Vector2( 88, 1816 )
+rotation = 0.117921
+
+[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner4"]
+position = Vector2( 440, -1640 )
+
+[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner4"]
+
+[node name="VehicleSpawner5" type="Node2D" parent="YSort"]
+position = Vector2( -4072, 168 )
+script = ExtResource( 5 )
+spawn_base = 5
+randomness_range = 3.0
+
+[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner5"]
+position = Vector2( 464, -1776 )
+rotation = 3.2447
+
+[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner5"]
+position = Vector2( 88, 1816 )
+
+[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner5"]
+
+[node name="VehicleSpawner6" type="Node2D" parent="YSort"]
+position = Vector2( -4248, -144 )
+script = ExtResource( 5 )
+spawn_base = 2
+
+[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner6"]
+position = Vector2( 376, -1432 )
+rotation = 3.21678
+
+[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner6"]
+position = Vector2( 88, 1816 )
+
+[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner6"]
 [connection signal="toggle_harness" from="YSort/Bernard" to="YSort/Hewie" method="_on_Bernard_toggle_harness"]
 [connection signal="give_key" from="YSort/Hewie" to="YSort/Bernard" method="_on_Hewie_give_key"]
+[connection signal="timeout" from="YSort/VehicleSpawner/TimerSpawnRate" to="YSort/VehicleSpawner" method="_on_TimerSpawnRate_timeout"]
+[connection signal="timeout" from="YSort/VehicleSpawner2/TimerSpawnRate" to="YSort/VehicleSpawner2" method="_on_TimerSpawnRate_timeout"]
+[connection signal="timeout" from="YSort/VehicleSpawner3/TimerSpawnRate" to="YSort/VehicleSpawner3" method="_on_TimerSpawnRate_timeout"]
+[connection signal="timeout" from="YSort/VehicleSpawner4/TimerSpawnRate" to="YSort/VehicleSpawner4" method="_on_TimerSpawnRate_timeout"]
+[connection signal="timeout" from="YSort/VehicleSpawner5/TimerSpawnRate" to="YSort/VehicleSpawner5" method="_on_TimerSpawnRate_timeout"]
+[connection signal="timeout" from="YSort/VehicleSpawner6/TimerSpawnRate" to="YSort/VehicleSpawner6" method="_on_TimerSpawnRate_timeout"]
 
 [editable path="B_House/PolygonWall"]
 

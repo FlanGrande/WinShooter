@@ -1,11 +1,13 @@
 extends Node2D
 
-export var can_be_crossed = false
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#$CollisionShape2D.disabled = can_be_crossed
 	pass # Replace with function body.
 
 
