@@ -196,10 +196,10 @@ navpoly = SubResource( 4 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Bernard" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( -3262, 416 )
+position = Vector2( -3214, 184 )
 
 [node name="Hewie" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( -3424, 24 )
+position = Vector2( -3376, -208 )
 
 [node name="YSortTrafficLights" type="YSort" parent="YSort"]
 
