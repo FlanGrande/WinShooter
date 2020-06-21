@@ -280,7 +280,6 @@ position = Vector2( -4.76837e-06, -1.90735e-06 )
 texture = ExtResource( 8 )
 vframes = 8
 hframes = 8
-frame = 34
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false

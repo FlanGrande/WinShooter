@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var world = get_parent().get_parent()
+onready var world = Singleton.root_scene
 var max_speed = rand_range(280.0, 360.0)
 var min_speed = 0.0
 var initial_position : Vector2
@@ -21,6 +21,7 @@ func _ready() -> void:
 	$RayCast2DFront.cast_to = Vector2(0, -front_side_detection_distance)
 	deviation_from_goal = rand_range(-28.0, 28.0)
 	goal_position.x += deviation_from_goal
+	$Sprite.global_rotation = 0
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,6 +43,8 @@ func _process(delta : float) -> void:
 	move_along_path(move_distance)
 	#if not must_stop:
 	#print(global_position)
+	
+	choose_animation()
 
 func move_along_path(distance : float) -> void:
 	var start_point : = position
@@ -96,3 +99,21 @@ func handle_brakes():
 		else:
 			must_stop = true
 
+func change_animation(new_animation):
+	if($AnimationPlayer.current_animation != new_animation):
+		$AnimationPlayer.play(new_animation)
+
+func choose_animation():
+	var X_axis = Vector2(1, 0)
+	var animation_list = $AnimationPlayer.get_animation_list()
+	#speed_angle_to_X_axis = Vector2(speed.x, -1*current_speed.y).angle_to(X_axis) * 180 / PI
+	var animation_index = int(int((rotation_degrees + 180 + 11) / 22.5) % 16)
+	
+	print(str(rotation_degrees) + " => " + str("animation_" + "%02d" % animation_index))
+	
+	change_animation("animation_" + "%02d" % animation_index)
+	
+	if(must_stop):
+		$AnimationPlayer.stop()
+	else:
+		$AnimationPlayer.play()

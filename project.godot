@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Blind Guardian"
-run/main_scene="res://scenes/ProtLevel.tscn"
+run/main_scene="res://scenes/TestingGroundsVehicles.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -26,7 +26,6 @@ Singleton="*res://scenes/Singleton/Singleton.gd"
 [debug]
 
 settings/fps/force_fps=144
-settings/stdout/print_fps=true
 
 [display]
 

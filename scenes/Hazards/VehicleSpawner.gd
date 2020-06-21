@@ -4,15 +4,15 @@ onready var vehicle_scene = preload("res://scenes/Hazards/Vehicle.tscn")
 
 export var spawn_base = 1 # 1 means a car is spawned every second. 4 means a car is spawned every 4 seconds.
 export var randomness_range = 0.0 # We add and substract this for rand_rang values.
-
-var max_cars = 3
+export var max_cars = 3
+export var randomness_range_max = 0.0 # We add and substract this for rand_rang values.
 
 var vehicles = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$TimerSpawnRate.start()
-	max_cars = round(rand_range(2, 4))
+	max_cars = round(rand_range(max_cars - randomness_range_max, max_cars + randomness_range_max))
 	#print(max_cars)
 	pass # Replace with function body.
 
