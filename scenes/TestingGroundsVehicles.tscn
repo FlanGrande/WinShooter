@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Hazards/VehicleSpawner.gd" type="Script" id=1]
 [ext_resource path="res://scenes/TestingGroundsVehicles.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Hazards/VehicleSpawner.tscn" type="PackedScene" id=3]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -1392, -800, 1232, -864, 1496, 1304, -1472, 1240 )
@@ -12,13 +13,16 @@ outlines = [ PoolVector2Array( -1392, -800, 1232, -864, 1496, 1304, -1472, 1240 
 script = ExtResource( 2 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
+visible = false
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 navpoly = SubResource( 1 )
 
 [node name="VehicleSpawner" type="Node2D" parent="."]
-position = Vector2( -864, 24 )
+visible = false
+position = Vector2( -232, 208 )
 script = ExtResource( 1 )
+enabled = false
 max_cars = 1
 
 [node name="VehiclesInitialPosition" type="Position2D" parent="VehicleSpawner"]
@@ -30,8 +34,10 @@ position = Vector2( 0, -152 )
 [node name="TimerSpawnRate" type="Timer" parent="VehicleSpawner"]
 
 [node name="VehicleSpawner2" type="Node2D" parent="."]
+visible = false
 position = Vector2( -648, -368 )
 script = ExtResource( 1 )
+enabled = false
 max_cars = 1
 
 [node name="VehiclesInitialPosition" type="Position2D" parent="VehicleSpawner2"]
@@ -44,8 +50,10 @@ position = Vector2( 216, -80 )
 [node name="TimerSpawnRate" type="Timer" parent="VehicleSpawner2"]
 
 [node name="VehicleSpawner3" type="Node2D" parent="."]
+visible = false
 position = Vector2( -32, -432 )
 script = ExtResource( 1 )
+enabled = false
 max_cars = 1
 
 [node name="VehiclesInitialPosition" type="Position2D" parent="VehicleSpawner3"]
@@ -58,8 +66,10 @@ position = Vector2( 224, -16 )
 [node name="TimerSpawnRate" type="Timer" parent="VehicleSpawner3"]
 
 [node name="VehicleSpawner4" type="Node2D" parent="."]
+visible = false
 position = Vector2( 608, -240 )
 script = ExtResource( 1 )
+enabled = false
 max_cars = 1
 
 [node name="VehiclesInitialPosition" type="Position2D" parent="VehicleSpawner4"]
@@ -72,8 +82,10 @@ position = Vector2( 144, 168 )
 [node name="TimerSpawnRate" type="Timer" parent="VehicleSpawner4"]
 
 [node name="VehicleSpawner5" type="Node2D" parent="."]
+visible = false
 position = Vector2( 816, 160 )
 script = ExtResource( 1 )
+enabled = false
 max_cars = 1
 
 [node name="VehiclesInitialPosition" type="Position2D" parent="VehicleSpawner5"]
@@ -86,8 +98,10 @@ position = Vector2( 0, 240 )
 [node name="TimerSpawnRate" type="Timer" parent="VehicleSpawner5"]
 
 [node name="VehicleSpawner6" type="Node2D" parent="."]
+visible = false
 position = Vector2( 504, 640 )
 script = ExtResource( 1 )
+enabled = false
 max_cars = 1
 
 [node name="VehiclesInitialPosition" type="Position2D" parent="VehicleSpawner6"]
@@ -100,8 +114,10 @@ position = Vector2( -208, 160 )
 [node name="TimerSpawnRate" type="Timer" parent="VehicleSpawner6"]
 
 [node name="VehicleSpawner7" type="Node2D" parent="."]
+visible = false
 position = Vector2( -48, 960 )
 script = ExtResource( 1 )
+enabled = false
 max_cars = 1
 
 [node name="VehiclesInitialPosition" type="Position2D" parent="VehicleSpawner7"]
@@ -114,8 +130,10 @@ position = Vector2( -192, 0 )
 [node name="TimerSpawnRate" type="Timer" parent="VehicleSpawner7"]
 
 [node name="VehicleSpawner8" type="Node2D" parent="."]
+visible = false
 position = Vector2( -744, 648 )
 script = ExtResource( 1 )
+enabled = false
 max_cars = 1
 
 [node name="VehiclesInitialPosition" type="Position2D" parent="VehicleSpawner8"]
@@ -131,6 +149,9 @@ position = Vector2( -216, -176 )
 position = Vector2( -16, 240 )
 current = true
 zoom = Vector2( 1.5, 1.5 )
+
+[node name="VehicleSpawner9" parent="." instance=ExtResource( 3 )]
+max_cars = 1
 [connection signal="timeout" from="VehicleSpawner/TimerSpawnRate" to="VehicleSpawner" method="_on_TimerSpawnRate_timeout"]
 [connection signal="timeout" from="VehicleSpawner2/TimerSpawnRate" to="VehicleSpawner2" method="_on_TimerSpawnRate_timeout"]
 [connection signal="timeout" from="VehicleSpawner3/TimerSpawnRate" to="VehicleSpawner3" method="_on_TimerSpawnRate_timeout"]
@@ -139,3 +160,5 @@ zoom = Vector2( 1.5, 1.5 )
 [connection signal="timeout" from="VehicleSpawner6/TimerSpawnRate" to="VehicleSpawner6" method="_on_TimerSpawnRate_timeout"]
 [connection signal="timeout" from="VehicleSpawner7/TimerSpawnRate" to="VehicleSpawner7" method="_on_TimerSpawnRate_timeout"]
 [connection signal="timeout" from="VehicleSpawner8/TimerSpawnRate" to="VehicleSpawner8" method="_on_TimerSpawnRate_timeout"]
+
+[editable path="VehicleSpawner9"]

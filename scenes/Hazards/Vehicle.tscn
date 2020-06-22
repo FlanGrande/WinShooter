@@ -1,17 +1,22 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
+[ext_resource path="res://shaders/hue_change.shader" type="Shader" id=1]
 [ext_resource path="res://scenes/Hazards/Vehicle.gd" type="Script" id=2]
 [ext_resource path="res://textures/hazards/car1/strip.png" type="Texture" id=100]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 56, 72 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/hueAdjust = 0.0
+shader_param/inputTexture = ExtResource( 100 )
 
-[sub_resource type="OccluderPolygon2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 40, 72 )
+
+[sub_resource type="OccluderPolygon2D" id=4]
 cull_mode = 2
-polygon = PoolVector2Array( -64, -80, -64, 80, 64, 80, 64, -80 )
+polygon = PoolVector2Array( -40, -88, -40, 56, 40, 56, 40, -88 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "animation_00"
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -26,8 +31,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "animation_01"
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -42,8 +46,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "animation_02"
+[sub_resource type="Animation" id=7]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -58,8 +61,7 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "animation_03"
+[sub_resource type="Animation" id=8]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -74,8 +76,7 @@ tracks/0/keys = {
 "values": [ 12, 13, 14, 15 ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "animation_04"
+[sub_resource type="Animation" id=9]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -90,8 +91,7 @@ tracks/0/keys = {
 "values": [ 16, 17, 18, 19 ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "animation_05"
+[sub_resource type="Animation" id=10]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -106,8 +106,7 @@ tracks/0/keys = {
 "values": [ 20, 21, 22, 23 ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "animation_06"
+[sub_resource type="Animation" id=11]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -122,8 +121,7 @@ tracks/0/keys = {
 "values": [ 24, 25, 26, 27 ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "animation_07"
+[sub_resource type="Animation" id=12]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -138,8 +136,7 @@ tracks/0/keys = {
 "values": [ 28, 29, 30, 31 ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "animation_08"
+[sub_resource type="Animation" id=13]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -154,8 +151,7 @@ tracks/0/keys = {
 "values": [ 32, 33, 34, 35 ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "animation_09"
+[sub_resource type="Animation" id=14]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -170,8 +166,7 @@ tracks/0/keys = {
 "values": [ 36, 37, 38, 39 ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "animation_10"
+[sub_resource type="Animation" id=15]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -186,8 +181,7 @@ tracks/0/keys = {
 "values": [ 40, 41, 42, 43 ]
 }
 
-[sub_resource type="Animation" id=14]
-resource_name = "animation_11"
+[sub_resource type="Animation" id=16]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -202,8 +196,7 @@ tracks/0/keys = {
 "values": [ 44, 45, 46, 47 ]
 }
 
-[sub_resource type="Animation" id=15]
-resource_name = "animation_12"
+[sub_resource type="Animation" id=17]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -218,8 +211,7 @@ tracks/0/keys = {
 "values": [ 48, 49, 50, 51 ]
 }
 
-[sub_resource type="Animation" id=16]
-resource_name = "animation_13"
+[sub_resource type="Animation" id=18]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -234,8 +226,7 @@ tracks/0/keys = {
 "values": [ 52, 53, 54, 55 ]
 }
 
-[sub_resource type="Animation" id=17]
-resource_name = "animation_14"
+[sub_resource type="Animation" id=19]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -250,8 +241,7 @@ tracks/0/keys = {
 "values": [ 56, 57, 58, 59 ]
 }
 
-[sub_resource type="Animation" id=18]
-resource_name = "animation_15"
+[sub_resource type="Animation" id=20]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -272,11 +262,11 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
 position = Vector2( 4.76837e-07, 3.8147e-06 )
 texture = ExtResource( 100 )
 vframes = 16
 hframes = 4
-frame = 20
 
 [node name="RayCast2DFront" type="RayCast2D" parent="."]
 position = Vector2( 0, -136 )
@@ -289,33 +279,32 @@ collide_with_bodies = false
 [node name="Area2D" type="Area2D" parent="." groups=[
 "vehicles",
 ]]
-visible = false
+position = Vector2( 0, -16 )
 collision_layer = 1024
 collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
 light_mask = 2
-occluder = SubResource( 2 )
+occluder = SubResource( 4 )
 light_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/animation_00 = SubResource( 3 )
-anims/animation_01 = SubResource( 4 )
-anims/animation_02 = SubResource( 5 )
-anims/animation_03 = SubResource( 6 )
-anims/animation_04 = SubResource( 7 )
-anims/animation_05 = SubResource( 8 )
-anims/animation_06 = SubResource( 9 )
-anims/animation_07 = SubResource( 10 )
-anims/animation_08 = SubResource( 11 )
-anims/animation_09 = SubResource( 12 )
-anims/animation_10 = SubResource( 13 )
-anims/animation_11 = SubResource( 14 )
-anims/animation_12 = SubResource( 15 )
-anims/animation_13 = SubResource( 16 )
-anims/animation_14 = SubResource( 17 )
-anims/animation_15 = SubResource( 18 )
+anims/animation_00 = SubResource( 5 )
+anims/animation_01 = SubResource( 6 )
+anims/animation_02 = SubResource( 7 )
+anims/animation_03 = SubResource( 8 )
+anims/animation_04 = SubResource( 9 )
+anims/animation_05 = SubResource( 10 )
+anims/animation_06 = SubResource( 11 )
+anims/animation_07 = SubResource( 12 )
+anims/animation_08 = SubResource( 13 )
+anims/animation_09 = SubResource( 14 )
+anims/animation_10 = SubResource( 15 )
+anims/animation_11 = SubResource( 16 )
+anims/animation_12 = SubResource( 17 )
+anims/animation_13 = SubResource( 18 )
+anims/animation_14 = SubResource( 19 )
+anims/animation_15 = SubResource( 20 )

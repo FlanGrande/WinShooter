@@ -4,8 +4,7 @@ onready var world = Singleton.root_scene
 var max_speed = rand_range(280.0, 360.0)
 var min_speed = 0.0
 var initial_position : Vector2
-var goal_position : Vector2
-var deviation_from_goal : float
+var deviation_from_goal = rand_range(-28.0, 28.0)
 var speed : = 0.0
 var acceleration : = rand_range(12.0, 20.0)
 var time_taken_to_get_to_path : = 10.0 # 10 seconds?
@@ -14,15 +13,20 @@ var must_stop : = false
 var distance_from_crosswalk = 400.0
 var distance_from_traffic_light = 200.0
 var front_side_detection_distance = 30.0
+var hue_adjustment = rand_range(0, 6)
+var curve2D : PoolVector2Array
+var next_curve_index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	initial_position = global_position
+	global_position = curve2D[0]
+	path = world.get_a_path(global_position, get_next_path_point())
+	
+	# Maybe just add an offset when the vehicle is created?
+	
 	$RayCast2DFront.cast_to = Vector2(0, -front_side_detection_distance)
-	deviation_from_goal = rand_range(-28.0, 28.0)
-	goal_position.x += deviation_from_goal
-	$Sprite.global_rotation = 0
-	pass # Replace with function body.
+	$Sprite.material = $Sprite.material.duplicate()
+	$Sprite.material.set_shader_param("hueAdjust", hue_adjustment)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta : float) -> void:
@@ -36,8 +40,7 @@ func _process(delta : float) -> void:
 	
 	var move_distance : = speed * delta
 	
-	#if(goal_position != null):
-	path = world.get_a_path(global_position, goal_position)
+	path = world.get_a_path(global_position, get_next_path_point())
 	
 	handle_brakes()
 	move_along_path(move_distance)
@@ -59,12 +62,13 @@ func move_along_path(distance : float) -> void:
 		elif distance < 0.0:
 			#position = path[0]
 			#set_process(false)
-			pass#break
+			pass
 		
-		if(distance_to_goal < 100.0):
-			position = initial_position
-			max_speed = rand_range(280.0, 360.0)
-			#queue_free() # This is a provisional way. We can probably rearrange vehicles, instead of deleting and creating, which seems expensive.
+		if(distance_to_goal < 50.0):
+			next_curve_index += 1
+			
+			if(next_curve_index >= curve2D.size()):
+				next_curve_index = 0
 		
 		#print(position)
 		
@@ -104,12 +108,16 @@ func change_animation(new_animation):
 		$AnimationPlayer.play(new_animation)
 
 func choose_animation():
-	var X_axis = Vector2(1, 0)
+	var Y_axis = Vector2(0, -1)
+	var direction = curve2D[next_curve_index] - global_position
+	var angle = direction.angle_to(Y_axis) * 180 / PI
 	var animation_list = $AnimationPlayer.get_animation_list()
-	#speed_angle_to_X_axis = Vector2(speed.x, -1*current_speed.y).angle_to(X_axis) * 180 / PI
-	var animation_index = int(int((rotation_degrees + 180 + 11) / 22.5) % 16)
+	#speed_angle_to_X_axis = Vector2(speed.x, -1*current_speed.y).angle_to(Y_axis) * 180 / PI
+	var animation_index = int(int((angle + 360 + 180) / 22.5) % 16)
+	var rotation_correction = int(int(angle) % 22)
 	
-	print(str(rotation_degrees) + " => " + str("animation_" + "%02d" % animation_index))
+	print(str(angle) + " => " + str("animation_" + "%02d" % animation_index))
+	#$Sprite.global_rotation_degrees = 0 + int(angle) % 22
 	
 	change_animation("animation_" + "%02d" % animation_index)
 	
@@ -117,3 +125,7 @@ func choose_animation():
 		$AnimationPlayer.stop()
 	else:
 		$AnimationPlayer.play()
+
+func get_next_path_point():
+	var next_point = curve2D[next_curve_index]
+	return next_point
