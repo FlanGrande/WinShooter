@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://textures/lights/light.png" type="Texture" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
 [ext_resource path="res://textures/environment/map.jpg" type="Texture" id=3]
 [ext_resource path="res://scenes/Player/Bernard.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Hazards/VehicleSpawner.gd" type="Script" id=5]
+[ext_resource path="res://scenes/Hazards/VehicleSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/ProtLevel.gd" type="Script" id=6]
 [ext_resource path="res://scenes/Environment/PolygonWall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Player/Hewie.tscn" type="PackedScene" id=8]
@@ -46,6 +46,30 @@ outlines = [ PoolVector2Array( -1296, 1744, -1504, -2232, -1192, -2256, -968, 17
 vertices = PoolVector2Array( -3176, -1736, -3512, 2184, -4288, 2112, -3944, -1808 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -3944, -1808, -4288, 2112, -3512, 2184, -3176, -1736 ) ]
+
+[sub_resource type="Curve2D" id=5]
+bake_interval = 200.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -3592, 2064, 0, 0, 0, 0, -3248, -1648, 0, 0, 0, 0, -3880, -1720, 0, 0, 0, 0, -4232, 1984, 0, 0, 0, 0, -4232, 1984 )
+}
+
+[sub_resource type="Curve2D" id=6]
+bake_interval = 200.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -3744, -1584, 0, 0, 0, 0, -4064, 1768, 0, 0, 0, 0, -3688, 1800, 0, 0, 0, 0, -3408, -1560 )
+}
+
+[sub_resource type="Curve2D" id=7]
+bake_interval = 200.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1072, 1624, 0, 0, 0, 0, -1312, -2128 )
+}
+
+[sub_resource type="Curve2D" id=8]
+bake_interval = 200.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1216, 1616, 0, 0, 0, 0, -1448, -2096 )
+}
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -252,105 +276,53 @@ scale = Vector2( 0.605464, 0.605464 )
 [node name="StaticBody2D" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
 position = Vector2( -1000, 400 )
 
-[node name="VehicleSpawner" type="Node2D" parent="YSort"]
-position = Vector2( -1192, -240 )
-script = ExtResource( 5 )
-spawn_base = 6
-randomness_range = 3.0
-
-[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner"]
-position = Vector2( 120, 1832 )
-rotation = -0.0669232
-
-[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner"]
-position = Vector2( -136, -1864 )
-
-[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner"]
-
-[node name="VehicleSpawner2" type="Node2D" parent="YSort"]
-position = Vector2( -1344, -352 )
-script = ExtResource( 5 )
-spawn_base = 4
-randomness_range = 2.0
-
-[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner2"]
-position = Vector2( 120, 1832 )
-rotation = -0.059138
-
-[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner2"]
-position = Vector2( -112, -1632 )
-
-[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner2"]
-
-[node name="VehicleSpawner3" type="Node2D" parent="YSort"]
-position = Vector2( -3696, 224 )
-script = ExtResource( 5 )
+[node name="VehicleSpawner" parent="." instance=ExtResource( 5 )]
 spawn_base = 3
 randomness_range = 1.0
+max_cars = 4
+randomness_range_max = 1.0
+is_path_closed = true
 
-[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner3"]
-position = Vector2( 88, 1816 )
-rotation = 0.0959931
+[node name="Path2D" parent="VehicleSpawner" index="0"]
+curve = SubResource( 5 )
 
-[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner3"]
-position = Vector2( 448, -1848 )
-
-[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner3"]
-
-[node name="VehicleSpawner4" type="Node2D" parent="YSort"]
-position = Vector2( -3848, -56 )
-script = ExtResource( 5 )
-spawn_base = 5
+[node name="VehicleSpawner2" parent="." instance=ExtResource( 5 )]
+spawn_base = 3
 randomness_range = 1.0
+max_cars = 2
+randomness_range_max = 1.0
+is_path_closed = true
 
-[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner4"]
-position = Vector2( 88, 1816 )
-rotation = 0.117921
+[node name="Path2D" parent="VehicleSpawner2" index="0"]
+curve = SubResource( 6 )
 
-[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner4"]
-position = Vector2( 440, -1640 )
+[node name="VehicleSpawner3" parent="." instance=ExtResource( 5 )]
+spawn_base = 3
+randomness_range = 2.0
 
-[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner4"]
+[node name="Path2D" parent="VehicleSpawner3" index="0"]
+curve = SubResource( 7 )
 
-[node name="VehicleSpawner5" type="Node2D" parent="YSort"]
-position = Vector2( -4072, 168 )
-script = ExtResource( 5 )
-spawn_base = 5
-randomness_range = 3.0
+[node name="VehicleSpawner4" parent="." instance=ExtResource( 5 )]
+spawn_base = 4
+randomness_range = 1.0
+max_cars = 4
 
-[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner5"]
-position = Vector2( 464, -1776 )
-rotation = 3.2447
-
-[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner5"]
-position = Vector2( 88, 1816 )
-
-[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner5"]
-
-[node name="VehicleSpawner6" type="Node2D" parent="YSort"]
-position = Vector2( -4248, -144 )
-script = ExtResource( 5 )
-spawn_base = 2
-
-[node name="VehiclesInitialPosition" type="Position2D" parent="YSort/VehicleSpawner6"]
-position = Vector2( 376, -1432 )
-rotation = 3.21678
-
-[node name="VehiclesGoalPosition" type="Position2D" parent="YSort/VehicleSpawner6"]
-position = Vector2( 88, 1816 )
-
-[node name="TimerSpawnRate" type="Timer" parent="YSort/VehicleSpawner6"]
+[node name="Path2D" parent="VehicleSpawner4" index="0"]
+curve = SubResource( 8 )
 [connection signal="toggle_harness" from="YSort/Bernard" to="YSort/Hewie" method="_on_Bernard_toggle_harness"]
 [connection signal="give_key" from="YSort/Hewie" to="YSort/Bernard" method="_on_Hewie_give_key"]
-[connection signal="timeout" from="YSort/VehicleSpawner/TimerSpawnRate" to="YSort/VehicleSpawner" method="_on_TimerSpawnRate_timeout"]
-[connection signal="timeout" from="YSort/VehicleSpawner2/TimerSpawnRate" to="YSort/VehicleSpawner2" method="_on_TimerSpawnRate_timeout"]
-[connection signal="timeout" from="YSort/VehicleSpawner3/TimerSpawnRate" to="YSort/VehicleSpawner3" method="_on_TimerSpawnRate_timeout"]
-[connection signal="timeout" from="YSort/VehicleSpawner4/TimerSpawnRate" to="YSort/VehicleSpawner4" method="_on_TimerSpawnRate_timeout"]
-[connection signal="timeout" from="YSort/VehicleSpawner5/TimerSpawnRate" to="YSort/VehicleSpawner5" method="_on_TimerSpawnRate_timeout"]
-[connection signal="timeout" from="YSort/VehicleSpawner6/TimerSpawnRate" to="YSort/VehicleSpawner6" method="_on_TimerSpawnRate_timeout"]
 
 [editable path="B_House/PolygonWall"]
 
 [editable path="WorldBorder/PolygonWall"]
 
 [editable path="Environment/PolygonWall"]
+
+[editable path="VehicleSpawner"]
+
+[editable path="VehicleSpawner2"]
+
+[editable path="VehicleSpawner3"]
+
+[editable path="VehicleSpawner4"]

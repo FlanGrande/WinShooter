@@ -7,6 +7,7 @@ export var spawn_base = 1 # 1 means a car is spawned every second. 4 means a car
 export var randomness_range = 0.0 # We add and substract this for rand_rang values.
 export var max_cars = 3
 export var randomness_range_max = 0.0 # We add and substract this for rand_rang values.
+export var is_path_closed = false
 
 var vehicles = []
 var curve2D : PoolVector2Array
@@ -29,9 +30,12 @@ func _ready():
 func _on_TimerSpawnRate_timeout():
 	if(vehicles.size() < max_cars):
 		var vehicle_instance = vehicle_scene.instance()
-		vehicle_instance.curve2D = curve2D
+		vehicle_instance.path_to_follow = curve2D
+		vehicle_instance.position = vehicle_instance.path_to_follow[0]
+		vehicle_instance.is_path_closed = is_path_closed
+		vehicle_instance.ID = name + "_" + str(vehicles.size())
 		vehicles.push_back(vehicle_instance)
-		get_parent().add_child(vehicle_instance)
+		add_child(vehicle_instance)
 		#vehicle_instance.global_position = curve2D[0]
 		#vehicle_instance.rotate($VehiclesInitialPosition.rotation)
 		#vehicle_instance.initial_position = $VehiclesInitialPosition.global_position
