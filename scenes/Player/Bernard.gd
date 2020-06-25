@@ -18,7 +18,8 @@ var current_state = State.WALKING
 var alive = false
 
 # Movement
-const MAX_SPEED_WALKING = Vector2(460, 460)
+#const MAX_SPEED_WALKING = Vector2(460, 460)
+const MAX_SPEED_WALKING = Vector2(4600, 4600)
 const MAX_SPEED_GRABBING = Vector2(460, 460)
 const MAX_SPEED_HARNESS_MODE = Vector2(200, 200)
 const DEADZONE_SPEED = 80

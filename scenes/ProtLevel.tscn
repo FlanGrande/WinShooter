@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://textures/lights/light.png" type="Texture" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
@@ -38,37 +38,20 @@ shader_param/green = 106.0
 shader_param/blue = 99.0
 
 [sub_resource type="NavigationPolygon" id=3]
-vertices = PoolVector2Array( -1296, 1744, -1504, -2232, -1192, -2256, -968, 1728 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( -1296, 1744, -1504, -2232, -1192, -2256, -968, 1728 ) ]
+vertices = PoolVector2Array( -4288, 2112, -3944, -1808, -3200, -1448, -3448, 1680, -992, 2400, -1272, 1880, -1248, -2176, -1504, -1648, -1504, -2160, -3928, -2056 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ), PoolIntArray( 6, 4, 5, 7, 8 ), PoolIntArray( 9, 8, 7, 2, 1 ) ]
+outlines = [ PoolVector2Array( -3944, -1808, -4288, 2112, -992, 2400, -1248, -2176, -1504, -2160, -3928, -2056, -3944, -1808, -3200, -1448, -1504, -1648, -1272, 1880, -3448, 1680, -3200, -1448 ) ]
 
-[sub_resource type="NavigationPolygon" id=4]
-vertices = PoolVector2Array( -3176, -1736, -3512, 2184, -4288, 2112, -3944, -1808 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( -3944, -1808, -4288, 2112, -3512, 2184, -3176, -1736 ) ]
+[sub_resource type="Curve2D" id=4]
+bake_interval = 200.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1296, -2136, 78.4984, -270.569, -78.4984, 270.569, -3880, -1720, -71.4983, -212.672, 71.4983, 212.672, -4096, 1944, -62.7267, 49.7374, 62.7267, -49.7374, -1080, 2272, 0, 0, 0, 0, -1296, -2136 )
+}
 
 [sub_resource type="Curve2D" id=5]
 bake_interval = 200.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -3592, 2064, 0, 0, 0, 0, -3248, -1648, 0, 0, 0, 0, -3880, -1720, 0, 0, 0, 0, -4232, 1984, 0, 0, 0, 0, -4232, 1984 )
-}
-
-[sub_resource type="Curve2D" id=6]
-bake_interval = 200.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -3744, -1584, 0, 0, 0, 0, -4064, 1768, 0, 0, 0, 0, -3688, 1800, 0, 0, 0, 0, -3408, -1560 )
-}
-
-[sub_resource type="Curve2D" id=7]
-bake_interval = 200.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -1072, 1624, 0, 0, 0, 0, -1312, -2128 )
-}
-
-[sub_resource type="Curve2D" id=8]
-bake_interval = 200.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -1216, 1616, 0, 0, 0, 0, -1448, -2096 )
+"points": PoolVector2Array( 157.883, -18.5458, -157.883, 18.5458, -2800, -1872, 95.8168, -148.361, -95.8168, 148.361, -3632, -1664, -301.706, -126.615, 301.706, 126.615, -3768, 1816, 0, 0, 0, 0, -3016, 2016, -116.496, 130.478, 116.496, -130.478, -1112, 2256, 124.894, 43.3603, -124.894, -43.3603, -1376, -2016, 45.4639, 3.43902, -45.4639, -3.43902, -2600, -1896, 0, 0, 0, 0, -2800, -1872 )
 }
 
 [node name="World" type="Node2D"]
@@ -96,44 +79,74 @@ position = Vector2( 1696, 1024 )
 scale = Vector2( 19.4951, 23.085 )
 texture = ExtResource( 3 )
 
-[node name="Road" type="Node2D" parent="."]
+[node name="Roads" type="Node2D" parent="."]
+
+[node name="RoadEast" type="Node2D" parent="Roads"]
 position = Vector2( -1280, -256 )
 
-[node name="RoadSegment" parent="Road" instance=ExtResource( 15 )]
-position = Vector2( 80, 1056 )
+[node name="RoadSegment" parent="Roads/RoadEast" instance=ExtResource( 15 )]
+position = Vector2( 104, 1296 )
 rotation = -0.0635716
-scale = Vector2( 5, 30 )
+scale = Vector2( 4.89569, 37.5565 )
 
-[node name="Crosswalk" parent="Road" instance=ExtResource( 16 )]
+[node name="Crosswalk" parent="Roads/RoadEast" instance=ExtResource( 16 )]
 position = Vector2( 16, 32 )
 rotation = -0.0642722
 scale = Vector2( 5, 2 )
 can_be_crossed = true
 
-[node name="RoadSegment2" parent="Road" instance=ExtResource( 15 )]
+[node name="RoadSegment2" parent="Roads/RoadEast" instance=ExtResource( 15 )]
 position = Vector2( -48, -992 )
 rotation = -0.0635716
 scale = Vector2( 5, 30 )
 
-[node name="Road2" type="Node2D" parent="."]
+[node name="RoadWest" type="Node2D" parent="Roads"]
 position = Vector2( -3736, 152 )
 rotation = 0.150808
 
-[node name="RoadSegment" parent="Road2" instance=ExtResource( 15 )]
+[node name="RoadSegment" parent="Roads/RoadWest" instance=ExtResource( 15 )]
 position = Vector2( 80, 1056 )
 rotation = -0.0635716
 scale = Vector2( 13, 30 )
 
-[node name="Crosswalk" parent="Road2" instance=ExtResource( 16 )]
+[node name="Crosswalk" parent="Roads/RoadWest" instance=ExtResource( 16 )]
 position = Vector2( 16, 32 )
 rotation = -0.0642722
 scale = Vector2( 13, 2 )
 can_be_crossed = true
 
-[node name="RoadSegment2" parent="Road2" instance=ExtResource( 15 )]
+[node name="RoadSegment2" parent="Roads/RoadWest" instance=ExtResource( 15 )]
 position = Vector2( -48, -992 )
 rotation = -0.0635716
 scale = Vector2( 13, 30 )
+
+[node name="RoadSouth" type="Node2D" parent="Roads"]
+
+[node name="RoadSegment" parent="Roads/RoadSouth" instance=ExtResource( 15 )]
+position = Vector2( -2632, 2008 )
+rotation = 0.0933165
+scale = Vector2( 52.2671, 8.4 )
+
+[node name="CollisionPolygon2D" parent="Roads/RoadSouth/RoadSegment" index="0"]
+scale = Vector2( 0.983991, 0.979096 )
+polygon = PoolVector2Array( -32, -32, 32, -32, 33.4465, 32.2048, -32, 32 )
+
+[node name="Polygon2D" parent="Roads/RoadSouth/RoadSegment" index="1"]
+polygon = PoolVector2Array( -32, -32, 31.4983, -31.7341, 32.911, 31.5316, -32, 32 )
+
+[node name="RoadNorth" type="Node2D" parent="Roads"]
+position = Vector2( -2584, -1832 )
+
+[node name="RoadSegment" parent="Roads/RoadNorth" instance=ExtResource( 15 )]
+position = Vector2( -16, -24 )
+rotation = -0.0604422
+scale = Vector2( 42.878, 8.64021 )
+
+[node name="CollisionPolygon2D" parent="Roads/RoadNorth/RoadSegment" index="0"]
+polygon = PoolVector2Array( -31.0283, -30.653, 32.1558, -31.1573, 32.3207, 31.9688, -32.2745, 25.5562 )
+
+[node name="Polygon2D" parent="Roads/RoadNorth/RoadSegment" index="1"]
+polygon = PoolVector2Array( -31.192, -32.5574, 32.3534, -32.0256, 32.3207, 31.9688, -32.6469, 25.4443 )
 
 [node name="B_House" type="Node2D" parent="."]
 position = Vector2( -432, -528 )
@@ -196,7 +209,7 @@ position = Vector2( -1520, -336 )
 
 [node name="Polygon2D" parent="WorldBorder/PolygonWall" index="0"]
 color = Color( 0.12549, 0.156863, 0.278431, 1 )
-polygon = PoolVector2Array( -2664, -816, -1520, -816, -1608, 24, -984, -48, -992, -816, -785.749, -816, -776, 72, -48, -40, -96, -816, 464, -816, 464, -784, -48, -784, -16, -16, -808, 104, -816, -784, -944, -784, -944, -24, -1656, 56, -1568, -784, -2624, -784, -2824, 1584, -1712, 1584, -1664, 1136, -1208, 1136, -1248, 1584, -1064, 1584, -984, 632, -376, 632, -416, 336, 16, 272, 104, 1584, 576, 1584, 528, 656, 560, 656, 608, 1616, 48, 1616, -16, 312, -368, 368, -328, 664, -952, 680, -1008, 1616, -1288, 1616, -1256, 1184, -1624, 1176, -1672, 1616, -2872, 1616 )
+polygon = PoolVector2Array( -2544, -1904, 408, -2016, 464, -784, 432, -784, 368, -1976, -2496, -1856, -2896, 2568, 664, 2856, 584, 1056, 544, 656, 568, 656, 624, 1056, 696, 2904, -2952, 2616 )
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -207,15 +220,26 @@ position = Vector2( -2896, 208 )
 color = Color( 0.12549, 0.156863, 0.278431, 1 )
 polygon = PoolVector2Array( -224, -376, 360, -432, 272, 488, 48, 488, 48, 456, 248, 456, 328, -400, -192, -352, -232, 456, 48, 456, 48, 488, -272, 488 )
 
+[node name="PolygonWall2" parent="Environment" instance=ExtResource( 7 )]
+position = Vector2( -2416, 1432 )
+
+[node name="Polygon2D" parent="Environment/PolygonWall2" index="0"]
+color = Color( 0.12549, 0.156863, 0.278431, 1 )
+polygon = PoolVector2Array( -744, -600, -216, -600, -248, -120, 72, -88, 128, -1496, 896, -1568, 984, 120, 480, 96, 480, 56, 944, 88, 864, -1528, 168, -1464, 112, -48, -296, -80, -264, -552, -704, -560, -760, -32, 480, 56, 480, 96, -816, 8 )
+
+[node name="PolygonWall3" parent="Environment" instance=ExtResource( 7 )]
+position = Vector2( -2824, -776 )
+
+[node name="Polygon2D" parent="Environment/PolygonWall3" index="0"]
+color = Color( 0.12549, 0.156863, 0.278431, 1 )
+polygon = PoolVector2Array( -216, -688, 624, -760, 632, -456, 536, -336, 184, -336, 184, 320, 160, 344, 160, 328, 160, 304, 160, 256, 160, -360, 520, -360, 608, -464, 600, -736, -184, -664, -216, 336, 136, 328, 152, 320, 152, 344, -216, 360, -248, 344 )
+
 [node name="Navigation" type="Node2D" parent="."]
 
 [node name="Navigation2D" type="Navigation2D" parent="Navigation"]
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation/Navigation2D"]
-navpoly = SubResource( 3 )
-
 [node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="Navigation/Navigation2D"]
-navpoly = SubResource( 4 )
+navpoly = SubResource( 3 )
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -223,7 +247,7 @@ navpoly = SubResource( 4 )
 position = Vector2( -3216, 184 )
 
 [node name="Hewie" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( -3376, -208 )
+position = Vector2( -3368, -200 )
 
 [node name="YSortTrafficLights" type="YSort" parent="YSort"]
 
@@ -273,45 +297,69 @@ position = Vector2( -1088, -1016 )
 position = Vector2( -2848, 720 )
 scale = Vector2( 0.605464, 0.605464 )
 
-[node name="StaticBody2D" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+[node name="Tree5" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
 position = Vector2( -1000, 400 )
 
-[node name="VehicleSpawner" parent="." instance=ExtResource( 5 )]
-spawn_base = 3
+[node name="Tree" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -1928, 1608 )
+
+[node name="Tree7" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -2664, -416 )
+scale = Vector2( 0.382146, 0.382146 )
+
+[node name="Tree9" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -2760, -448 )
+scale = Vector2( 0.624723, 0.624723 )
+
+[node name="Tree8" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -2704, -448 )
+
+[node name="Tree10" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -2832, -448 )
+scale = Vector2( 0.90684, 0.90684 )
+
+[node name="Tree11" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -2936, -432 )
+scale = Vector2( 1.1056, 1.29312 )
+
+[node name="Tree12" parent="YSort/YSortDecoTrees" instance=ExtResource( 12 )]
+position = Vector2( -3032, -440 )
+scale = Vector2( 0.77695, 0.77695 )
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="VehicleSpawner" parent="Spawners" instance=ExtResource( 5 )]
+spawn_base = 5
 randomness_range = 1.0
-max_cars = 4
-randomness_range_max = 1.0
+max_cars = 8
+randomness_range_max = 4.0
 is_path_closed = true
 
-[node name="Path2D" parent="VehicleSpawner" index="0"]
+[node name="Path2D" parent="Spawners/VehicleSpawner" index="0"]
+curve = SubResource( 4 )
+
+[node name="VehicleSpawner2" parent="Spawners" instance=ExtResource( 5 )]
+spawn_base = 2
+randomness_range = 1.0
+max_cars = 9
+randomness_range_max = 3.0
+is_path_closed = true
+
+[node name="Path2D" parent="Spawners/VehicleSpawner2" index="0"]
 curve = SubResource( 5 )
 
-[node name="VehicleSpawner2" parent="." instance=ExtResource( 5 )]
-spawn_base = 3
-randomness_range = 1.0
-max_cars = 2
-randomness_range_max = 1.0
+[node name="VehicleSpawner3" parent="Spawners" instance=ExtResource( 5 )]
+spawn_base = 8
+randomness_range = 4.0
+max_cars = 13
+randomness_range_max = 4.0
 is_path_closed = true
-
-[node name="Path2D" parent="VehicleSpawner2" index="0"]
-curve = SubResource( 6 )
-
-[node name="VehicleSpawner3" parent="." instance=ExtResource( 5 )]
-spawn_base = 3
-randomness_range = 2.0
-
-[node name="Path2D" parent="VehicleSpawner3" index="0"]
-curve = SubResource( 7 )
-
-[node name="VehicleSpawner4" parent="." instance=ExtResource( 5 )]
-spawn_base = 4
-randomness_range = 1.0
-max_cars = 4
-
-[node name="Path2D" parent="VehicleSpawner4" index="0"]
-curve = SubResource( 8 )
 [connection signal="toggle_harness" from="YSort/Bernard" to="YSort/Hewie" method="_on_Bernard_toggle_harness"]
 [connection signal="give_key" from="YSort/Hewie" to="YSort/Bernard" method="_on_Hewie_give_key"]
+
+[editable path="Roads/RoadSouth/RoadSegment"]
+
+[editable path="Roads/RoadNorth/RoadSegment"]
 
 [editable path="B_House/PolygonWall"]
 
@@ -319,10 +367,12 @@ curve = SubResource( 8 )
 
 [editable path="Environment/PolygonWall"]
 
-[editable path="VehicleSpawner"]
+[editable path="Environment/PolygonWall2"]
 
-[editable path="VehicleSpawner2"]
+[editable path="Environment/PolygonWall3"]
 
-[editable path="VehicleSpawner3"]
+[editable path="Spawners/VehicleSpawner"]
 
-[editable path="VehicleSpawner4"]
+[editable path="Spawners/VehicleSpawner2"]
+
+[editable path="Spawners/VehicleSpawner3"]

@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/TestingGroundsVehicles.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Hazards/VehicleSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Player/Hewie.tscn" type="PackedScene" id=4]
+[ext_resource path="res://default_env.tres" type="Environment" id=5]
+[ext_resource path="res://textures/lights/light.png" type="Texture" id=6]
+[ext_resource path="res://icon.png" type="Texture" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -1392, -800, 1232, -864, 1496, 1304, -1472, 1240 )
@@ -21,6 +25,23 @@ _data = {
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="WorldEnvironment"]
+texture = ExtResource( 6 )
+texture_scale = 50.0
+energy = 1.1
+mode = 1
+range_item_cull_mask = 7
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 100, 100 )
+texture = ExtResource( 7 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 visible = false
@@ -44,6 +65,9 @@ curve = SubResource( 2 )
 
 [node name="Path2D" parent="VehicleSpawner" index="0"]
 curve = SubResource( 3 )
+
+[node name="Hewie" parent="." instance=ExtResource( 4 )]
+position = Vector2( 64, 256 )
 
 [editable path="VehicleSpawner9"]
 

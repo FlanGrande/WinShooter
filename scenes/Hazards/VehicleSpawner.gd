@@ -30,7 +30,7 @@ func _ready():
 func _on_TimerSpawnRate_timeout():
 	if(vehicles.size() < max_cars):
 		var vehicle_instance = vehicle_scene.instance()
-		vehicle_instance.path_to_follow = curve2D
+		vehicle_instance.path_to_follow = $Path2D.get_curve().get_baked_points()
 		vehicle_instance.position = vehicle_instance.path_to_follow[0]
 		vehicle_instance.is_path_closed = is_path_closed
 		vehicle_instance.ID = name + "_" + str(vehicles.size())

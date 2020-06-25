@@ -42,7 +42,8 @@ func _process(delta : float) -> void:
 	# Change name of next_path_segment to path_to_next_segment
 	# Get the previous path vertex
 	
-	next_path_segment = world.get_a_path(position, get_next_path_point())
+	if(path_to_follow):
+		next_path_segment = world.get_a_path(position, get_next_path_point())
 	
 	move_along_path(move_distance)
 	

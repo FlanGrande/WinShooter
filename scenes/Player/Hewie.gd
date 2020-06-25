@@ -15,13 +15,15 @@ var current_state = State.WALKING
 var alive = false
 
 # Movement
-const MAX_SPEED_WALKING = Vector2(300, 300)
+#const MAX_SPEED_WALKING = Vector2(300, 300)
+const MAX_SPEED_WALKING = Vector2(3000, 3000)
 const MAX_SPEED_GRABBING = Vector2(260, 260)
 const MAX_SPEED_HARNESS_MODE = Vector2(200, 200)
 const DEADZONE_SPEED = 30
 const ACCELERATION = 12
 const DECELERATION = 10
 const BASE_SPEED_FACTOR = 0.8
+const DEAD_ZONE = 0.2
 var speed_factor = BASE_SPEED_FACTOR
 var current_speed = Vector2(0, 0)
 var current_max_speed = MAX_SPEED_WALKING
@@ -165,7 +167,7 @@ func handle_movement():
 		move_input_is_pressed[0] = true
 		
 		var tmp_axis_input = abs(Input.get_joy_axis(0, 2))
-		if(tmp_axis_input > Bernard.DEAD_ZONE):
+		if(tmp_axis_input > DEAD_ZONE):
 			current_max_speed.x = current_max_speed.x * abs(Input.get_joy_axis(0, 2))
 	
 	if(Input.is_action_pressed("hewie_move_right")):
@@ -173,7 +175,7 @@ func handle_movement():
 		move_input_is_pressed[0] = true
 		
 		var tmp_axis_input = abs(Input.get_joy_axis(0, 2))
-		if(tmp_axis_input > Bernard.DEAD_ZONE):
+		if(tmp_axis_input > DEAD_ZONE):
 			current_max_speed.x = current_max_speed.x * abs(Input.get_joy_axis(0, 2))
 	
 	if(Input.is_action_pressed("hewie_move_up")):
@@ -181,7 +183,7 @@ func handle_movement():
 		move_input_is_pressed[1] = true
 		
 		var tmp_axis_input = abs(Input.get_joy_axis(0, 3))
-		if(tmp_axis_input > Bernard.DEAD_ZONE):
+		if(tmp_axis_input > DEAD_ZONE):
 			current_max_speed.y = current_max_speed.y * abs(Input.get_joy_axis(0, 3))
 	
 	if(Input.is_action_pressed("hewie_move_down")):
@@ -189,7 +191,7 @@ func handle_movement():
 		move_input_is_pressed[1] = true
 		
 		var tmp_axis_input = abs(Input.get_joy_axis(0, 3))
-		if(tmp_axis_input > Bernard.DEAD_ZONE):
+		if(tmp_axis_input > DEAD_ZONE):
 			current_max_speed.y = current_max_speed.y * abs(Input.get_joy_axis(0, 3))
 	
 	# No input on X

@@ -3,8 +3,9 @@
 [ext_resource path="res://scenes/Hazards/VehicleSpawner.gd" type="Script" id=1]
 
 [sub_resource type="Curve2D" id=1]
+bake_interval = 200.0
 _data = {
-"points": PoolVector2Array(  )
+"points": PoolVector2Array( 0, 0, 0, 0, -2472, 1928, 106.891, 151.986, -106.891, -151.986, -3608, 1696, -159.747, 133.048, 159.747, -133.048, -3368, -1552, -253.459, 14.3197, 253.459, -14.3197, -2928, -1728, -105.089, -52.5447, 105.089, 52.5447, -1512, -1784, 61.8173, -80.3624, -61.8173, 80.3624, -1232, 1976, 0, 0, 0, 0, -2472, 1928 )
 }
 
 [node name="VehicleSpawner" type="Node2D"]
