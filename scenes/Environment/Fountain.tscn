@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://textures/animated_textures/environment/AT_Fountain.tres" type="Texture" id=1]
+[ext_resource path="res://textures/environment/fountain/0000.png" type="Texture" id=2]
+
+[sub_resource type="OccluderPolygon2D" id=6]
+cull_mode = 1
+polygon = PoolVector2Array( -9.49245, 30.0238, -7.78963, -22.423, 7.53575, -22.423, 11.6225, 29.6833 )
+
+[node name="Fountain" type="Node2D"]
+z_index = 1
+
+[node name="SprShadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.117647 )
+position = Vector2( -2.70586, 46.4413 )
+scale = Vector2( 0.401597, 0.45736 )
+texture = ExtResource( 2 )
+flip_h = true
+flip_v = true
+
+[node name="SprFountain1" type="Sprite" parent="."]
+position = Vector2( 70, -7 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 274, 0, 312, 312 )
+
+[node name="SprFountain2" type="Sprite" parent="."]
+position = Vector2( -46, 33 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 278, 512 )
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+position = Vector2( 0, 30.5857 )
+collision_layer = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -82.8156, 51.2386, -92.3514, 43.4056, -99.8438, 31.8265, -99.5033, 19.9067, -88.6052, 8.66811, -76.0044, 0.494576, -53.5271, -5.29501, -32.4122, -3.93275, -20.4924, -0.867683, 1.64423, -14.1497, -0.0585938, -32.1996, 11.18, -51.6117, 26.5054, -57.4013, 42.5119, -58.7636, 62.9458, -57.4013, 83.3796, -50.2495, 96.6616, -40.3731, 99.0455, -24.026, 90.1909, -6.99783, 72.8221, 3.21909, 50.3449, 6.96529, 28.6627, 6.91158, 18.3656, 5.68348, 5.80125, 13.241, 7.43382, 16.8416, 8.45551, 31.4859, 1.9848, 41.7028, -9.59438, 51.9197, -23.8981, 56.3471, -45.3536, 58.0499, -67.1497, 58.0499 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+light_mask = 7
+occluder = SubResource( 6 )
+light_mask = 7

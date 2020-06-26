@@ -1,8 +1,5 @@
 extends Node2D
 
-onready var mechanism = get_parent().get_parent()
-onready var mechanism_id = mechanism.ID
-
 var is_grabbed = false
 
 # Called when the node enters the scene tree for the first time.
