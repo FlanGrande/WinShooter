@@ -3,3 +3,7 @@ grey #676A63
 Hewie #F8FF7B
 Bernard #C11A32
 Buildings #202847
+
+B095A5
+E2B7AD
+D5B16A

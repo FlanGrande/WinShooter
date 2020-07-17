@@ -19,8 +19,8 @@ var alive = false
 
 # Movement
 #const MAX_SPEED_WALKING = Vector2(460, 460)
-const MAX_SPEED_WALKING = Vector2(4600, 4600)
-const MAX_SPEED_GRABBING = Vector2(460, 460)
+const MAX_SPEED_WALKING = Vector2(300, 300)
+const MAX_SPEED_GRABBING = Vector2(260, 260)
 const MAX_SPEED_HARNESS_MODE = Vector2(200, 200)
 const DEADZONE_SPEED = 80
 const ACCELERATION = 40
@@ -63,6 +63,7 @@ func _process(delta):
 		
 		var motion = Vector2(speed_factor * current_speed)
 		move_and_slide(motion)
+		choose_animation()
 		
 		#print("BERNARD STATE: ", current_state)
 	
@@ -197,6 +198,21 @@ func shoot():
 func is_Hewie_nearby():
 	return Hewie.global_position.distance_to(global_position) < IS_HEWIE_NEARBY_RANGE
 
+func change_animation(new_animation) -> void:
+	if($AnimationPlayer.current_animation != new_animation):
+		$AnimationPlayer.play(new_animation)
+
+func choose_animation() -> void:
+	var X_axis = Vector2(-1, 0)
+	var angle = -1 * current_speed.angle_to(X_axis) * 180 / PI
+	var animation_list = $AnimationPlayer.get_animation_list()
+	var animation_index = int(int((angle + 180 + 11) / 22) % 16)
+	#print(animation_index)
+	#var rotation_correction = int(int(angle) % 22)
+	#print(str(angle) + " => " + str("animation_" + "%02d" % animation_index))
+	#$Sprite.global_rotation_degrees = 0 - int(angle) % 22
+	
+	change_animation("animation_" + "%02d" % animation_index)
 
 func _on_Hewie_give_key(given_key):
 	grabbed_key = given_key

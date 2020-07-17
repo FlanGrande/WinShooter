@@ -23,7 +23,7 @@ func _process(delta):
 		$LightOccluder2D.visible = true
 
 func is_opened_by(node):
-	if(mechanism_id == node.mechanism_id):
+	if(mechanism_id == node.get_parent().mechanism_id):
 		return true
 	return false
 

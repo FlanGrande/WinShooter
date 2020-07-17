@@ -16,8 +16,8 @@ var alive = false
 
 # Movement
 #const MAX_SPEED_WALKING = Vector2(300, 300)
-const MAX_SPEED_WALKING = Vector2(3000, 3000)
-const MAX_SPEED_GRABBING = Vector2(260, 260)
+const MAX_SPEED_WALKING = Vector2(200, 200)
+const MAX_SPEED_GRABBING = Vector2(160, 160)
 const MAX_SPEED_HARNESS_MODE = Vector2(200, 200)
 const DEADZONE_SPEED = 30
 const ACCELERATION = 12
@@ -28,6 +28,10 @@ var speed_factor = BASE_SPEED_FACTOR
 var current_speed = Vector2(0, 0)
 var current_max_speed = MAX_SPEED_WALKING
 var move_input_is_pressed = [false, false] # Input on X, input on Y
+
+# Alternative Movement
+var velocity = Vector2()
+var alt_speed = 300
 
 # Camera
 const CAMERA_MAX_RANGE = Vector2(30, 30) # Max distance from the character to the camera
@@ -66,12 +70,24 @@ func _process(delta):
 		update()
 		#camera_update()
 		
+		
 		var motion = Vector2(speed_factor * current_speed)
 		move_and_slide(motion)
 		
-		var movement_speed = sqrt(current_speed.x*current_speed.x + current_speed.y*current_speed.y)
-		var animation_speed = movement_speed / current_max_speed.x
-		$AnimationPlayer.play(current_animation, -1, animation_speed * speed_factor)
+#		var movement_speed = sqrt(current_speed.x*current_speed.x + current_speed.y*current_speed.y)
+#		var move : = Vector2(current_speed.x, current_speed.y)
+#		move = move.normalized() * movement_speed
+#		var dir = move.angle_to(x_axis)
+#		print("MOVE: " + str(move))
+#		velocity = sqrt(velocity.x*velocity.x + velocity.y*velocity.y)
+#		var clamped_velocity = min(velocity, current_max_speed.x)
+#		var final_move = dir*clamped_velocity
+#
+#		var motion = Vector2(speed_factor * final_move)
+#		move_and_slide(velocity)
+		
+		#var animation_speed = movement_speed / current_max_speed.x
+		#$AnimationPlayer.play(current_animation, -1, animation_speed * speed_factor)
 		
 		#print("HEWIE STATE: ", current_state)
 	
@@ -147,7 +163,17 @@ func update():
 			global_position = Bernard.global_position + Bernard.current_speed * 0.1
 			global_position.x += 10 # This is good for now
 			global_position.y -= 10 # This is good for now
-			choose_walk_animation()
+			choose_animation()
+	
+	var tmp_hipotenusa = sqrt(current_speed.x * current_speed.x + current_speed.y * current_speed.y)
+	var tmp_max_hipotenusa = sqrt(current_max_speed.x * current_max_speed.x + current_max_speed.y * current_max_speed.y)
+	
+	#print("HYPO: " + str(tmp_hipotenusa))
+	#print("Speed: " + str(current_speed.x) + ", " + str(current_speed.y))
+	
+	if(tmp_hipotenusa > tmp_max_hipotenusa):
+		
+		pass
 	
 	if current_speed.y > current_max_speed.y:
 		current_speed.y = current_max_speed.y
@@ -158,6 +184,16 @@ func update():
 		current_speed.x = current_max_speed.x
 	elif current_speed.x < -current_max_speed.x:
 		current_speed.x = -current_max_speed.x
+	
+#	if velocity.y > current_max_speed.y:
+#		velocity.y = current_max_speed.y
+#	elif velocity.y < -current_max_speed.y:
+#		velocity.y = -current_max_speed.y
+#
+#	if velocity.x > current_max_speed.x:
+#		velocity.x = current_max_speed.x
+#	elif velocity.x < -current_max_speed.x:
+#		velocity.x = -current_max_speed.x
 
 func handle_movement():
 	move_input_is_pressed = [false, false]
@@ -165,6 +201,7 @@ func handle_movement():
 	if(Input.is_action_pressed("hewie_move_left")):
 		current_speed.x += -ACCELERATION
 		move_input_is_pressed[0] = true
+		velocity.x += -ACCELERATION
 		
 		var tmp_axis_input = abs(Input.get_joy_axis(0, 2))
 		if(tmp_axis_input > DEAD_ZONE):
@@ -173,6 +210,7 @@ func handle_movement():
 	if(Input.is_action_pressed("hewie_move_right")):
 		current_speed.x += ACCELERATION
 		move_input_is_pressed[0] = true
+		velocity.x += ACCELERATION
 		
 		var tmp_axis_input = abs(Input.get_joy_axis(0, 2))
 		if(tmp_axis_input > DEAD_ZONE):
@@ -181,6 +219,7 @@ func handle_movement():
 	if(Input.is_action_pressed("hewie_move_up")):
 		current_speed.y += -ACCELERATION
 		move_input_is_pressed[1] = true
+		velocity.y += -ACCELERATION
 		
 		var tmp_axis_input = abs(Input.get_joy_axis(0, 3))
 		if(tmp_axis_input > DEAD_ZONE):
@@ -189,28 +228,35 @@ func handle_movement():
 	if(Input.is_action_pressed("hewie_move_down")):
 		current_speed.y += ACCELERATION
 		move_input_is_pressed[1] = true
+		velocity.y += ACCELERATION
 		
 		var tmp_axis_input = abs(Input.get_joy_axis(0, 3))
 		if(tmp_axis_input > DEAD_ZONE):
 			current_max_speed.y = current_max_speed.y * abs(Input.get_joy_axis(0, 3))
+		
+		velocity =  velocity.normalized() * alt_speed
 	
 	# No input on X
 	if(not move_input_is_pressed[0]):
 		current_speed.x -= sign(current_speed.x) * DECELERATION
+		velocity.x -= sign(velocity.x) * DECELERATION
 		
 		# Stay on place
 		if abs(current_speed.x) < DEADZONE_SPEED:
 			current_speed.x = 0
+			velocity.x = 0
 	
 	# No input on Y
 	if(not move_input_is_pressed[1]):
 		current_speed.y -= sign(current_speed.y) * DECELERATION
+		velocity.y -= sign(velocity.y) * DECELERATION
 		
 		# Stay on place
 		if abs(current_speed.y) < DEADZONE_SPEED:
 			current_speed.y = 0
+			velocity.y = 0
 	
-	choose_walk_animation()
+	choose_animation()
 
 func change_state(new_state):
 	current_state = new_state
@@ -257,6 +303,29 @@ func choose_walk_animation():
 	
 	if(current_speed == Vector2(0, 0)):
 		change_animation("00_idle")
+
+func choose_animation() -> void:
+	var Y_axis = Vector2(0, -1)
+	#var direction = current_speed.angle_to(Y_axis)
+	var angle = -1 * current_speed.angle_to(Y_axis) * 180 / PI
+	#var animation_list = $AnimationPlayer.get_animation_list()
+	var animation_index = int(int((angle + 270 + 11) / 22.5) % 16)
+	#var rotation_correction = int(int(angle) % 22)
+	rotation_degrees = angle
+	
+	#print(str(angle) + " => " + str("animation_" + "%02d" % animation_index))
+	#$Sprite.global_rotation_degrees = 0 - int(angle) % 22
+	
+	var current_animation_position = $AnimationPlayer.current_animation_position
+	
+	if(current_speed == Vector2(0, 0)):
+		change_animation("00_idle")
+	else:
+		change_animation("animation_" + "%02d" % animation_index)
+	
+	$AnimationPlayer.seek(current_animation_position)
+	#$AnimationPlayer.current_animation_position = current_animation_position
+	$Sprite.rotation_degrees = -angle
 
 func _on_Bernard_toggle_harness():
 	if(current_state == State.HARNESS_MODE):

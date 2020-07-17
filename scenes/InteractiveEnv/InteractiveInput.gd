@@ -25,6 +25,7 @@ func initialize():
 	match type:
 		"Key":
 			input_instance = key_node.instance()
+			mechanism_id = get_parent().ID
 			add_child(input_instance)
 		
 		"DogButton":

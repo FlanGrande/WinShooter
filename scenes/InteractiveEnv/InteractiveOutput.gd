@@ -18,6 +18,7 @@ func _ready():
 	match type:
 		"Door":
 			output_instance = door_node.instance()
+			mechanism_id = get_parent().ID
 			add_child(output_instance)
 		
 		"TrafficLight":
