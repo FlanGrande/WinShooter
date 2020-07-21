@@ -313,6 +313,7 @@ tracks/0/keys = {
 }
 
 [node name="Hewie" type="KinematicBody2D" groups=[
+"hewie",
 "player",
 ]]
 collision_layer = 2
@@ -349,11 +350,10 @@ texture_scale = 1.5
 mode = 2
 range_item_cull_mask = 7
 shadow_enabled = true
-shadow_item_cull_mask = 3
+shadow_item_cull_mask = -2147483645
 
 [node name="LightForShadows" type="Light2D" parent="."]
 texture = ExtResource( 3 )
-texture_scale = 20.0
 mode = 2
 range_item_cull_mask = 3
 shadow_enabled = true

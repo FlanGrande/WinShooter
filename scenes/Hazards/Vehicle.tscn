@@ -10,8 +10,8 @@ shader_param/hueAdjust = 0.0
 shader_param/inputTexture = ExtResource( 100 )
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 48.0
-height = 64.0
+radius = 14.4688
+height = 28.8101
 
 [sub_resource type="Animation" id=3]
 loop = true
@@ -447,7 +447,7 @@ tracks/1/keys = {
 
 [sub_resource type="OccluderPolygon2D" id=19]
 cull_mode = 2
-polygon = PoolVector2Array( -90.426, 11.0573, -36.4794, 49.3609, -22.5176, 42.2703, -14.1113, 47.4603, -8.40965, 44.9019, -4.60854, 42.1241, -0.441936, 36.788, 2.1165, 30.2822, 2.70129, 26.408, 27.7073, 10.0405, 58.377, -11.7318, 63.7154, -8.69625, 69.6819, -10.057, 76.1717, -16.0235, 79.94, -22.8274, 81.6148, -29.1078, 92.9197, -37.9005, 94.9085, -49.6241, 87.1626, -59.5682, 47.9095, -87.3071, 40.7917, -87.6211, 14.6894, -69.2777, -3.07347, -69.0584, -43.9354, -40.4039, -64.1837, -16.5738, -88.5254, 2.13936 )
+polygon = PoolVector2Array( -37.6662, 55.0324, 37.8873, 54.8177, 38.0945, -84.7883, 27.9741, -93.0602, -27.9207, -92.7697, -37.7959, -84.653 )
 
 [node name="Vehicle" type="Node2D" groups=[
 "vehicles",
@@ -460,7 +460,6 @@ material = SubResource( 1 )
 texture = ExtResource( 100 )
 vframes = 16
 hframes = 4
-frame = 40
 
 [node name="RayCast2DFront" type="RayCast2D" parent="."]
 position = Vector2( 0, -136 )
