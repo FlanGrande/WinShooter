@@ -1,8 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://shaders/hue_change.shader" type="Shader" id=1]
 [ext_resource path="res://scenes/Hazards/Vehicle.gd" type="Script" id=2]
 [ext_resource path="res://textures/hazards/car1/strip.png" type="Texture" id=100]
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 14.603, 28.3573 )
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -449,20 +452,24 @@ tracks/1/keys = {
 cull_mode = 2
 polygon = PoolVector2Array( -37.6662, 55.0324, 37.8873, 54.8177, 38.0945, -84.7883, 27.9741, -93.0602, -27.9207, -92.7697, -37.7959, -84.653 )
 
-[node name="Vehicle" type="Node2D" groups=[
+[node name="Vehicle" type="KinematicBody2D" groups=[
 "vehicles",
 ]]
 script = ExtResource( 2 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.26487, -7.01894 )
+shape = SubResource( 20 )
+
 [node name="Sprite" type="Sprite" parent="."]
-light_mask = 2
+light_mask = 9
 material = SubResource( 1 )
 texture = ExtResource( 100 )
 vframes = 16
 hframes = 4
 
 [node name="RayCast2DFront" type="RayCast2D" parent="."]
-position = Vector2( 0, -136 )
+position = Vector2( 0, -50 )
 enabled = true
 cast_to = Vector2( 0, -30 )
 collision_mask = 1024
@@ -500,5 +507,6 @@ anims/animation_15 = SubResource( 18 )
 show_behind_parent = true
 light_mask = 3
 position = Vector2( 0, -0.408379 )
+scale = Vector2( 0.37, 0.37 )
 occluder = SubResource( 19 )
 light_mask = 3

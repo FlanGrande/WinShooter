@@ -29,6 +29,6 @@ func _on_Area2D_body_exited(body):
 	if body.is_in_group("hewie"):
 		$TileMaps/Roof.visible = true
 		$TileMaps/RoofFront.visible = true
-		body.get_node("LightForEntities").shadow_item_cull_mask = 2 # 2 means shadows are NOT generated for walls.
-		body.get_node("LightForShadows").shadow_item_cull_mask = 2
+		body.get_node("LightForEntities").shadow_item_cull_mask = 3 # 2 means shadows are NOT generated for walls.
+		body.get_node("LightForShadows").shadow_item_cull_mask = 3
 		print("Exit")

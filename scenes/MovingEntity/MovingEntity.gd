@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 var world
 var ID : = ""
@@ -58,7 +58,9 @@ func move_along_path(distance : float) -> void:
 		var distance_to_goal : = start_point.distance_to(next_path_segment[next_path_segment.size() - 1])
 		if distance <= distance_to_next and distance >= 0.0:
 			if(distance_to_next > 40.0):
-				position = start_point.linear_interpolate(next_path_segment[0], distance / distance_to_next)
+				#position = start_point.linear_interpolate(next_path_segment[0], distance / distance_to_next)
+				var direction = start_point.direction_to(next_path_segment[0])
+				move_and_slide(speed * direction)
 			
 			break
 		elif distance < 0.0:

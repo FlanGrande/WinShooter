@@ -1,6 +1,6 @@
 extends "res://scenes/MovingEntity/MovingEntity.gd"
 
-const RESET_MAX_SPEED = 320.0
+const RESET_MAX_SPEED = 220.0
 
 var distance_from_crosswalk = 400.0
 var distance_from_traffic_light = 200.0
@@ -14,10 +14,10 @@ func _ready() -> void:
 	# Maybe just add an offset when the vehicle is created?
 	
 	# Movement variables, inherited
-	max_speed = rand_range(280.0, 360.0)
+	max_speed = rand_range(200.0, 240.0)
 	min_speed = 0.0
 	speed = 0.0
-	acceleration = rand_range(15.0, 20.0) * delta_correction
+	acceleration = rand_range(8.0, 12.0) * delta_correction
 	deceleration = acceleration * 3
 	
 	$Sprite.material = $Sprite.material.duplicate()

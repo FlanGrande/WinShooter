@@ -3,9 +3,9 @@ extends Node2D
 #const RED_DURATION = 4
 #const AMBER_DURATION = 3
 #const GREEN_DURATION = 10
-const RED_DURATION = 4
+const RED_DURATION = 3
 const AMBER_DURATION = 1
-const GREEN_DURATION = 1
+const GREEN_DURATION = 10
 
 onready var mechanism = get_parent().get_parent()
 onready var mechanism_id = mechanism.ID

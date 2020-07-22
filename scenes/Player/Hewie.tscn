@@ -324,7 +324,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 100 )
 vframes = 16
 hframes = 8
-frame = 2
+frame = 34
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
@@ -348,17 +348,19 @@ shape = SubResource( 2 )
 texture = ExtResource( 3 )
 texture_scale = 1.5
 mode = 2
-range_item_cull_mask = 7
+range_item_cull_mask = -2147483633
 shadow_enabled = true
-shadow_item_cull_mask = -2147483645
+shadow_item_cull_mask = -2147483637
 
 [node name="LightForShadows" type="Light2D" parent="."]
+light_mask = -2147483647
 texture = ExtResource( 3 )
 mode = 2
-range_item_cull_mask = 3
+range_z_max = 10
+range_item_cull_mask = 9
 shadow_enabled = true
 shadow_filter = 1
-shadow_item_cull_mask = 3
+shadow_item_cull_mask = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.0

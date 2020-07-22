@@ -316,7 +316,7 @@ func choose_animation() -> void:
 	#print(str(angle) + " => " + str("animation_" + "%02d" % animation_index))
 	#$Sprite.global_rotation_degrees = 0 - int(angle) % 22
 	
-	var current_animation_position = $AnimationPlayer.current_animation_position
+	var current_animation_position = $AnimationPlayer.get_current_animation_position()
 	
 	if(current_speed == Vector2(0, 0)):
 		change_animation("00_idle")
