@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/Player/Bernard.gd" type="Script" id=1]
+[ext_resource path="res://textures/characters/shadow.png" type="Texture" id=2]
 [ext_resource path="res://textures/lights/light.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Niwt/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://textures/characters/bernard/strip.png" type="Texture" id=100]
@@ -290,18 +291,24 @@ tracks/0/keys = {
 ]]
 script = ExtResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 0.5, 0.5 )
-smoothing_enabled = true
-smoothing_speed = 60.0
-script = ExtResource( 4 )
+[node name="SprShadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.470588 )
+position = Vector2( 0, -3 )
+scale = Vector2( 0.8, 0.9 )
+texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 light_mask = 524289
 texture = ExtResource( 100 )
 vframes = 16
 hframes = 4
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+smoothing_enabled = true
+smoothing_speed = 60.0
+script = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -326,6 +326,7 @@ func choose_animation() -> void:
 	$AnimationPlayer.seek(current_animation_position)
 	#$AnimationPlayer.current_animation_position = current_animation_position
 	$Sprite.rotation_degrees = -angle
+	$SprShadow.rotation_degrees = -angle
 
 func _on_Bernard_toggle_harness():
 	if(current_state == State.HARNESS_MODE):

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/strip.png-94414c841476b4a86aab4cd8f58d9296.stex"
+path="res://.import/shadow.png-c2dca085db2c505b37f2c96002b648aa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/characters/bernard/strip.png"
-dest_files=[ "res://.import/strip.png-94414c841476b4a86aab4cd8f58d9296.stex" ]
+source_file="res://textures/characters/shadow.png"
+dest_files=[ "res://.import/shadow.png-c2dca085db2c505b37f2c96002b648aa.stex" ]
 
 [params]
 
