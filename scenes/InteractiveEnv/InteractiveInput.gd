@@ -2,7 +2,7 @@ extends Node2D
 
 signal use
 
-export var active = false # Is it active? Can it be used? E.g.: it's broken?
+export var active = true # Is it active? Can it be used? E.g.: it's broken?
 export(String, "Key", "DogButton") var type # Is it a door, a traffic light...?
 
 onready var mechanism_id = get_parent().ID
@@ -33,4 +33,4 @@ func initialize():
 			add_child(input_instance)
 
 func use():
-	emit_signal("use")
+	if(active): emit_signal("use")

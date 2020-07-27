@@ -358,4 +358,6 @@ anims/animation_12 = SubResource( 15 )
 anims/animation_13 = SubResource( 16 )
 anims/animation_14 = SubResource( 17 )
 anims/animation_15 = SubResource( 18 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

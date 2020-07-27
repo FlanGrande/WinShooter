@@ -1,4 +1,4 @@
-extends "res://scenes/MovingEntity/MovingEntity.gd"
+extends "res://scenes/Systems/MovementSystem/path_follower.gd"
 
 const RESET_MAX_SPEED = 220.0
 

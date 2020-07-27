@@ -1,6 +1,6 @@
 extends Node2D
 
-export var active = false # Is it active? Can it be used? E.g.: it's broken?
+export var active = true # Is it active? Can it be used? E.g.: it's broken?
 export(String, "Door", "TrafficLight") var type # Is it a door, a traffic light...?
 
 onready var mechanism_id# = get_parent().ID
@@ -54,8 +54,9 @@ func deactivate():
 			output_instance.close()
 
 func _on_Use():
-	if(is_activated):
-		deactivate()
-	else:
-		activate()
+	if(active):
+		if(is_activated):
+			deactivate()
+		else:
+			activate()
 

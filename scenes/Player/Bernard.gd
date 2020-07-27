@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://scenes/Systems/MovementSystem/movement_system.gd"
 
 # TO DO: Bernards blocks doors with his body to stop them from closing.
 
@@ -35,13 +35,14 @@ var move_input_is_pressed = [false, false] # Input on X, input on Y
 const CAMERA_MAX_RANGE = Vector2(30, 30) # Max distance from the character to the camera
 var camera_position = Vector2(0, 0) # Current camera position
 var aiming_vector = Vector2(0, 0) # Vector representing the direction the player is aiming to
-var x_axis = Vector2(1, 0) # Vector for the axis used to calculate aiming angle (X axis, namely)
 
 # Interactions
 const IS_HEWIE_NEARBY_RANGE = 60
 onready var Hewie = get_parent().get_node("Hewie")
 var grabbed_key = null
 var grabbed_item_offset = Vector2(0, 0)
+var is_pressing_button = false
+var button_being_pressed = null
 
 func _ready():
 	alive = true
@@ -61,8 +62,9 @@ func _process(delta):
 		update()
 		#camera_update()
 		
-		var motion = Vector2(speed_factor * current_speed)
-		move_and_slide(motion)
+		#var motion = Vector2(speed_factor * current_speed)
+		#move_and_slide(motion)
+		if(is_moving): move_and_slide(Vector2(speed, 0).rotated(direction_angle_in_radians))
 		choose_animation()
 		
 		#print("BERNARD STATE: ", current_state)
@@ -74,7 +76,8 @@ func handle_input():
 		# TO DO: Move towards controller input, as in analog movement.
 		State.WALKING:
 			current_max_speed = MAX_SPEED_WALKING
-			handle_movement()
+			#handle_movement()
+			movement_process()
 			
 			#if(is_Hewie_nearby() and Input.is_action_just_released("toggle_harness")):
 			if(is_Hewie_nearby() and Input.is_action_just_released("bernard_interact")):
@@ -83,7 +86,8 @@ func handle_input():
 		
 		State.GRABBING:
 			current_max_speed = MAX_SPEED_GRABBING
-			handle_movement()
+			#handle_movement()
+			movement_process()
 			
 			grabbed_key.global_position = global_position + grabbed_item_offset
 			
@@ -94,7 +98,8 @@ func handle_input():
 		
 		State.HARNESS_MODE:
 			current_max_speed = MAX_SPEED_HARNESS_MODE
-			handle_movement()
+			#handle_movement()
+			movement_process()
 			
 			#if(Input.is_action_just_released("toggle_harness")):
 			if(Input.is_action_just_released("bernard_interact")):
@@ -111,67 +116,41 @@ func update():
 		
 		State.HARNESS_MODE:
 			pass
-	
-	if current_speed.y > current_max_speed.y:
-		current_speed.y = current_max_speed.y
-	elif current_speed.y < -current_max_speed.y:
-		current_speed.y = -current_max_speed.y
-	
-	if current_speed.x > current_max_speed.x:
-		current_speed.x = current_max_speed.x
-	elif current_speed.x < -current_max_speed.x:
-		current_speed.x = -current_max_speed.x
 
-func handle_movement():
-	move_input_is_pressed = [false, false]
-			
-	if(Input.is_action_pressed("bernard_move_left")):
-		current_speed.x += -ACCELERATION
-		move_input_is_pressed[0] = true
-		
-		var tmp_axis_input = abs(Input.get_joy_axis(0, 0))
-		if(tmp_axis_input > DEAD_ZONE):
-			current_max_speed.x = current_max_speed.x * abs(Input.get_joy_axis(0, 0))
-	
-	if(Input.is_action_pressed("bernard_move_right")):
-		current_speed.x += ACCELERATION
-		move_input_is_pressed[0] = true
-		
-		var tmp_axis_input = abs(Input.get_joy_axis(0, 0))
-		if(tmp_axis_input > DEAD_ZONE):
-			current_max_speed.x = current_max_speed.x * abs(Input.get_joy_axis(0, 0))
+func movement_process():
+	var joy_input = Vector2(Input.get_joy_axis(0, 0), Input.get_joy_axis(0, 1))
+	is_moving = false
+	direction = Vector2(0, 0)
+	#print(joy_input)
 	
 	if(Input.is_action_pressed("bernard_move_up")):
-		current_speed.y += -ACCELERATION
-		move_input_is_pressed[1] = true
-		
-		var tmp_axis_input = abs(Input.get_joy_axis(0, 1))
-		if(tmp_axis_input > DEAD_ZONE):
-			current_max_speed.y = current_max_speed.y * abs(Input.get_joy_axis(0, 1))
+		direction.y -= 1
+		speed = max_speed
+		is_moving = true
+	elif(Input.is_action_pressed("bernard_move_down")):
+		direction.y += 1
+		speed = max_speed
+		is_moving = true
+
+	if(Input.is_action_pressed("bernard_move_left")):
+		direction.x -= 1
+		speed = max_speed
+		is_moving = true
+	elif(Input.is_action_pressed("bernard_move_right")):
+		direction.x += 1
+		speed = max_speed
+		is_moving = true
 	
-	if(Input.is_action_pressed("bernard_move_down")):
-		current_speed.y += ACCELERATION
-		move_input_is_pressed[1] = true
-		
-		var tmp_axis_input = abs(Input.get_joy_axis(0, 1))
-		if(tmp_axis_input > DEAD_ZONE):
-			current_max_speed.y = current_max_speed.y * abs(Input.get_joy_axis(0, 1))
+	if(Input.is_action_pressed("bernard_move_up") or Input.is_action_pressed("bernard_move_down")):
+		direction.y *= abs(joy_input.y)
 	
-	# No input on X
-	if(not move_input_is_pressed[0]):
-		current_speed.x -= sign(current_speed.x) * DECELERATION
-		
-		# Stay on place
-		if abs(current_speed.x) < DEADZONE_SPEED:
-			current_speed.x = 0
+	if(Input.is_action_pressed("bernard_move_left") or Input.is_action_pressed("bernard_move_right")):
+		direction.x *= abs(joy_input.x)
 	
-	# No input on Y
-	if(not move_input_is_pressed[1]):
-		current_speed.y -= sign(current_speed.y) * DECELERATION
-		
-		# Stay on place
-		if abs(current_speed.y) < DEADZONE_SPEED:
-			current_speed.y = 0
+	direction_angle_in_radians = x_axis.angle_to(direction)
+	
+	if(Input.is_action_pressed("bernard_move_up") or Input.is_action_pressed("bernard_move_down") or Input.is_action_pressed("bernard_move_left") or Input.is_action_pressed("bernard_move_right")):
+		speed *= max(abs(joy_input.x), abs(joy_input.y))
 
 func change_state(new_state):
 	current_state = new_state
@@ -198,21 +177,14 @@ func shoot():
 func is_Hewie_nearby():
 	return Hewie.global_position.distance_to(global_position) < IS_HEWIE_NEARBY_RANGE
 
-func change_animation(new_animation) -> void:
-	if($AnimationPlayer.current_animation != new_animation):
-		$AnimationPlayer.play(new_animation)
-
 func choose_animation() -> void:
 	var X_axis = Vector2(-1, 0)
-	var angle = -1 * current_speed.angle_to(X_axis) * 180 / PI
-	var animation_list = $AnimationPlayer.get_animation_list()
-	var animation_index = int(int((angle + 180 + 11) / 22) % 16)
+	var direction_angle_in_degrees = direction_angle_in_radians * 180 / PI
+	var animation_index = int(int((direction_angle_in_degrees + 360 + 8) / 22) % 16)
 	#print(animation_index)
-	#var rotation_correction = int(int(angle) % 22)
 	#print(str(angle) + " => " + str("animation_" + "%02d" % animation_index))
-	#$Sprite.global_rotation_degrees = 0 - int(angle) % 22
 	
-	change_animation("animation_" + "%02d" % animation_index)
+	Singleton.change_animation($AnimationPlayer, "animation_" + "%02d" % animation_index)
 
 func _on_Hewie_give_key(given_key):
 	grabbed_key = given_key
@@ -225,3 +197,19 @@ func _on_Area2D_body_entered(body):
 			grabbed_key.use() # Open door using the key
 			grabbed_key.queue_free()
 			change_state(State.WALKING)
+
+func _on_Area2D_area_entered(area):
+	if(area.get_parent().is_in_group("dog_buttons")):
+		is_pressing_button = true
+		button_being_pressed = area.get_parent()
+		
+		if(not Hewie.is_pressing_button or Hewie.button_being_pressed.mechanism_id != button_being_pressed.mechanism_id):
+			area.get_parent().use()
+
+func _on_Area2D_area_exited(area):
+	if(area.get_parent().is_in_group("dog_buttons")):
+		if(not Hewie.is_pressing_button or Hewie.button_being_pressed.mechanism_id != button_being_pressed.mechanism_id):
+			area.get_parent().use()
+		
+		is_pressing_button = false
+		button_being_pressed = null
