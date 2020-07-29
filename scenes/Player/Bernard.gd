@@ -123,20 +123,20 @@ func movement_process():
 	direction = Vector2(0, 0)
 	#print(joy_input)
 	
-	if(Input.is_action_pressed("bernard_move_up")):
+	if(Input.is_action_pressed("bernard_key_up")):
 		direction.y -= 1
 		speed = max_speed
 		is_moving = true
-	elif(Input.is_action_pressed("bernard_move_down")):
+	elif(Input.is_action_pressed("bernard_key_down")):
 		direction.y += 1
 		speed = max_speed
 		is_moving = true
 
-	if(Input.is_action_pressed("bernard_move_left")):
+	if(Input.is_action_pressed("bernard_key_left")):
 		direction.x -= 1
 		speed = max_speed
 		is_moving = true
-	elif(Input.is_action_pressed("bernard_move_right")):
+	elif(Input.is_action_pressed("bernard_key_right")):
 		direction.x += 1
 		speed = max_speed
 		is_moving = true

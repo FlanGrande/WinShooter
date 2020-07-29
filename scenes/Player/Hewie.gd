@@ -71,8 +71,13 @@ func _process(delta):
 		update()
 		#camera_update()
 		
-		if(is_moving): move_and_slide(Vector2(speed, 0).rotated(direction_angle_in_radians))
-		else: change_animation("00_idle")
+		#print(speed)
+		#print(direction_angle_in_radians)
+		if(is_moving): 
+			choose_animation()
+			move_and_slide(Vector2(speed, 0).rotated(direction_angle_in_radians))
+		else: 
+			change_animation("00_idle")
 		
 #		var movement_speed = sqrt(current_speed.x*current_speed.x + current_speed.y*current_speed.y)
 #		var move : = Vector2(current_speed.x, current_speed.y)
@@ -176,20 +181,20 @@ func movement_process():
 	direction = Vector2(0, 0)
 	#print(joy_input)
 	
-	if(Input.is_action_pressed("hewie_move_up")):
+	if(Input.is_action_pressed("hewie_key_up")):
 		direction.y -= 1
 		speed = max_speed
 		is_moving = true
-	elif(Input.is_action_pressed("hewie_move_down")):
+	elif(Input.is_action_pressed("hewie_key_down")):
 		direction.y += 1
 		speed = max_speed
 		is_moving = true
 
-	if(Input.is_action_pressed("hewie_move_left")):
+	if(Input.is_action_pressed("hewie_key_left")):
 		direction.x -= 1
 		speed = max_speed
 		is_moving = true
-	elif(Input.is_action_pressed("hewie_move_right")):
+	elif(Input.is_action_pressed("hewie_key_right")):
 		direction.x += 1
 		speed = max_speed
 		is_moving = true
@@ -203,8 +208,7 @@ func movement_process():
 	direction_angle_in_radians = x_axis.angle_to(direction)
 	
 	if(Input.is_action_pressed("hewie_move_up") or Input.is_action_pressed("hewie_move_down") or Input.is_action_pressed("hewie_move_left") or Input.is_action_pressed("hewie_move_right")):
-		speed *= max(abs(joy_input.x), abs(joy_input.y))
-		choose_animation()
+		speed *= max(abs(joy_input.x), abs(joy_input.y)) # This allows the player to gradually move characters depending on joystick position.
 
 func change_state(new_state):
 	current_state = new_state

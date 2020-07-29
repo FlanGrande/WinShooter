@@ -1,99 +1,365 @@
-[gd_resource type="AnimatedTexture" load_steps=32 format=2]
+[gd_resource type="AnimatedTexture" load_steps=121 format=2]
 
-[ext_resource path="res://textures/environment/fountain/0001.png" type="Texture" id=1]
-[ext_resource path="res://textures/environment/fountain/0003.png" type="Texture" id=3]
-[ext_resource path="res://textures/environment/fountain/0004.png" type="Texture" id=4]
-[ext_resource path="res://textures/environment/fountain/0005.png" type="Texture" id=5]
-[ext_resource path="res://textures/environment/fountain/0006.png" type="Texture" id=6]
-[ext_resource path="res://textures/environment/fountain/0007.png" type="Texture" id=7]
-[ext_resource path="res://textures/environment/fountain/0008.png" type="Texture" id=8]
-[ext_resource path="res://textures/environment/fountain/0009.png" type="Texture" id=9]
-[ext_resource path="res://textures/environment/fountain/0010.png" type="Texture" id=10]
-[ext_resource path="res://textures/environment/fountain/0011.png" type="Texture" id=11]
-[ext_resource path="res://textures/environment/fountain/0012.png" type="Texture" id=12]
-[ext_resource path="res://textures/environment/fountain/0013.png" type="Texture" id=13]
-[ext_resource path="res://textures/environment/fountain/0014.png" type="Texture" id=14]
-[ext_resource path="res://textures/environment/fountain/0015.png" type="Texture" id=15]
-[ext_resource path="res://textures/environment/fountain/0016.png" type="Texture" id=16]
-[ext_resource path="res://textures/environment/fountain/0017.png" type="Texture" id=17]
-[ext_resource path="res://textures/environment/fountain/0018.png" type="Texture" id=18]
-[ext_resource path="res://textures/environment/fountain/0019.png" type="Texture" id=19]
-[ext_resource path="res://textures/environment/fountain/0020.png" type="Texture" id=20]
-[ext_resource path="res://textures/environment/fountain/0021.png" type="Texture" id=21]
-[ext_resource path="res://textures/environment/fountain/0022.png" type="Texture" id=22]
-[ext_resource path="res://textures/environment/fountain/0023.png" type="Texture" id=23]
-[ext_resource path="res://textures/environment/fountain/0024.png" type="Texture" id=24]
-[ext_resource path="res://textures/environment/fountain/0025.png" type="Texture" id=25]
-[ext_resource path="res://textures/environment/fountain/0026.png" type="Texture" id=26]
-[ext_resource path="res://textures/environment/fountain/0027.png" type="Texture" id=27]
-[ext_resource path="res://textures/environment/fountain/0028.png" type="Texture" id=28]
-[ext_resource path="res://textures/environment/fountain/0029.png" type="Texture" id=29]
-[ext_resource path="res://textures/environment/fountain/0030.png" type="Texture" id=30]
-[ext_resource path="res://textures/environment/fountain/0031.png" type="Texture" id=31]
-[ext_resource path="res://textures/environment/fountain/0032.png" type="Texture" id=32]
+[ext_resource path="res://textures/environment/fountain/0120.png" type="Texture" id=120]
+[ext_resource path="res://textures/environment/fountain/0121.png" type="Texture" id=121]
+[ext_resource path="res://textures/environment/fountain/0122.png" type="Texture" id=122]
+[ext_resource path="res://textures/environment/fountain/0123.png" type="Texture" id=123]
+[ext_resource path="res://textures/environment/fountain/0124.png" type="Texture" id=124]
+[ext_resource path="res://textures/environment/fountain/0125.png" type="Texture" id=125]
+[ext_resource path="res://textures/environment/fountain/0126.png" type="Texture" id=126]
+[ext_resource path="res://textures/environment/fountain/0127.png" type="Texture" id=127]
+[ext_resource path="res://textures/environment/fountain/0128.png" type="Texture" id=128]
+[ext_resource path="res://textures/environment/fountain/0129.png" type="Texture" id=129]
+[ext_resource path="res://textures/environment/fountain/0130.png" type="Texture" id=130]
+[ext_resource path="res://textures/environment/fountain/0131.png" type="Texture" id=131]
+[ext_resource path="res://textures/environment/fountain/0132.png" type="Texture" id=132]
+[ext_resource path="res://textures/environment/fountain/0133.png" type="Texture" id=133]
+[ext_resource path="res://textures/environment/fountain/0134.png" type="Texture" id=134]
+[ext_resource path="res://textures/environment/fountain/0135.png" type="Texture" id=135]
+[ext_resource path="res://textures/environment/fountain/0136.png" type="Texture" id=136]
+[ext_resource path="res://textures/environment/fountain/0137.png" type="Texture" id=137]
+[ext_resource path="res://textures/environment/fountain/0138.png" type="Texture" id=138]
+[ext_resource path="res://textures/environment/fountain/0139.png" type="Texture" id=139]
+[ext_resource path="res://textures/environment/fountain/0140.png" type="Texture" id=140]
+[ext_resource path="res://textures/environment/fountain/0141.png" type="Texture" id=141]
+[ext_resource path="res://textures/environment/fountain/0142.png" type="Texture" id=142]
+[ext_resource path="res://textures/environment/fountain/0143.png" type="Texture" id=143]
+[ext_resource path="res://textures/environment/fountain/0144.png" type="Texture" id=144]
+[ext_resource path="res://textures/environment/fountain/0145.png" type="Texture" id=145]
+[ext_resource path="res://textures/environment/fountain/0146.png" type="Texture" id=146]
+[ext_resource path="res://textures/environment/fountain/0147.png" type="Texture" id=147]
+[ext_resource path="res://textures/environment/fountain/0148.png" type="Texture" id=148]
+[ext_resource path="res://textures/environment/fountain/0149.png" type="Texture" id=149]
+[ext_resource path="res://textures/environment/fountain/0150.png" type="Texture" id=150]
+[ext_resource path="res://textures/environment/fountain/0151.png" type="Texture" id=151]
+[ext_resource path="res://textures/environment/fountain/0152.png" type="Texture" id=152]
+[ext_resource path="res://textures/environment/fountain/0153.png" type="Texture" id=153]
+[ext_resource path="res://textures/environment/fountain/0154.png" type="Texture" id=154]
+[ext_resource path="res://textures/environment/fountain/0155.png" type="Texture" id=155]
+[ext_resource path="res://textures/environment/fountain/0156.png" type="Texture" id=156]
+[ext_resource path="res://textures/environment/fountain/0157.png" type="Texture" id=157]
+[ext_resource path="res://textures/environment/fountain/0158.png" type="Texture" id=158]
+[ext_resource path="res://textures/environment/fountain/0159.png" type="Texture" id=159]
+[ext_resource path="res://textures/environment/fountain/0160.png" type="Texture" id=160]
+[ext_resource path="res://textures/environment/fountain/0161.png" type="Texture" id=161]
+[ext_resource path="res://textures/environment/fountain/0162.png" type="Texture" id=162]
+[ext_resource path="res://textures/environment/fountain/0163.png" type="Texture" id=163]
+[ext_resource path="res://textures/environment/fountain/0164.png" type="Texture" id=164]
+[ext_resource path="res://textures/environment/fountain/0165.png" type="Texture" id=165]
+[ext_resource path="res://textures/environment/fountain/0166.png" type="Texture" id=166]
+[ext_resource path="res://textures/environment/fountain/0167.png" type="Texture" id=167]
+[ext_resource path="res://textures/environment/fountain/0168.png" type="Texture" id=168]
+[ext_resource path="res://textures/environment/fountain/0169.png" type="Texture" id=169]
+[ext_resource path="res://textures/environment/fountain/0170.png" type="Texture" id=170]
+[ext_resource path="res://textures/environment/fountain/0171.png" type="Texture" id=171]
+[ext_resource path="res://textures/environment/fountain/0172.png" type="Texture" id=172]
+[ext_resource path="res://textures/environment/fountain/0173.png" type="Texture" id=173]
+[ext_resource path="res://textures/environment/fountain/0174.png" type="Texture" id=174]
+[ext_resource path="res://textures/environment/fountain/0175.png" type="Texture" id=175]
+[ext_resource path="res://textures/environment/fountain/0176.png" type="Texture" id=176]
+[ext_resource path="res://textures/environment/fountain/0177.png" type="Texture" id=177]
+[ext_resource path="res://textures/environment/fountain/0178.png" type="Texture" id=178]
+[ext_resource path="res://textures/environment/fountain/0179.png" type="Texture" id=179]
+[ext_resource path="res://textures/environment/fountain/0180.png" type="Texture" id=180]
+[ext_resource path="res://textures/environment/fountain/0181.png" type="Texture" id=181]
+[ext_resource path="res://textures/environment/fountain/0182.png" type="Texture" id=182]
+[ext_resource path="res://textures/environment/fountain/0183.png" type="Texture" id=183]
+[ext_resource path="res://textures/environment/fountain/0184.png" type="Texture" id=184]
+[ext_resource path="res://textures/environment/fountain/0185.png" type="Texture" id=185]
+[ext_resource path="res://textures/environment/fountain/0186.png" type="Texture" id=186]
+[ext_resource path="res://textures/environment/fountain/0187.png" type="Texture" id=187]
+[ext_resource path="res://textures/environment/fountain/0188.png" type="Texture" id=188]
+[ext_resource path="res://textures/environment/fountain/0189.png" type="Texture" id=189]
+[ext_resource path="res://textures/environment/fountain/0190.png" type="Texture" id=190]
+[ext_resource path="res://textures/environment/fountain/0191.png" type="Texture" id=191]
+[ext_resource path="res://textures/environment/fountain/0192.png" type="Texture" id=192]
+[ext_resource path="res://textures/environment/fountain/0193.png" type="Texture" id=193]
+[ext_resource path="res://textures/environment/fountain/0194.png" type="Texture" id=194]
+[ext_resource path="res://textures/environment/fountain/0195.png" type="Texture" id=195]
+[ext_resource path="res://textures/environment/fountain/0196.png" type="Texture" id=196]
+[ext_resource path="res://textures/environment/fountain/0197.png" type="Texture" id=197]
+[ext_resource path="res://textures/environment/fountain/0198.png" type="Texture" id=198]
+[ext_resource path="res://textures/environment/fountain/0199.png" type="Texture" id=199]
+[ext_resource path="res://textures/environment/fountain/0200.png" type="Texture" id=200]
+[ext_resource path="res://textures/environment/fountain/0201.png" type="Texture" id=201]
+[ext_resource path="res://textures/environment/fountain/0202.png" type="Texture" id=202]
+[ext_resource path="res://textures/environment/fountain/0203.png" type="Texture" id=203]
+[ext_resource path="res://textures/environment/fountain/0204.png" type="Texture" id=204]
+[ext_resource path="res://textures/environment/fountain/0205.png" type="Texture" id=205]
+[ext_resource path="res://textures/environment/fountain/0206.png" type="Texture" id=206]
+[ext_resource path="res://textures/environment/fountain/0207.png" type="Texture" id=207]
+[ext_resource path="res://textures/environment/fountain/0208.png" type="Texture" id=208]
+[ext_resource path="res://textures/environment/fountain/0209.png" type="Texture" id=209]
+[ext_resource path="res://textures/environment/fountain/0210.png" type="Texture" id=210]
+[ext_resource path="res://textures/environment/fountain/0211.png" type="Texture" id=211]
+[ext_resource path="res://textures/environment/fountain/0212.png" type="Texture" id=212]
+[ext_resource path="res://textures/environment/fountain/0213.png" type="Texture" id=213]
+[ext_resource path="res://textures/environment/fountain/0214.png" type="Texture" id=214]
+[ext_resource path="res://textures/environment/fountain/0215.png" type="Texture" id=215]
+[ext_resource path="res://textures/environment/fountain/0216.png" type="Texture" id=216]
+[ext_resource path="res://textures/environment/fountain/0217.png" type="Texture" id=217]
+[ext_resource path="res://textures/environment/fountain/0218.png" type="Texture" id=218]
+[ext_resource path="res://textures/environment/fountain/0219.png" type="Texture" id=219]
+[ext_resource path="res://textures/environment/fountain/0220.png" type="Texture" id=220]
+[ext_resource path="res://textures/environment/fountain/0221.png" type="Texture" id=221]
+[ext_resource path="res://textures/environment/fountain/0222.png" type="Texture" id=222]
+[ext_resource path="res://textures/environment/fountain/0223.png" type="Texture" id=223]
+[ext_resource path="res://textures/environment/fountain/0224.png" type="Texture" id=224]
+[ext_resource path="res://textures/environment/fountain/0225.png" type="Texture" id=225]
+[ext_resource path="res://textures/environment/fountain/0226.png" type="Texture" id=226]
+[ext_resource path="res://textures/environment/fountain/0227.png" type="Texture" id=227]
+[ext_resource path="res://textures/environment/fountain/0228.png" type="Texture" id=228]
+[ext_resource path="res://textures/environment/fountain/0229.png" type="Texture" id=229]
+[ext_resource path="res://textures/environment/fountain/0230.png" type="Texture" id=230]
+[ext_resource path="res://textures/environment/fountain/0231.png" type="Texture" id=231]
+[ext_resource path="res://textures/environment/fountain/0232.png" type="Texture" id=232]
+[ext_resource path="res://textures/environment/fountain/0233.png" type="Texture" id=233]
+[ext_resource path="res://textures/environment/fountain/0234.png" type="Texture" id=234]
+[ext_resource path="res://textures/environment/fountain/0235.png" type="Texture" id=235]
+[ext_resource path="res://textures/environment/fountain/0236.png" type="Texture" id=236]
+[ext_resource path="res://textures/environment/fountain/0237.png" type="Texture" id=237]
+[ext_resource path="res://textures/environment/fountain/0238.png" type="Texture" id=238]
+[ext_resource path="res://textures/environment/fountain/0239.png" type="Texture" id=239]
 
 [resource]
-frames = 32
-fps = 8.0
-frame_0/texture = ExtResource( 1 )
+frames = 120
+fps = 6.0
+frame_0/texture = ExtResource( 120 )
+frame_1/texture = ExtResource( 121 )
 frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 3 )
+frame_2/texture = ExtResource( 122 )
 frame_2/delay_sec = 0.0
-frame_3/texture = ExtResource( 4 )
+frame_3/texture = ExtResource( 123 )
 frame_3/delay_sec = 0.0
-frame_4/texture = ExtResource( 5 )
+frame_4/texture = ExtResource( 124 )
 frame_4/delay_sec = 0.0
-frame_5/texture = ExtResource( 6 )
+frame_5/texture = ExtResource( 125 )
 frame_5/delay_sec = 0.0
-frame_6/texture = ExtResource( 7 )
+frame_6/texture = ExtResource( 126 )
 frame_6/delay_sec = 0.0
-frame_7/texture = ExtResource( 8 )
+frame_7/texture = ExtResource( 127 )
 frame_7/delay_sec = 0.0
-frame_8/texture = ExtResource( 9 )
+frame_8/texture = ExtResource( 128 )
 frame_8/delay_sec = 0.0
-frame_9/texture = ExtResource( 10 )
+frame_9/texture = ExtResource( 129 )
 frame_9/delay_sec = 0.0
-frame_10/texture = ExtResource( 11 )
+frame_10/texture = ExtResource( 130 )
 frame_10/delay_sec = 0.0
-frame_11/texture = ExtResource( 12 )
+frame_11/texture = ExtResource( 131 )
 frame_11/delay_sec = 0.0
-frame_12/texture = ExtResource( 13 )
+frame_12/texture = ExtResource( 132 )
 frame_12/delay_sec = 0.0
-frame_13/texture = ExtResource( 14 )
+frame_13/texture = ExtResource( 133 )
 frame_13/delay_sec = 0.0
-frame_14/texture = ExtResource( 15 )
+frame_14/texture = ExtResource( 134 )
 frame_14/delay_sec = 0.0
-frame_15/texture = ExtResource( 16 )
+frame_15/texture = ExtResource( 135 )
 frame_15/delay_sec = 0.0
-frame_16/texture = ExtResource( 17 )
+frame_16/texture = ExtResource( 136 )
 frame_16/delay_sec = 0.0
-frame_17/texture = ExtResource( 18 )
+frame_17/texture = ExtResource( 137 )
 frame_17/delay_sec = 0.0
-frame_18/texture = ExtResource( 19 )
+frame_18/texture = ExtResource( 138 )
 frame_18/delay_sec = 0.0
-frame_19/texture = ExtResource( 20 )
+frame_19/texture = ExtResource( 139 )
 frame_19/delay_sec = 0.0
-frame_20/texture = ExtResource( 21 )
+frame_20/texture = ExtResource( 140 )
 frame_20/delay_sec = 0.0
-frame_21/texture = ExtResource( 22 )
+frame_21/texture = ExtResource( 141 )
 frame_21/delay_sec = 0.0
-frame_22/texture = ExtResource( 23 )
+frame_22/texture = ExtResource( 142 )
 frame_22/delay_sec = 0.0
-frame_23/texture = ExtResource( 24 )
+frame_23/texture = ExtResource( 143 )
 frame_23/delay_sec = 0.0
-frame_24/texture = ExtResource( 25 )
+frame_24/texture = ExtResource( 144 )
 frame_24/delay_sec = 0.0
-frame_25/texture = ExtResource( 26 )
+frame_25/texture = ExtResource( 145 )
 frame_25/delay_sec = 0.0
-frame_26/texture = ExtResource( 27 )
+frame_26/texture = ExtResource( 146 )
 frame_26/delay_sec = 0.0
-frame_27/texture = ExtResource( 28 )
+frame_27/texture = ExtResource( 147 )
 frame_27/delay_sec = 0.0
-frame_28/texture = ExtResource( 29 )
+frame_28/texture = ExtResource( 148 )
 frame_28/delay_sec = 0.0
-frame_29/texture = ExtResource( 30 )
+frame_29/texture = ExtResource( 149 )
 frame_29/delay_sec = 0.0
-frame_30/texture = ExtResource( 31 )
+frame_30/texture = ExtResource( 150 )
 frame_30/delay_sec = 0.0
-frame_31/texture = ExtResource( 32 )
+frame_31/texture = ExtResource( 151 )
 frame_31/delay_sec = 0.0
+frame_32/texture = ExtResource( 152 )
+frame_32/delay_sec = 0.0
+frame_33/texture = ExtResource( 153 )
+frame_33/delay_sec = 0.0
+frame_34/texture = ExtResource( 154 )
+frame_34/delay_sec = 0.0
+frame_35/texture = ExtResource( 155 )
+frame_35/delay_sec = 0.0
+frame_36/texture = ExtResource( 156 )
+frame_36/delay_sec = 0.0
+frame_37/texture = ExtResource( 157 )
+frame_37/delay_sec = 0.0
+frame_38/texture = ExtResource( 158 )
+frame_38/delay_sec = 0.0
+frame_39/texture = ExtResource( 159 )
+frame_39/delay_sec = 0.0
+frame_40/texture = ExtResource( 160 )
+frame_40/delay_sec = 0.0
+frame_41/texture = ExtResource( 161 )
+frame_41/delay_sec = 0.0
+frame_42/texture = ExtResource( 162 )
+frame_42/delay_sec = 0.0
+frame_43/texture = ExtResource( 163 )
+frame_43/delay_sec = 0.0
+frame_44/texture = ExtResource( 164 )
+frame_44/delay_sec = 0.0
+frame_45/texture = ExtResource( 165 )
+frame_45/delay_sec = 0.0
+frame_46/texture = ExtResource( 166 )
+frame_46/delay_sec = 0.0
+frame_47/texture = ExtResource( 167 )
+frame_47/delay_sec = 0.0
+frame_48/texture = ExtResource( 168 )
+frame_48/delay_sec = 0.0
+frame_49/texture = ExtResource( 169 )
+frame_49/delay_sec = 0.0
+frame_50/texture = ExtResource( 170 )
+frame_50/delay_sec = 0.0
+frame_51/texture = ExtResource( 171 )
+frame_51/delay_sec = 0.0
+frame_52/texture = ExtResource( 172 )
+frame_52/delay_sec = 0.0
+frame_53/texture = ExtResource( 173 )
+frame_53/delay_sec = 0.0
+frame_54/texture = ExtResource( 174 )
+frame_54/delay_sec = 0.0
+frame_55/texture = ExtResource( 175 )
+frame_55/delay_sec = 0.0
+frame_56/texture = ExtResource( 176 )
+frame_56/delay_sec = 0.0
+frame_57/texture = ExtResource( 177 )
+frame_57/delay_sec = 0.0
+frame_58/texture = ExtResource( 178 )
+frame_58/delay_sec = 0.0
+frame_59/texture = ExtResource( 179 )
+frame_59/delay_sec = 0.0
+frame_60/texture = ExtResource( 180 )
+frame_60/delay_sec = 0.0
+frame_61/texture = ExtResource( 181 )
+frame_61/delay_sec = 0.0
+frame_62/texture = ExtResource( 182 )
+frame_62/delay_sec = 0.0
+frame_63/texture = ExtResource( 183 )
+frame_63/delay_sec = 0.0
+frame_64/texture = ExtResource( 184 )
+frame_64/delay_sec = 0.0
+frame_65/texture = ExtResource( 185 )
+frame_65/delay_sec = 0.0
+frame_66/texture = ExtResource( 186 )
+frame_66/delay_sec = 0.0
+frame_67/texture = ExtResource( 187 )
+frame_67/delay_sec = 0.0
+frame_68/texture = ExtResource( 188 )
+frame_68/delay_sec = 0.0
+frame_69/texture = ExtResource( 189 )
+frame_69/delay_sec = 0.0
+frame_70/texture = ExtResource( 190 )
+frame_70/delay_sec = 0.0
+frame_71/texture = ExtResource( 191 )
+frame_71/delay_sec = 0.0
+frame_72/texture = ExtResource( 192 )
+frame_72/delay_sec = 0.0
+frame_73/texture = ExtResource( 193 )
+frame_73/delay_sec = 0.0
+frame_74/texture = ExtResource( 194 )
+frame_74/delay_sec = 0.0
+frame_75/texture = ExtResource( 195 )
+frame_75/delay_sec = 0.0
+frame_76/texture = ExtResource( 196 )
+frame_76/delay_sec = 0.0
+frame_77/texture = ExtResource( 197 )
+frame_77/delay_sec = 0.0
+frame_78/texture = ExtResource( 198 )
+frame_78/delay_sec = 0.0
+frame_79/texture = ExtResource( 199 )
+frame_79/delay_sec = 0.0
+frame_80/texture = ExtResource( 200 )
+frame_80/delay_sec = 0.0
+frame_81/texture = ExtResource( 201 )
+frame_81/delay_sec = 0.0
+frame_82/texture = ExtResource( 202 )
+frame_82/delay_sec = 0.0
+frame_83/texture = ExtResource( 203 )
+frame_83/delay_sec = 0.0
+frame_84/texture = ExtResource( 204 )
+frame_84/delay_sec = 0.0
+frame_85/texture = ExtResource( 205 )
+frame_85/delay_sec = 0.0
+frame_86/texture = ExtResource( 206 )
+frame_86/delay_sec = 0.0
+frame_87/texture = ExtResource( 207 )
+frame_87/delay_sec = 0.0
+frame_88/texture = ExtResource( 208 )
+frame_88/delay_sec = 0.0
+frame_89/texture = ExtResource( 209 )
+frame_89/delay_sec = 0.0
+frame_90/texture = ExtResource( 210 )
+frame_90/delay_sec = 0.0
+frame_91/texture = ExtResource( 211 )
+frame_91/delay_sec = 0.0
+frame_92/texture = ExtResource( 212 )
+frame_92/delay_sec = 0.0
+frame_93/texture = ExtResource( 213 )
+frame_93/delay_sec = 0.0
+frame_94/texture = ExtResource( 214 )
+frame_94/delay_sec = 0.0
+frame_95/texture = ExtResource( 215 )
+frame_95/delay_sec = 0.0
+frame_96/texture = ExtResource( 216 )
+frame_96/delay_sec = 0.0
+frame_97/texture = ExtResource( 217 )
+frame_97/delay_sec = 0.0
+frame_98/texture = ExtResource( 218 )
+frame_98/delay_sec = 0.0
+frame_99/texture = ExtResource( 219 )
+frame_99/delay_sec = 0.0
+frame_100/texture = ExtResource( 220 )
+frame_100/delay_sec = 0.0
+frame_101/texture = ExtResource( 221 )
+frame_101/delay_sec = 0.0
+frame_102/texture = ExtResource( 222 )
+frame_102/delay_sec = 0.0
+frame_103/texture = ExtResource( 223 )
+frame_103/delay_sec = 0.0
+frame_104/texture = ExtResource( 224 )
+frame_104/delay_sec = 0.0
+frame_105/texture = ExtResource( 225 )
+frame_105/delay_sec = 0.0
+frame_106/texture = ExtResource( 226 )
+frame_106/delay_sec = 0.0
+frame_107/texture = ExtResource( 227 )
+frame_107/delay_sec = 0.0
+frame_108/texture = ExtResource( 228 )
+frame_108/delay_sec = 0.0
+frame_109/texture = ExtResource( 229 )
+frame_109/delay_sec = 0.0
+frame_110/texture = ExtResource( 230 )
+frame_110/delay_sec = 0.0
+frame_111/texture = ExtResource( 231 )
+frame_111/delay_sec = 0.0
+frame_112/texture = ExtResource( 232 )
+frame_112/delay_sec = 0.0
+frame_113/texture = ExtResource( 233 )
+frame_113/delay_sec = 0.0
+frame_114/texture = ExtResource( 234 )
+frame_114/delay_sec = 0.0
+frame_115/texture = ExtResource( 235 )
+frame_115/delay_sec = 0.0
+frame_116/texture = ExtResource( 236 )
+frame_116/delay_sec = 0.0
+frame_117/texture = ExtResource( 237 )
+frame_117/delay_sec = 0.0
+frame_118/texture = ExtResource( 238 )
+frame_118/delay_sec = 0.0
+frame_119/texture = ExtResource( 239 )
+frame_119/delay_sec = 0.0
