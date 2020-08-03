@@ -34,7 +34,6 @@ window/size/height=1080
 window/size/resizable=false
 window/size/borderless=true
 window/size/always_on_top=true
-window/vsync/use_vsync=false
 window/stretch/mode="2d"
 
 [importer_defaults]
@@ -218,4 +217,5 @@ hewie_key_down={
 [rendering]
 
 quality/2d/use_pixel_snap=true
+quality/filters/anisotropic_filter_level=2
 environment/default_environment="res://default_env.tres"
