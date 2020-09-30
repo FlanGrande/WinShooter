@@ -307,7 +307,7 @@ hframes = 4
 current = true
 zoom = Vector2( 0.3, 0.3 )
 smoothing_enabled = true
-smoothing_speed = 60.0
+smoothing_speed = 3.0
 script = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
