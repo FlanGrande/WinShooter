@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=290 format=2]
+[gd_resource type="TileSet" load_steps=297 format=2]
 
 [ext_resource path="res://tilesets/japanese_pack/accessories.png" type="Texture" id=1]
 [ext_resource path="res://tilesets/japanese_pack/school.png" type="Texture" id=2]
@@ -14,6 +14,12 @@
 [ext_resource path="res://tilesets/omega_moder_pack/tileB_inside1.png" type="Texture" id=12]
 [ext_resource path="res://tilesets/train_station/GK_B_ObjectsandShadows_1.png" type="Texture" id=13]
 [ext_resource path="res://tilesets/train_station/GK_C_HouseandGrass_1.png" type="Texture" id=14]
+[ext_resource path="res://tilesets/omega_moder_pack/tileB_town.png" type="Texture" id=15]
+[ext_resource path="res://tilesets/omega_moder_pack/tileC_town4.png" type="Texture" id=16]
+[ext_resource path="res://tilesets/omega_moder_pack/tileC_town2.png" type="Texture" id=17]
+[ext_resource path="res://tilesets/omega_moder_pack/tileC_town3.png" type="Texture" id=18]
+[ext_resource path="res://tilesets/omega_moder_pack/tileB_nature2.png" type="Texture" id=19]
+[ext_resource path="res://tilesets/omega_moder_pack/tileB_nature.png" type="Texture" id=20]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 6.83927, 32, 6.83927, 32, 32, 0, 32 )
@@ -23,6 +29,9 @@ points = PoolVector2Array( 0, 7.07185, 32, 6.83927, 32, 32, 0, 32 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 7.07185, 32, 7.07185, 32, 32, 0, 32 )
+
+[sub_resource type="OccluderPolygon2D" id=276]
+polygon = PoolVector2Array( 0.0689545, 10.7862, 2.93561, 7.86549, 2.9897, 2.07809, 2.07021, 0, 15.1054, 0, 14.7415, 1.88625, 14.889, 5.1611, 16, 8.02776, 16, 11.0026, 11.6438, 12.0303, 5.24501, 12.158, 2.53172, 11.3828 )
 
 [sub_resource type="OccluderPolygon2D" id=4]
 polygon = PoolVector2Array( 5.88963, 6.45167, 10.3472, 6.64547, 10.1534, 16, 5.88963, 16 )
@@ -2394,3 +2403,129 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 13/shape_one_way_margin = 0.0
 13/shapes = [  ]
 13/z_index = 0
+14/name = "tileB_town.png 14"
+14/texture = ExtResource( 15 )
+14/tex_offset = Vector2( 0, 0 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 0, 0, 256, 256 )
+14/tile_mode = 2
+14/autotile/icon_coordinate = Vector2( 0, 0 )
+14/autotile/tile_size = Vector2( 16, 16 )
+14/autotile/spacing = 0
+14/autotile/occluder_map = [  ]
+14/autotile/navpoly_map = [  ]
+14/autotile/priority_map = [  ]
+14/autotile/z_index_map = [  ]
+14/occluder_offset = Vector2( 0, 0 )
+14/navigation_offset = Vector2( 0, 0 )
+14/shape_offset = Vector2( 0, 0 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+14/shape_one_way = false
+14/shape_one_way_margin = 0.0
+14/shapes = [  ]
+14/z_index = 0
+15/name = "tileC_town4.png 15"
+15/texture = ExtResource( 16 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 0, 0, 256, 256 )
+15/tile_mode = 2
+15/autotile/icon_coordinate = Vector2( 0, 0 )
+15/autotile/tile_size = Vector2( 16, 16 )
+15/autotile/spacing = 0
+15/autotile/occluder_map = [  ]
+15/autotile/navpoly_map = [  ]
+15/autotile/priority_map = [  ]
+15/autotile/z_index_map = [  ]
+15/occluder_offset = Vector2( 0, 0 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape_one_way = false
+15/shape_one_way_margin = 0.0
+15/shapes = [  ]
+15/z_index = 0
+16/name = "tileC_town2.png 16"
+16/texture = ExtResource( 17 )
+16/tex_offset = Vector2( 0, 0 )
+16/modulate = Color( 1, 1, 1, 1 )
+16/region = Rect2( 0, 0, 256, 256 )
+16/tile_mode = 2
+16/autotile/icon_coordinate = Vector2( 0, 0 )
+16/autotile/tile_size = Vector2( 16, 16 )
+16/autotile/spacing = 0
+16/autotile/occluder_map = [  ]
+16/autotile/navpoly_map = [  ]
+16/autotile/priority_map = [  ]
+16/autotile/z_index_map = [  ]
+16/occluder_offset = Vector2( 0, 0 )
+16/navigation_offset = Vector2( 0, 0 )
+16/shape_offset = Vector2( 0, 0 )
+16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+16/shape_one_way = false
+16/shape_one_way_margin = 0.0
+16/shapes = [  ]
+16/z_index = 0
+17/name = "tileC_town3.png 17"
+17/texture = ExtResource( 18 )
+17/tex_offset = Vector2( 0, 0 )
+17/modulate = Color( 1, 1, 1, 1 )
+17/region = Rect2( 0, 0, 256, 256 )
+17/tile_mode = 2
+17/autotile/icon_coordinate = Vector2( 0, 0 )
+17/autotile/tile_size = Vector2( 16, 16 )
+17/autotile/spacing = 0
+17/autotile/occluder_map = [  ]
+17/autotile/navpoly_map = [  ]
+17/autotile/priority_map = [  ]
+17/autotile/z_index_map = [  ]
+17/occluder_offset = Vector2( 0, 0 )
+17/navigation_offset = Vector2( 0, 0 )
+17/shape_offset = Vector2( 0, 0 )
+17/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+17/shape_one_way = false
+17/shape_one_way_margin = 0.0
+17/shapes = [  ]
+17/z_index = 0
+18/name = "tileB_nature2.png 18"
+18/texture = ExtResource( 19 )
+18/tex_offset = Vector2( 0, 0 )
+18/modulate = Color( 1, 1, 1, 1 )
+18/region = Rect2( 0, 0, 256, 256 )
+18/tile_mode = 2
+18/autotile/icon_coordinate = Vector2( 0, 0 )
+18/autotile/tile_size = Vector2( 16, 16 )
+18/autotile/spacing = 0
+18/autotile/occluder_map = [ Vector2( 6, 3 ), SubResource( 276 ) ]
+18/autotile/navpoly_map = [  ]
+18/autotile/priority_map = [  ]
+18/autotile/z_index_map = [  ]
+18/occluder_offset = Vector2( 0, 0 )
+18/navigation_offset = Vector2( 0, 0 )
+18/shape_offset = Vector2( 0, 0 )
+18/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+18/shape_one_way = false
+18/shape_one_way_margin = 0.0
+18/shapes = [  ]
+18/z_index = 0
+19/name = "tileB_nature.png 19"
+19/texture = ExtResource( 20 )
+19/tex_offset = Vector2( 0, 0 )
+19/modulate = Color( 1, 1, 1, 1 )
+19/region = Rect2( 0, 0, 256, 256 )
+19/tile_mode = 2
+19/autotile/icon_coordinate = Vector2( 0, 0 )
+19/autotile/tile_size = Vector2( 16, 16 )
+19/autotile/spacing = 0
+19/autotile/occluder_map = [  ]
+19/autotile/navpoly_map = [  ]
+19/autotile/priority_map = [  ]
+19/autotile/z_index_map = [  ]
+19/occluder_offset = Vector2( 0, 0 )
+19/navigation_offset = Vector2( 0, 0 )
+19/shape_offset = Vector2( 0, 0 )
+19/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+19/shape_one_way = false
+19/shape_one_way_margin = 0.0
+19/shapes = [  ]
+19/z_index = 0
